@@ -1,11 +1,10 @@
 from flask import Flask, request, g, redirect, url_for,\
     abort, render_template, flash
-import loadconfig
-import sys
 
-MODULES = {}
-modules = loadconfig.get('modules')
-modulenames = loadconfig.get('modules_display')
+import sys
+import constants
+from constants import modules,modulenames,MODULES
+
 
 def load_modules():
     '''
@@ -25,26 +24,31 @@ def load_modules():
                     raise KeyError
             except KeyError:
                 mod = __import__(key,globals(),locals(),[])
-                sys.modules[key] = mod
+                mod = getattr(mod,key)
+                sys.modules[key] = mod.getInstance()
             if mod:
-                MODULES[key] = mod
+                MODULES[key] = mod.getInstance()
 
 
 app = Flask(__name__)
-app.config.from_object(__name__)
+app.config.from_object(constants.__name__)
 
 
 @app.route('/Soundex')
 def Soundex():
-    pass
+    return render_template('soundex.html',title='Soundex Module',modules = (modulenames[x] for x  in modules.keys() if modules[x] == "yes"))
 
 @app.route('/ApproxSearch')
 def ApproxSearch():
+    return render_template('approxsearch.html',title='ApproxSearch Module',modules = (modulenames[x] for x  in modules.keys() if modules[x] == "yes"))
+
+@app.route('/JSONRPC')
+def JSONRPC():
     pass
 
 @app.route('/')
 def main_page():
-    return render_template('index.html',title='Indic Computing Platform',modules=[modulenames[x] for x in modules.keys() if modules[x] == "yes"])
+    return render_template('index.html',title='Indic Computing Platform',modules=(modulenames[x] for x in modules.keys() if modules[x] == "yes"))
 
 if __name__ == '__main__':
     app.debug = True
