@@ -21,7 +21,7 @@ the Free Software Foundation; either version 3 of the License, or
 <div id="wrap">
     <div id="header">
         <div id="toplinks">
-        <a href="{{ url_for('main_page')}}">Home</a></li> |
+        <a href="{{ url_for(main_page)}}">Home</a></li> |
         <a href="{{ url_for('static',filename='doc/index.html')}}">Documentation</a> |
         <a href="http://silpa.smc.org.in/wiki">Wiki</a> |
         <a href="{{ url_for('static',filename='doc/apis.html')}}">API</a> |
@@ -39,7 +39,7 @@ the Free Software Foundation; either version 3 of the License, or
             <h2>Applications</h2>
             <ul id="nav-secondary">
             {% for module in modules %}
-            <li><a href="{{ url_for(module) }}">{{ module }}</a></li>
+            <li><a href="{{ url_for(main_page + '/' + module if not main_page == '/' else main_page + module) }}">{{ module }}</a></li>
             {% endfor %}              
             </ul>
         </div>

@@ -1,48 +1,43 @@
 from flask import Flask, request, g, redirect, url_for,\
     abort, render_template, flash
+from webbridge import WebBridge
+from constants import enabled_modules, BASEURL
+
 import constants
-from constants import modules,modulenames
+import loadconfig
+
 
 app = Flask(__name__)
 app.config.from_object(constants.__name__)
 
+def register_url():
+    '''
+     Function all form of URL which will be handled by SILPA service
 
-@app.route('/Soundex')
-def Soundex():
+     This function actually make this flask front end of SILPA independent
+     of any modules. It doesn't know what modules are present nor doesn't
+     know how to handle modules all the request will be promptly handed over
+     to WebBridge
     '''
-      This function is responsible to handle the /Soundex module page request.
-      It just returns the rendered template
-    '''
-    return render_template('soundex.html',title='Soundex Module',modules = (modulenames[x] for x  in modules.keys() if modules[x] == "yes"))
+    # / or /baseurl for index page
+    baseurl = '/'  if BASEURL == '/' else '/' + BASEURL
+    app.add_url_rule(baseurl, view_func=WebBridge.as_view(baseurl))
 
-@app.route('/ApproxSearch')
-def ApproxSearch():
-    '''
-      This function is responsible to handle the /ApproxSearch module page request.
-      It just returns the rendered template
-    '''
-    return render_template('approxsearch.html',title='ApproxSearch Module',modules = (modulenames[x] for x  in modules.keys() if modules[x] == "yes"))
+    # Register all enabled modules
+    # baseurl/modulenames['module']
+    for module in enabled_modules:
+        module_url = baseurl + "/" + module if not baseurl == "/" else baseurl + module
+        print module_url
+        app.add_url_rule(module_url, view_func=WebBridge.as_view(module_url))
 
-@app.route('/JSONRPC')
-def JSONRPC():
-    '''
-     This module is responsible for handling module processing request which is implemented
-     as JSONRPC.
-
-     #TODO: Implement it :P
-    '''
-    pass
-
-@app.route('/')
-def main_page():
-    '''
-     This function renders the main page of Silpa
-    '''
-    return render_template('index.html',title='SILPA',modules=(modulenames[x] for x in modules.keys() if modules[x] == "yes"))
+    # JSONRPC url
+    jsonrpc_url = baseurl + "/JSONRPC" if not baseurl == "/" else baseurl + "JSONRPC"
+    app.add_url_rule(jsonrpc_url,view_func=WebBridge.as_view(jsonrpc_url))
+    
 
 
 if __name__ == '__main__':
     app.debug = True
-    # Lets intialized enabled module before starting server
-    constants.load_modules()
+    # Lets register all required URL's
+    register_url()
     app.run()

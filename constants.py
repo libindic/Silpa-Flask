@@ -1,17 +1,20 @@
 '''
   Purpose of this file is to hold variables which is used
   across the application so that these variables don't get initialized multiple times
-
-  :copyright (c) 2012, Vasudev Kamath
-  :license (c) ISC license 
 '''
+
+_all_ = ['MODULES', 'modules', 'modulenames', 'enabled_modules', 'load_modules', 'BASEURL']
 
 import loadconfig
 import sys
 
 MODULES = {}
+BASEURL = loadconfig.get('baseurl')
+
 modules = loadconfig.get('modules')
 modulenames = loadconfig.get('modules_display')
+
+enabled_modules = [modulenames[x] for x in modules.keys() if modules[x] == "yes"]
 
 def load_modules():
     '''
@@ -35,6 +38,7 @@ def load_modules():
                     raise KeyError
             except KeyError:
                 mod = __import__(key,globals(),locals(),[])
+                mod = getattr(mod,key)
                 sys.modules[key] = mod.getInstance()
             if mod:
                 MODULES[key] = mod.getInstance()
