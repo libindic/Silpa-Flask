@@ -7,7 +7,7 @@
 '''
 from flask.views import MethodView
 from flask import render_template, request, jsonify
-from constants import modulenames, enabled_modules, BASEURL
+from core.modulehelper import modulenames, enabled_modules, BASEURL
 
 class WebBridge(MethodView):
 

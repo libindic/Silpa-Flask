@@ -1,14 +1,12 @@
-from flask import Flask, request, g, redirect, url_for,\
-    abort, render_template, flash
+from flask import Flask
 from webbridge import WebBridge
-from constants import enabled_modules, BASEURL
+from core.modulehelper import enabled_modules, BASEURL
+from core import modulehelper
 
-import constants
-import loadconfig
 
 
 app = Flask(__name__)
-app.config.from_object(constants.__name__)
+app.config.from_object(modulehelper.__name__)
 
 def register_url():
     '''
