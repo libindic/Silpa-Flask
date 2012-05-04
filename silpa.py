@@ -35,7 +35,7 @@ def register_url():
 
 
 if __name__ == '__main__':
-    app.debug = True
+    # app.debug = True
     # Lets register all required URL's
     register_url()
     app.run()

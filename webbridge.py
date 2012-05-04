@@ -5,9 +5,13 @@
 
   This class is derived from MethodView class from flask.views
 '''
+
 from flask.views import MethodView
-from flask import render_template, request, jsonify
+from flask import render_template, request
 from core.modulehelper import modulenames, enabled_modules, BASEURL
+from core.jsonrpchandler import JSONRPCHandler
+
+handler = JSONRPCHandler()
 
 class WebBridge(MethodView):
 
@@ -41,5 +45,6 @@ class WebBridge(MethodView):
         '''
         if request.path.split('/')[-1] == "JSONRPC":
             if request.data != None:
-                print request.data
-                return jsonify(error="null",result="Work under progress!", id="")
+                result = handler.handle_request(request.data)
+                return result
+

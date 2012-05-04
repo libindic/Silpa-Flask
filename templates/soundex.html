@@ -12,7 +12,7 @@
     else
         var word= form.word2.value;
     var jsonRequest = {
-                "method" :  "soundex",
+                "method" :  "soundex.soundex",
                  "params" : [word], 
                  "id" : ""
                  };             
@@ -42,7 +42,7 @@
         var word1= form.word1.value;
         var word2= form.word2.value;
         var jsonRequest = {
-                "method" :  "modules.Soundex.compare",
+                "method" :  "soundex.compare",
                  "params" : [word1,word2], 
                  "id" : ""
                  };         

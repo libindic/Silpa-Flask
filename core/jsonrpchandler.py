@@ -18,11 +18,11 @@ class MethodNotFoundException(JSONRPCHandlerException):
 
 class JSONRPCHandler(object):
 
-    def __init__(self,modulename):
+    def __init__(self):
         '''
          This should be only once called. Atleast my assumption
         '''
-        self.modulename = modulename
+        print "Called + 1"
         load_modules()
 
     def translate_request(self,data):
@@ -44,6 +44,20 @@ class JSONRPCHandler(object):
             data = dumps({"result":None, "id": id_, "error": error})
 
         return data
+
+    def call(self,method,args):
+        _args = None
+        for arg in args:
+            if arg != '':
+                if _args == None:
+                    _args = []
+                _args.append(arg)
+
+        if _args == None:
+            # No arguments
+            return method()
+        else:
+            return method(*_args)
             
     def handle_request(self, json):
         err = None
@@ -72,6 +86,15 @@ class JSONRPCHandler(object):
             module_instance = None
             if err == None:
                 try:
-                    module_instance = MODULES.get(meth)
+                    module_instance = MODULES.get(meth.split('.')[0])
                 except:
-                    err = ServiceMethodNotFound(meth)
+                    err = MethodNotFoundException(meth.split('.')[-1])
+
+            method = None
+            if err == None:
+                result = self.call(getattr(module_instance,meth.split('.')[-1]),args)
+
+            return self.translate_result(result,err,id_)
+                    
+
+            

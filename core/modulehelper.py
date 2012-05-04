@@ -38,7 +38,6 @@ def load_modules():
                     raise KeyError
             except KeyError:
                 mod = __import__(key,globals(),locals(),[])
-                mod = getattr(mod,key)
-                sys.modules[key] = mod.getInstance()
+                sys.modules[key] = mod
             if mod:
                 MODULES[key] = mod.getInstance()
