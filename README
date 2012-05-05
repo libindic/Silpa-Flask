@@ -25,6 +25,7 @@ source code in virtual environment created using VirtualEnv module
 
 * [Soudex ](http://github.com/copyninja/Soundex)
 * [ApproxSearch](http://github.com/copyninja/ApproxSearch)
+*[ Transliteration](http://github.com/copyninja/Transliteration)
 
 Currently only these 2 modules are used but you can include more you can find some more modules
 in my Github account, install them and add a line in *silpa.conf* for enabling them.
@@ -37,12 +38,14 @@ Your help is most welcome. You can do following to help me
 1. Help me separate out modules from original Silpa
 2. Use it and report me bugs
 3. Help me update docs
+4. Get a new design for SILPA
 
 
 TODO
 ==========
 
-1. Implement JSONRPC so these modules can actually function
+1. Implement JSONRPC so these modules can actually function [Done]
 2. Serve Documentation and other pages through Flask and implement Jinja2 
 3. Get remaining modules of SILPA get their templates
+4. Provide RESTful API for all modules
 
