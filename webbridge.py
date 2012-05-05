@@ -33,6 +33,8 @@ class WebBridge(MethodView):
                 return render_template('soundex.html',title="Soundex", main_page=BASEURL, modules=enabled_modules)
             elif pathcomponent == modulenames['inexactsearch']:
                 return render_template('approxsearch.html',title="ApproxSearch",main_page=BASEURL, modules=enabled_modules)
+            elif pathcomponent == modulenames['transliteration']:
+                return render_template('transliterate.html', title="Indic Translieteration", main_page=BASEURL, modules=enabled_modules)
 
 
     def post(self):
