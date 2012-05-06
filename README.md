@@ -49,3 +49,8 @@ TODO
 3. Get remaining modules of SILPA get their templates
 4. Provide RESTful API for all modules
 
+Known Bugs
+===========
+
+1. Transliteration module is not in working state
+2. Hyphenate module breaks it needs guesslanguage module
