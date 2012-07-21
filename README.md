@@ -25,7 +25,7 @@ source code in virtual environment created using VirtualEnv module
 
 * [Soudex ](http://github.com/copyninja/Soundex)
 * [ApproxSearch](http://github.com/copyninja/ApproxSearch)
-*[ Transliteration](http://github.com/copyninja/Transliteration)
+* [Transliteration](http://github.com/copyninja/Transliteration)
 
 Currently only these 2 modules are used but you can include more you can find some more modules
 in my Github account, install them and add a line in *silpa.conf* for enabling them.
