@@ -56,5 +56,5 @@ TODO
 Known Bugs
 ===========
 
-1. <span style='text-decoration: overline;">Transliteration module is not in working state</span>
+1. <p style="text-decoration: line-through;">Transliteration module is not in working state</p>
 2. Hyphenate module breaks it needs guesslanguage module
