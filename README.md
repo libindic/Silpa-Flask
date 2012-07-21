@@ -30,6 +30,10 @@ source code in virtual environment created using VirtualEnv module
 Currently only these 2 modules are used but you can include more you can find some more modules
 in my Github account, install them and add a line in *silpa.conf* for enabling them.
 
+Additionally we would need a *normalizer* module for *Transliteration* modules correct working.
+Get it from below URL and install it in your virtual environment but ***Do not add a line to silpa.conf
+for this module. Its not a web module pure python module*** 
+
 Wanna Help?
 ==========
 
@@ -52,5 +56,5 @@ TODO
 Known Bugs
 ===========
 
-1. Transliteration module is not in working state
+1. <strike>Transliteration module is not in working state</strike>
 2. Hyphenate module breaks it needs guesslanguage module
