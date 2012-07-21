@@ -56,5 +56,5 @@ TODO
 Known Bugs
 ===========
 
-1. <p style="text-decoration: line-through;">Transliteration module is not in working state</p>
+1. Transliteration module is not in working state [FIXED]
 2. Hyphenate module breaks it needs guesslanguage module
