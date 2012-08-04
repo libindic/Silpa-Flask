@@ -11,6 +11,8 @@ class _SilpaConfig:
         self.site_name = _config.get('main','site')
         self.baseurl = _config.get('main','baseurl')
 
+        self.log_level = _config.get('logging','log_level')
+        
         folder = _config.get('logging','log_folder')
         self.log_folder = folder if folder else os.getcwd()
 

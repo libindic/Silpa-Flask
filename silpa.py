@@ -1,9 +1,11 @@
 from flask import Flask
+from logging import handlers,Formatter
 from webbridge import WebBridge
 from core.modulehelper import enabled_modules, BASEURL
 from core import modulehelper
 
-
+import loadconfig
+import logging
 
 app = Flask(__name__)
 app.config.from_object(modulehelper.__name__)
@@ -31,11 +33,36 @@ def register_url():
     # JSONRPC url
     jsonrpc_url = baseurl + "/JSONRPC" if not baseurl == "/" else baseurl + "JSONRPC"
     app.add_url_rule(jsonrpc_url,view_func=WebBridge.as_view(jsonrpc_url))
-    
+
+def configure_logging():
+    log_level = loadconfig.get('log_level')
+    log_folder = loadconfig.get('log_folder')
+    log_name = loadconfig.get('log_name')
+    filename = log_folder + '/' + log_name
+
+    handler = handlers.TimedRotatingFileHandler(filename,when='D',interval=7,backupCount=4,encoding='utf-8')
+
+    level = logging.ERROR
+    if log_level == 'debug':
+        level = logging.debug
+    elif log_level == "info":
+        level = logging.INFO
+    elif log_level == "warn":
+        level = logging.WARNING
+    elif log_level == "error":
+        level = logging.ERROR
+
+    handler.setLevel(level)
+    handler.setFormatter(Formatter('%(asctime)s %(levelname)s: %(message)s'
+                                   '[in %(pathname)s:%(lineno)d]'))
+
+    return handler
 
 
 if __name__ == '__main__':
     app.debug = True
     # Lets register all required URL's
     register_url()
+    handler = configure_logging()
+    app.logger.addHandler(handler)
     app.run()

@@ -37,6 +37,8 @@ class WebBridge(MethodView):
                 return render_template('transliterate.html', title="Indic Translieteration", main_page=BASEURL, modules=enabled_modules)
             elif pathcomponent == modulenames['hyphenation']:
                 return render_template('hyphenator.html', title="Hyphenate", main_page=BASEURL, modules=enabled_modules)
+            elif pathcomponent == modulenames['spellchecker']:
+                return render_template('spellchecker.html',title="Spell Check", main_page=BASEURL, modules=enabled_modules)
 
 
     def post(self):
