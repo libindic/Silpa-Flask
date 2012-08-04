@@ -22,7 +22,6 @@ class JSONRPCHandler(object):
         '''
          This should be only once called. Atleast my assumption
         '''
-        print "Called + 1"
         load_modules()
 
     def translate_request(self,data):

@@ -7,8 +7,6 @@ from core import modulehelper
 import loadconfig
 import logging
 
-app = Flask(__name__)
-app.config.from_object(modulehelper.__name__)
 
 def register_url():
     '''
@@ -21,17 +19,19 @@ def register_url():
     '''
     # / or /baseurl for index page
     baseurl = '/'  if BASEURL == '/' else '/' + BASEURL
+    app.logger.debug("Registering the URL:{0}".format(baseurl))
     app.add_url_rule(baseurl, view_func=WebBridge.as_view(baseurl))
 
     # Register all enabled modules
     # baseurl/modulenames['module']
     for module in enabled_modules:
         module_url = baseurl + "/" + module if not baseurl == "/" else baseurl + module
-        print module_url
+        app.logger.debug("Registering the URL:{0}".format(baseurl))        
         app.add_url_rule(module_url, view_func=WebBridge.as_view(module_url))
 
     # JSONRPC url
     jsonrpc_url = baseurl + "/JSONRPC" if not baseurl == "/" else baseurl + "JSONRPC"
+    app.logger.debug("Registering the URL:{0}".format(baseurl))    
     app.add_url_rule(jsonrpc_url,view_func=WebBridge.as_view(jsonrpc_url))
 
 def configure_logging():
@@ -58,11 +58,21 @@ def configure_logging():
 
     return handler
 
+DEBUG = True
+
+# OpenShift Configurations
+#APPLICATION_ROOT =
+#SERVER_NAME=enter openshift server name here
+
+# Basics
+app = Flask(__name__)
+app.config.from_object(__name__)
+
+# Logging
+app.logger.addHandler(configure_logging())
+
+# Register URL's
+register_url()
 
 if __name__ == '__main__':
-    app.debug = False
-    # Lets register all required URL's
-    register_url()
-    handler = configure_logging()
-    app.logger.addHandler(handler)
     app.run()
