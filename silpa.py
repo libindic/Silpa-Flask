@@ -60,7 +60,7 @@ def configure_logging():
 
 
 if __name__ == '__main__':
-    app.debug = True
+    app.debug = False
     # Lets register all required URL's
     register_url()
     handler = configure_logging()
