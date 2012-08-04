@@ -44,7 +44,7 @@ def configure_logging():
 
     level = logging.ERROR
     if log_level == 'debug':
-        level = logging.debug
+        level = logging.DEBUG
     elif log_level == "info":
         level = logging.INFO
     elif log_level == "warn":
@@ -58,11 +58,7 @@ def configure_logging():
 
     return handler
 
-DEBUG = True
-
-# OpenShift Configurations
-#APPLICATION_ROOT =
-#SERVER_NAME=enter openshift server name here
+DEBUG = False
 
 # Basics
 app = Flask(__name__)
@@ -72,7 +68,7 @@ app.config.from_object(__name__)
 app.logger.addHandler(configure_logging())
 
 # Register URL's
-register_url()
+register_url()    
 
 if __name__ == '__main__':
     app.run()
