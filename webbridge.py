@@ -23,7 +23,7 @@ class WebBridge(MethodView):
          If the query string is not None then its a RESTful request respond with
          a proper response format
         '''
-        if request.path == "/":
+        if request.path == BASEURL:
             # request is for document root
             return render_template('index.html',title="SILPA",main_page=BASEURL, modules=enabled_modules)
         elif len(request.args) == 0:
