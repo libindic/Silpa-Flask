@@ -57,7 +57,9 @@ def configure_logging():
     handler.setFormatter(Formatter('%(asctime)s %(levelname)s: %(message)s \
                                    [in %(pathname)s %(lineno)d]'))
 
-    return handler
+    app.logger.setLevel(level)
+    app.logger.addHandler(handler)
+
 
 DEBUG = False
 
@@ -66,7 +68,7 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 
 # Logging
-app.logger.addHandler(configure_logging())
+configure_logging()
 
 # Register URL's
 register_url()    
