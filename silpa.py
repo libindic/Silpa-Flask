@@ -35,6 +35,18 @@ def register_url():
     app.add_url_rule(jsonrpc_url,view_func=WebBridge.as_view(jsonrpc_url))
 
 def configure_logging():
+    '''
+      This function configures logging for the SILPA applications using Flask's internal
+      logger.
+
+      For now log file will be rotated 7 days once and 4 backups will be kept. This can't
+      be modified using configuration file as of now.
+
+      Default logging level will be ERROR and can be modified from configuration file. Log
+      folder and file name can also be configured using configuration file but make sure
+      the path  you give is writable for Webserver user, otherwise this will lead to an
+      error.
+    '''
     log_level = loadconfig.get('log_level')
     log_folder = loadconfig.get('log_folder')
     log_name = loadconfig.get('log_name')
