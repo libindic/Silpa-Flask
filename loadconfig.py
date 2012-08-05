@@ -14,7 +14,7 @@ class _SilpaConfig:
         self.log_level = _config.get('logging','log_level')
         
         folder = _config.get('logging','log_folder')
-        self.log_folder = folder if folder else os.getcwd()
+        self.log_folder = folder if folder != "." else os.getcwd()
 
         name = _config.get('logging','log_name')
         self.log_name = name if name else 'silpa.log'
