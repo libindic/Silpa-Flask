@@ -2,10 +2,10 @@ from flask import Flask
 from logging import handlers,Formatter
 from webbridge import WebBridge
 from core.modulehelper import enabled_modules, BASEURL
-from core import modulehelper
 
 import loadconfig
 import logging
+import os
 
 
 def register_url():
@@ -18,7 +18,7 @@ def register_url():
      to WebBridge
     '''
     # / or /baseurl for index page
-    baseurl = '/'  if BASEURL == '/' else '/' + BASEURL
+    baseurl = '/'  if BASEURL == '/' else BASEURL
     app.logger.debug("Registering the URL:{0}".format(baseurl))
     app.add_url_rule(baseurl, view_func=WebBridge.as_view(baseurl))
 
@@ -26,7 +26,7 @@ def register_url():
     # baseurl/modulenames['module']
     for module in enabled_modules:
         module_url = baseurl + "/" + module if not baseurl == "/" else baseurl + module
-        app.logger.debug("Registering the URL:{0}".format(baseurl))        
+        app.logger.debug("Registering the URL:{0}".format(module_url))
         app.add_url_rule(module_url, view_func=WebBridge.as_view(module_url))
 
     # JSONRPC url
@@ -38,12 +38,13 @@ def configure_logging():
     log_level = loadconfig.get('log_level')
     log_folder = loadconfig.get('log_folder')
     log_name = loadconfig.get('log_name')
-    filename = log_folder + '/' + log_name
+    filename = os.path.join(log_folder,log_name)
 
-    handler = handlers.TimedRotatingFileHandler(filename,when='D',interval=7,backupCount=4,encoding='utf-8')
+    handler = handlers.TimedRotatingFileHandler(filename,when='D',interval=7,backupCount=4)
 
     level = logging.ERROR
-    if log_level == 'debug':
+
+    if log_level == "debug":
         level = logging.DEBUG
     elif log_level == "info":
         level = logging.INFO
@@ -53,8 +54,8 @@ def configure_logging():
         level = logging.ERROR
 
     handler.setLevel(level)
-    handler.setFormatter(Formatter('%(asctime)s %(levelname)s: %(message)s'
-                                   '[in %(pathname)s:%(lineno)d]'))
+    handler.setFormatter(Formatter('%(asctime)s %(levelname)s: %(message)s \
+                                   [in %(pathname)s %(lineno)d]'))
 
     return handler
 
