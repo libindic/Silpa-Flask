@@ -18,7 +18,7 @@ handler = JSONRPCHandler()
 class WebBridge(MethodView):
     def __init__(self):
         self.app = globals.current_app
-        
+
     def get(self):
         '''
          Method from MethodView class which handles all HTTP GET requests
@@ -34,17 +34,9 @@ class WebBridge(MethodView):
         elif len(request.args) == 0:
             # This is not query so lets serve the page
             pathcomponent = request.path.split('/')[-1]
-            if pathcomponent == modulenames['soundex']:
-                return render_template('soundex.html',title="Soundex", main_page=BASEURL, modules=enabled_modules)
-            elif pathcomponent == modulenames['inexactsearch']:
-                return render_template('approxsearch.html',title="ApproxSearch",main_page=BASEURL, modules=enabled_modules)
-            elif pathcomponent == modulenames['transliteration']:
-                return render_template('transliterate.html', title="Indic Translieteration", main_page=BASEURL, modules=enabled_modules)
-            elif pathcomponent == modulenames['hyphenation']:
-                return render_template('hyphenator.html', title="Hyphenate", main_page=BASEURL, modules=enabled_modules)
-            elif pathcomponent == modulenames['spellchecker']:
-                return render_template('spellchecker.html',title="Spell Check", main_page=BASEURL, modules=enabled_modules)
-
+            for module, name in  modulenames.items():
+                if pathcomponent == name:
+                    return render_template(module+'.html', title=name, main_page=BASEURL, modules=enabled_modules)
 
     def post(self):
         '''
