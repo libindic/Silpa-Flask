@@ -43,28 +43,38 @@
 {% endblock %}
 
 {% block content %}
-        <h2>Hyphenate Text</h2></hr>
-        <h4>What is hyphenation?</h4>
-        Hyphenation is the process inserting hyphens in between the syllables of a word so that when the text is justified, maximum space is utilized. <a href="http://thottingal.in/blog/2008/12/16/hyphenation-of-indian-languages-in-webpages/">Read more</a> about hyphenation
-        <a href="http://ftp.twaren.net/Unix/NonGNU/smc/hyphenation/web/example.html">This is a webpage</a> with hyphenated indian language content
-        <h4>Supported Languages</h4>
-        <p>English, Hindi, Malayalam, Tamil, Telugu, Kannada, Oriya, Bengali, Gujarati, Panjabi, Marathi, Sanskrit, Assamese, Kashmeeri, Afrikaans, German, French, Croatian, Hungarian, Italian, Zulu</p>
-        <p>Enter the text for  hyphenation in the below text area.
-         Language of each  word will be detected. 
-         You can give the text in any language and even with mixed language
-        </p>
-        <form action="" method="post"  onsubmit="return dohyphenate(this); " >
-        <textarea  name='text' id='id1'></textarea>
-        <p align="center">
-        Select hyphenation character: <select id="hyphChar" name="direction" style="width:12em;">
-        <option value="">Soft Hyphen (&amp;shy;)</option>
-        <option value="-">Hyphen (-)</option>
-        <option value="|">Vertical Bar (|)</option>
-        <option value="/">Forward Slash (/)</option>
-        </select>
-        <input  type="submit" id="Hyphenate" value="Hyphenate"  name="action" style="width:12em;"/>
-        </p>
-        </br>
+<em>
+    <h2>Hyphenate Text</h2><br/>
+    <small>What is hyphenation?</small>
+    Hyphenation is the process inserting hyphens in between the syllables of a word so that when the text is justified, maximum space is utilized. <a href="http://thottingal.in/blog/2008/12/16/hyphenation-of-indian-languages-in-webpages/">Read more</a> about hyphenation
+    <a href="http://ftp.twaren.net/Unix/NonGNU/smc/hyphenation/web/example.html">This is a webpage</a> with hyphenated indian language content
+    <h4>Supported Languages</h4>
+    English, Hindi, Malayalam, Tamil, Telugu, Kannada, Oriya, Bengali, Gujarati, Panjabi, Marathi, Sanskrit, Assamese, Kashmeeri, Afrikaans, German, French, Croatian, Hungarian, Italian, Zulu
+</em>
+              
+        <form class="well form-horrizontal" action="" method="post"  onsubmit="return dohyphenate(this); " >
+          <p class="help-block">
+                Enter the text for  hyphenation in the below text area.
+                Language of each  word will be detected. 
+                You can give the text in any language and even with mixed language
+          </p>
+          <fieldset>
+            <textarea  name='text' id='id1' class="input-xlarge" rows="10"></textarea>
+            <div class="control-group">
+              <label class="control-label" for="hypChar">Select hyphenation character:</label>
+              <div class="controls">
+                <select id="hyphChar" name="direction" style="width:12em;">
+                  <option value="">Soft Hyphen (&amp;shy;)</option>
+                  <option value="-">Hyphen (-)</option>
+                  <option value="|">Vertical Bar (|)</option>
+                  <option value="/">Forward Slash (/)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary"  type="submit" id="Hyphenate">Hyphenate</button>
+            </div>
+          </fieldset>
         </form>
         <div class="multiplecolumns" id="hyphresult">
         </div>
