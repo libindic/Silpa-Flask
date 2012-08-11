@@ -8,6 +8,7 @@ _all_ = ['MODULES', 'modules', 'modulenames', 'enabled_modules', 'load_modules',
 import loadconfig
 import sys
 
+
 MODULES = {}
 BASEURL = loadconfig.get('baseurl')
 
@@ -37,7 +38,13 @@ def load_modules():
                 if not type(mod).__name__ == 'module':
                     raise KeyError
             except KeyError:
-                mod = __import__(key,globals(),locals(),[])
-                sys.modules[key] = mod
+                try:
+                    mod = __import__(key,globals(),locals(),[])
+                    sys.modules[key] = mod
+                except ImportError:
+                    # FIXME: I can't access logger instance as this code
+                    # will be executed before Flask request context is
+                    # initated.
+                    pass
             if mod:
                 MODULES[key] = mod.getInstance()
