@@ -42,9 +42,10 @@ def load_modules():
                     mod = __import__(key,globals(),locals(),[])
                     sys.modules[key] = mod
                 except ImportError:
-                    # FIXME: I can't access logger instance as this code
-                    # will be executed before Flask request context is
-                    # initated.
+                    # Since we can't use logger from flask as its not yet
+                    # activated we will write it to sys.stderr this should
+                    # go to webserver error.log
+                    print >> sys.stderr, "Failed to import module {0}".format(key)
                     pass
             if mod:
                 MODULES[key] = mod.getInstance()
