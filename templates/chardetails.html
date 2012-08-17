@@ -1,0 +1,70 @@
+{% extends "silpa.html" %}
+{% block modulescript %}
+<script>
+$(document).ready(function() {
+$("form").submit(function(event)
+{
+    event.preventDefault();
+    var result="";
+    var character= $("input[name=character]:", 'form').val();
+    var jsonRequest = {
+        "method" :  "chardetails.getdetails",
+         "params" : [character], 
+         "id" : ""
+    };
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "JSONRPC",
+        data: $.toJSON(jsonRequest), 
+        dataType: "json",
+        beforeSend:function(){
+            $('#result').empty();
+            $('#errormessage').empty();
+            $('#progress').html("Checking. Please Wait..");
+        },
+        success: function(msg) {
+            var resultobj =  msg.result ;
+            $('#progress').empty();
+            // Render it
+            characters = resultobj['Characters'];
+
+            for (var index in characters) {
+              var character = characters[index];
+              chardetails = resultobj[character]
+              $('#result').append("<table id='resulttable' class='table1'><tr><th>Character</th><th>"+ character +" </th></tr></table>");
+              for (var property in chardetails) 
+              {
+                $('#resulttable tr:last').after("<tr><td>" + property +"</td><td>" + chardetails[property] +"</td></tr>" );
+              };
+              $('#result').append("<br/>");
+            };
+        },
+        error: function(msg) {
+            $('#progress').empty();
+            $('#errormessage').html("Something went wrong. Please try again!");
+        }
+    });
+});
+});
+</script>
+{% endblock %}
+
+{% block content %}
+    <h2>Unicode Character Details</h2></hr>
+    <p>Enter a character to get the unicode details
+    </p>
+    <form action="" method="post">
+     <p align="center">
+    Character : <input type="text" name="character" style="width:12em;"/>
+    <input type="hidden" name="action" value="CharDetails">
+    <input  type="submit" id="Char_Details" value="Get Details"  style="width:12em;"/>
+    </br>
+    </p>
+    </form>
+    <hr/>
+    <div id="progress"></div>
+    <div id="successmessage"></div>
+    <div id="errormessage"></div>
+    <div id="result"></div>
+{% endblock %}
