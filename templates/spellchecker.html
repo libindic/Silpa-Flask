@@ -1,45 +1,12 @@
 {% extends "silpa.html" %}
 {% block modulescript %}
-<script type="text/javascript">
-    function docheck(form)
-    {
-    $('#progress') .html("Checking. Please Wait..");
-    $('#result').html("");
-    var word= form.word.value;
-    var jsonRequest = {
-        "method" :  "spellchecker.check",
-         "params" : [word], 
-         "id" : ""
-    };
-    $.ajax({
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        url: "JSONRPC",
-        data: $.toJSON(jsonRequest), 
-        dataType: "json",
-        success: function(msg) {
-          var resultobj =  msg.result;
-          $('#progress').html("");
-          if(resultobj)   {
-                 $('#result').html("<b>  Correct Spelling.</b>"); 
-          }
-          else {
-                  $('#result').html("<b> Wrong Spelling</b>");
-                  getSuggestions(word);
-          }
-        },
-        error: function(msg) { alert(msg); }
-    });
-    return false;
-    }
-    function getSuggestions(word)
-    {
-    $('#progress').html("Fetching suggestions. Please wait...");
-    $('#errormessage').html("");
+<script>
+function getSuggestions(word)
+{
     var jsonRequest = {
         "method" :  "spellchecker.suggest",
-         "params" : [word], 
-         "id" : ""
+        "params" : [word], 
+        "id" : ""
     };
     $.ajax({
         type: "POST",
@@ -47,26 +14,73 @@
         url: "JSONRPC",
         data: $.toJSON(jsonRequest), 
         dataType: "json",
-        success: function(msg) {
-          var resultobj=eval(msg.result);
-          $('#progress').html("");
-          $('#result').html("<b>Wrong Spelling. Suggestions :</b><ul id='list'></ul>");
-	  if(resultobj.length != 0)
-	  {
-            $.each(resultobj,function(index, item)
-            {
-               $('#list').append($( "<li>" + item +"</li>" ));
-            });
-	  }
-	  else {
-	  	$('#list').append($( " <li> No suggestions available </li>" ));
-	  }
+        beforeSend:function(){
+            $('#result').empty();
+            $('#errormessage').empty();
+            $('#progress').html("Fetching suggestions. Please wait...");
         },
-        error: function(msg) { alert(msg); }
+        success: function(msg) {
+            var resultobj=eval(msg.result);
+            $('#progress').empty();
+            $('#result').html("<b>Wrong Spelling. Suggestions :</b><ul id='list'></ul>");
+            if(resultobj.length != 0)
+            {
+                $.each(resultobj,function(index, item)
+                {
+                   $('#list').append($( "<li>" + item +"</li>" ));
+                });
+            }
+            else {
+                $('#list').append("<li> No suggestions available </li>");
+            }
+        },
+        error: function(msg) {
+            $('#progress').empty();
+            $('#errormessage').append("Something went wrong. Please try again!");
+        }
     });
-    return false;
-    }
-    </script>
+}
+
+$(document).ready(function() {
+    $("form").submit(function(event)
+    {
+        event.preventDefault();
+        var word= $("input[name=word]:", 'form').val();
+        var jsonRequest = {
+            "method" :  "spellchecker.check",
+             "params" : [word], 
+             "id" : ""
+        };
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "JSONRPC",
+            data: $.toJSON(jsonRequest),
+            dataType: "json",
+            beforeSend:function(){
+                $('#result').empty();
+                $('#errormessage').empty();
+                $('#progress').html("Checking. Please Wait..");
+            },
+            success: function(msg) {
+              var resultobj =  msg.result;
+              $('#progress').empty();
+              if(resultobj) {
+                     $('#result').html("<b>Correct Spelling.</b>"); 
+              }
+              else {
+                      $('#result').html("<b>Wrong Spelling</b>");
+                      getSuggestions(word);
+              }
+            },
+            error: function(msg) {
+                $('#progress').empty();
+                $('#errormessage').append("Something went wrong. Please try again!");
+            }
+        });
+    });
+});
+</script>
 {% endblock %}
 
 {% block content %}
@@ -75,9 +89,9 @@
         </p>
         <p>For using Silpa spellcheck service in your web or desktop applications, read the <a href="apis.html#spellcheck">API documentation</a>. This page itself is an example for using silpa spellcheck APIs in a webpage.
         </p>
-        <form action="" method="post" onsubmit="return docheck(this); " >
+        <form action="" method="post" >
         <p align="center">
-        Word : <input type="text"  id="word" style="width:12em;"/>
+        Word : <input type="text" name="word" style="width:12em;"/>
         <input  type="submit" id="spellcheck" value="Spellcheck"  style="width:12em;"/>
         </br>
         </p>
