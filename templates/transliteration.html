@@ -1,47 +1,51 @@
 {% extends "silpa.html" %}
 {% block modulescript %}
-    <script type="text/javascript">
-    function trans(form)
-    {
-        $('#progress') .html("Transliterating. Please Wait...");
-        $('#result').html("");
-        var text= form.input_text.value;
-        var targetlang= form.lang.value;
-        var jsonRequest = {
-        "method" :  "transliteration.transliterate",
-         "params" : [text, targetlang], 
-         "id" : ""
-    };
-	$.ajax({
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        url: "JSONRPC",
-        data: $.toJSON(jsonRequest), 
-        dataType: "json",
-        success: function(msg) {
-        if(msg.result==null){
-            $('#progress').html("");
-            // Render it
-            $('#result') .html("<textarea>"+ msg.message + "</textarea>");
-        }
-        else{
-        var result = msg.result.replace("\n", "&#13;")
-        $('#progress').html("");
-        // Render it
-        $('#result') .html("<textarea>"+ result + "</textarea>");
-        }
-        },
-        error: function(msg) { alert(msg.message); }
-    });
-     return false;
-    }
-    
-    $(document).ready(function(){
-        $("textarea").addInputMenu();
-        //$("textarea").swanalekha({outlineStyle :'dashed 1px green'});
-        $("textarea").mozhi();
-    });
+<script>
+$(document).ready(function() {
+    //$("textarea").addInputMenu();
+    //$("textarea").swanalekha({outlineStyle :'dashed 1px green'});
+    //$("textarea").mozhi();
 
+    $("form").submit(function(event)
+    {
+        event.preventDefault();
+        var text = $("textarea[name=input_text]:", 'form').val();
+        var targetlang = $("select[name=lang]:", 'form').val();
+        var jsonRequest = {
+            "method" :  "transliteration.transliterate",
+            "params" : [text, targetlang], 
+            "id" : ""
+            };
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "JSONRPC",
+            data: $.toJSON(jsonRequest), 
+            dataType: "json",
+            beforeSend:function(){
+                $('#result').empty();
+                $('#errormessage').empty();
+                $('#progress').html("Transliterating. Please Wait...");
+            },
+            success: function(msg) {
+                $('#progress').empty();
+                if(msg.result==null){
+                    // Render it
+                    $('#result') .html("<textarea>"+ msg.message + "</textarea>");
+                }
+                else{
+                    var result = msg.result.replace("\n", "&#13;")
+                    // Render it
+                    $('#result') .html("<textarea>"+ result + "</textarea>");
+                }
+            },
+            error: function(msg) {
+                $('#progress').empty();
+                $('#errormessage').html("Something went wrong. Please try again!");
+            }
+        });
+    });
+});
 </script>
 {% endblock %}
 {% block content %}
@@ -57,24 +61,24 @@
 </p>
 <p>Transliteration to <a href="http://en.wikipedia.org/wiki/IPA"> International Phonetic Alphabet</a> is also available.
 </p>
-<form action="" method="post" onsubmit="return trans(this); ">
-  <textarea  name='input_text' id='input_text'></textarea></br> 
-  Transliterate To : <select id="lang" name="lang" style="width:12em;">
-    <option value="hi_IN">Hindi</option>
-    <option value="ml_IN">Malayalam</option>
-    <option value="bn_IN">Bengali</option>
-    <option value="ta_IN">Tamil</option>
-    <option value="te_IN">Telugu</option>
-    <option value="or_IN">Oriya</option>
-    <option value="gu_IN">Gujarati</option>
-    <option value="pa_IN">Punjabi</option>
-    <option value="kn_IN">Kannada</option>
-    <option value="en_US">English</option>
-    <option value="ISO15919">ISO 15919:2001</option>
-    <option value="IPA">International Phonetical Alphabet(IPA)</option>
-  </select>
-  <input  type="submit" id="Transliterate" value="Transliterate"  name="action" style="width:12em;"/>
-        </br>
+<form action="" method="post">
+    <textarea name='input_text' id='input_text'></textarea></br> 
+    Transliterate To : <select id="lang" name="lang" style="width:12em;">
+        <option value="hi_IN">Hindi</option>
+        <option value="ml_IN">Malayalam</option>
+        <option value="bn_IN">Bengali</option>
+        <option value="ta_IN">Tamil</option>
+        <option value="te_IN">Telugu</option>
+        <option value="or_IN">Oriya</option>
+        <option value="gu_IN">Gujarati</option>
+        <option value="pa_IN">Punjabi</option>
+        <option value="kn_IN">Kannada</option>
+        <option value="en_US">English</option>
+        <option value="ISO15919">ISO 15919:2001</option>
+        <option value="IPA">International Phonetical Alphabet(IPA)</option>
+        </select>
+    <input type="submit" id="Transliterate" value="Transliterate"  name="action" style="width:12em;"/>
+    </br>
 </form>
 <hr/>
 <div id="progress"></div>
