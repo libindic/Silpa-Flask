@@ -89,12 +89,11 @@ $(document).ready(function() {
         </p>
         <p>For using Silpa spellcheck service in your web or desktop applications, read the <a href="apis.html#spellcheck">API documentation</a>. This page itself is an example for using silpa spellcheck APIs in a webpage.
         </p>
-        <form action="" method="post" >
-        <p align="center">
-        Word : <input type="text" name="word" style="width:12em;"/>
-        <input  type="submit" id="spellcheck" value="Spellcheck"  style="width:12em;"/>
-        </br>
-        </p>
+        <form  action="" method="post">
+        <label>Word : </label>
+        <input type="text" name="word" />
+        <span class="help-block">Type in the word to check spelling</span>
+        <input type="submit" class="btn" value="Check Spelling"/>
         </form>
         <hr/>
         <div id="progress"></div>
@@ -124,11 +123,11 @@ Sample usage is given below.
 # -*- coding: utf-8 -*-
 >>>from jsonrpc import ServiceProxy
 >>>silpaService = ServiceProxy("http://smc.org.in/silpa/JSONRPC")
->>>print silpaService.modules.Spellchecker.check("speling")
+>>>print silpaService.spellchecker.check("speling")
 False
->>>print silpaService.modules.Spellchecker.check("speling","en_US")
+>>>print silpaService.spellchecker.check("speling","en_US")
 False
->>>print silpaService.modules.Spellchecker.suggest("speling")
+>>>print silpaService.spellchecker.suggest("speling")
 ["spelling","spieling","spewing"]
 </pre>
 {% endblock %}
