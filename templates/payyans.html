@@ -1,0 +1,81 @@
+{% extends "silpa.html" %}
+{% block modulescript %}
+<script>
+$(document).ready(function() {
+    $("form").submit(function(event)
+    {
+        event.preventDefault();
+        var text= $("textarea[name=input_text]:", 'form').val();
+        var font= $("select[name=font]:", 'form').val();
+        var direction= $("select[name=direction]:", 'form').val();
+
+        
+        if(direction == "a2u"){
+            var jsonRequest = {
+            "method" : "payyans.ASCII2Unicode",
+            "params" : [text, font], 
+            "id" : ""
+            };
+        } else {
+            var jsonRequest = {
+            "method" : "payyans.Unicode2ASCII",
+            "params" : [text, font], 
+            "id" : ""
+            };
+        }
+
+        $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "JSONRPC",
+        data: $.toJSON(jsonRequest), 
+        dataType: "json",
+        beforeSend:function(){
+                $('#result').empty();
+                $('#errormessage').empty();
+                $('#progress').html("Converting. Please Wait...");
+        },
+        success: function(msg) {
+            $('#progress').empty();
+            //alert(msg.result);
+            var result = msg.result.replace("\n", "&#13;")
+            $('#result') .html("<p>"+result+"</p>");
+        },
+        error: function(msg) {
+                $('#progress').empty();
+                $('#errormessage').html("Something went wrong. Please try again!");
+        }
+    });
+    });
+});
+</script>
+{% endblock %}
+
+{% block content %}
+    <h2> ASCII - Unicode Conversion</h2></hr>
+        <p>Enter the text for conversion in the below text area.
+        </p>
+        <form action="" method="post">
+        <textarea  name='input_text' id='id1'></textarea><br/>
+        Select Font : <select id="font" name="font" style="width:12em;">
+        <option value="ambili">Ambili</option>
+        <option value="valluvar">Valluvar</option>
+        <option value="karthika">Karthika</option>
+        <option value="matweb">Mathrubhumi</option>
+        <option value="manorama">Manorama</option>
+        <option value="revathi">Revathi</option>
+        <option value="uma">Uma</option>
+        </select>
+        <select id="direction" name="direction" style="width:12em;">
+        <option value="a2u">ASCII to Unicode</option>
+        <option value="u2a">Unicode to ASCII</option>
+        </select>
+        <input  type="submit" id="Convert" value="Convert"  style="width:12em;"/>
+        </br>
+        </form>
+        <hr/>
+        <div id="progress"></div>
+        <div id="successmessage"></div>
+        <div id="errormessage"></div>
+        <div id="result"></div>
+{% endblock %}

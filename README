@@ -28,8 +28,10 @@ source code in virtual environment created using VirtualEnv module
 * [Transliteration](http://github.com/copyninja/Transliteration)
 * [Spellchecker](https://github.com/copyninja/spellchecker)
 * [Hyphenation](https://github.com/copyninja/Hyphenation)
+* [Chardetails](https://github.com/jishnu7/chardetails)
+* [Payyans](https://github.com/jishnu7/payyans)
 
-Currently only these 2 modules are used but you can include more you can find some more modules
+Currently only these modules are used but you can include more you can find some more modules
 in my Github account, install them and add a line in *silpa.conf* for enabling them.
 
 Additionally we would need a *normalizer* module for *Transliteration* modules correct working.
