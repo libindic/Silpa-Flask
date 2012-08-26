@@ -39,11 +39,11 @@ $(document).ready(function() {
             $('#progress').empty();
             //alert(msg.result);
             var result = msg.result.replace("\n", "&#13;")
-            $('#result') .html("<p>"+result+"</p>");
+            $('#result') .html("<div class=\"alert alert-info\"><p>"+result+"</p></div>");
         },
         error: function(msg) {
                 $('#progress').empty();
-                $('#errormessage').html("Something went wrong. Please try again!");
+                $('#errormessage').html("<div class=\"alert alert-error\">Something went wrong. Please try again!</div>");
         }
     });
     });

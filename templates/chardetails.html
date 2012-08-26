@@ -30,7 +30,7 @@ $("form").submit(function(event)
             for (var index in characters) {
               var character = characters[index];
               chardetails = resultobj[character]
-              $('#result').append("<table id='resulttable' class='table1'><tr><th>Character</th><th>"+ character +" </th></tr></table>");
+              $('#result').append("<table id='resulttable' class='table table-striped'><tr><th>Character</th><th>"+ character +" </th></tr></table>");
               for (var property in chardetails) 
               {
                 $('#resulttable tr:last').after("<tr><td>" + property +"</td><td>" + chardetails[property] +"</td></tr>" );
@@ -40,7 +40,7 @@ $("form").submit(function(event)
         },
         error: function(msg) {
             $('#progress').empty();
-            $('#errormessage').html("Something went wrong. Please try again!");
+            $('#errormessage').html("<div class=\"alert alert-error\">Something went wrong. Please try again!</div>");
         }
     });
 });
