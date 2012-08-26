@@ -22,6 +22,9 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    {% block modulescript %}
+    {% endblock %}S
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -72,6 +75,5 @@
     </div>
     <!-- Lets make page load fast -->
     <script src="{{ url_for('static', filename="bootstrap/js/bootstrap.min.js") }}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>    
   </body>
 </html>
