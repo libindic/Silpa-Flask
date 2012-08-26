@@ -52,12 +52,17 @@ $(document).ready(function() {
 {% endblock %}
 
 {% block content %}
-    <h2> ASCII - Unicode Conversion</h2></hr>
-        <p>Enter the text for conversion in the below text area.
-        </p>
-        <form action="" method="post">
-        <textarea  name='input_text' id='id1'></textarea><br/>
-        Select Font : <select id="font" name="font" style="width:12em;">
+<div class="well">
+  <h2> ASCII - Unicode Conversion</h2></hr>
+  <p class="help-block">Enter the text for conversion in the below text area.
+  </p>
+  <form class="form-horizontal" action="" method="post">
+    <textarea  name='input_text' id='id1' rows="10" style="width: 98.5%;"></textarea>
+    <span class="help-block"></span>
+    <div class="control-group">
+    <label class="control-label" for="font">Select Font :</label>
+    <div class="controls">
+      <select id="font" name="font" style="width:12em;">
         <option value="ambili">Ambili</option>
         <option value="valluvar">Valluvar</option>
         <option value="karthika">Karthika</option>
@@ -65,17 +70,28 @@ $(document).ready(function() {
         <option value="manorama">Manorama</option>
         <option value="revathi">Revathi</option>
         <option value="uma">Uma</option>
-        </select>
+      </select>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="direction">Select Direction: </label>
+      <div class="controls">
         <select id="direction" name="direction" style="width:12em;">
-        <option value="a2u">ASCII to Unicode</option>
-        <option value="u2a">Unicode to ASCII</option>
+          <option value="a2u">ASCII to Unicode</option>
+          <option value="u2a">Unicode to ASCII</option>
         </select>
-        <input  type="submit" id="Convert" value="Convert"  style="width:12em;"/>
-        </br>
-        </form>
-        <hr/>
-        <div id="progress"></div>
-        <div id="successmessage"></div>
-        <div id="errormessage"></div>
-        <div id="result"></div>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <button  class="btn" type="submit" id="Convert" >Convert</button>
+      </div>
+    </div>        
+  </form>
+</div>  
+  <hr/>
+  <div id="progress"></div>
+  <div id="successmessage"></div>
+  <div id="errormessage"></div>
+  <div id="result"></div>
 {% endblock %}

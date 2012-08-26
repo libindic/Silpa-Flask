@@ -49,20 +49,25 @@ $("form").submit(function(event)
 {% endblock %}
 
 {% block content %}
-    <h2>Unicode Character Details</h2></hr>
-    <p>Enter a character to get the unicode details
-    </p>
-    <form action="" method="post">
-     <p align="center">
-    Character : <input type="text" name="character" style="width:12em;"/>
-    <input type="hidden" name="action" value="CharDetails">
-    <input  type="submit" id="Char_Details" value="Get Details"  style="width:12em;"/>
+<div class="well">
+  <h2>Unicode Character Details</h2></hr>
+  <p>Enter a character to get the unicode details
+  </p>
+  <form class="form-horizontal" action="" method="post">
+    <div class="control-group">
+      <label class="control-label" for="character">Character :</label>
+      <div class="controls">
+        <input type="text" name="character" id="character"/>
+        <input type="hidden" name="action" value="CharDetails">
+        <button class="btn"  type="submit" id="Char_Details" > Get Details </button>        
+      </div>
+    </div>
     </br>
-    </p>
-    </form>
-    <hr/>
-    <div id="progress"></div>
-    <div id="successmessage"></div>
-    <div id="errormessage"></div>
-    <div id="result"></div>
+  </form>
+  <hr/>
+  <div id="progress"></div>
+  <div id="successmessage"></div>
+  <div id="errormessage"></div>
+  <div id="result"></div>
+</div>
 {% endblock %}

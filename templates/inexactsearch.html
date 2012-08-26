@@ -69,25 +69,24 @@
 {% endblock %}
 
 {% block content %}
-<div class="featurebox">
-        <h3>Approximate String Search</h3>
-        <p>This is a <a href="http://en.wikipedia.org/wiki/Fuzzy_string_searching">Fuzzy string search</a> application. This application illustrates the combined use of 
-        <a href="http://en.wikipedia.org/wiki/Levenshtein_distance">Edit distance</a> and <a href="Soundex">Indic Soundex
-        </a> algorithm.</p>
-        <p>By mixing both written like(edit distance) and sounds like(soundex), we achieve an efficient aproximate string searching. This application is capable of cross language string search too. That means, you can search Hindi words in Malayalam text. If there is any Malayalam word, which is approximate transliteration of hindi word, or sounds alike the hindi words, it will be returned as an approximate match. The "written like" algorithm used here is a bigram average algorithm. The ratio of common bigrams in two strings and average number of bigrams will give a factor which is greater than zero and less than 1. Similarly the soundex algorithm also gives a weight. By selecting words which has comparison weight more than
+<div class="well">
+  <h3>Approximate String Search</h3>
+  <p align="justify">This is a <a href="http://en.wikipedia.org/wiki/Fuzzy_string_searching">Fuzzy string search</a> application. This application illustrates the combined use of <a href="http://en.wikipedia.org/wiki/Levenshtein_distance">Edit distance</a> and <a href="Soundex">Indic Soundex</a> algorithm.</p>
+  <p align="justify">By mixing both written like(edit distance) and sounds like(soundex), we achieve an efficient aproximate string searching. This application is capable of cross language string search too. That means, you can search Hindi words in Malayalam text. If there is any Malayalam word, which is approximate transliteration of hindi word, or sounds alike the hindi words, it will be returned as an approximate match. The "written like" algorithm used here is a bigram average algorithm. The ratio of common bigrams in two strings and average number of bigrams will give a factor which is greater than zero and less than 1. Similarly the soundex algorithm also gives a weight. By selecting words which has comparison weight more than
         the threshold weight(which 0.6), we get the search results. </p>
-        </div>
-        <form id="searchform" action="" method="post" onsubmit="return search(this);">
-        <p>Enter the text in the below textarea</p>
-        <textarea  name='input_text' id='input_text'></textarea>
-        <br/>
-        Search for :<input type="text" id="key" name="key"/>
-        <input  type="submit" id="Search" value="Search"/>
-        </form>
-        <p>In the search result. move your mouse over the words to get the comparison weight.</p>
-        <hr/>
-        <div id="progress"></div>
-        <div id="successmessage"></div>
-        <div id="errormessage"></div>
-        <div id="result"></div>
+  <form id="searchform" action="" method="post" onsubmit="return search(this);" class="form-search">
+    <p class="help-block">Enter the text in the below textarea</p>
+    <textarea  name='input_text' id='input_text' rows="10" style="width: 98.5%;"></textarea>
+    <span class="help-block"></span>
+    <div class="input-append">
+      <input type="text" id="key" name="key" class="span10 search-query" placeholder="Enter Text to Search for"/>
+      <button  type="submit" id="Search" class="btn">Search</button>
+  </form>
+  <p>In the search result. move your mouse over the words to get the comparison weight.</p>
+</div>  
+  <hr/>
+  <div id="progress"></div>
+  <div id="successmessage"></div>
+  <div id="errormessage"></div>
+  <div id="result"></div>
 {% endblock %}
