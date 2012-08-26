@@ -28,11 +28,13 @@
             $('#progress').html("");
             // Render it
             if(wordId==1)
-                $('#soundex1') .html("<b>"+ msg.result + "</b>");
+                $('#soundex1').html("<div class='alert alert-info'><b>"+ msg.result + "</b></div>");
             else
-                $('#soundex2') .html("<b>"+ msg.result + "</b>");
+                $('#soundex2') .html("<div class='alert alert-info'><b>"+ msg.result + "</b>");
                 },
-        error: function(msg) { alert(msg); }
+        error: function(msg) {
+                $('#errormessage').html('<div class="alert alert-error"><b>'+msg+"</div>");
+        }
     });   
     return false;
     };
@@ -55,15 +57,17 @@
                 success: function(msg) {
                     $('#progress').html("");
                     if(msg.result==0)
-                        $('#result') .html("<b>Both words are same</b>");
+                        $('#result') .html("<div class='alert alert-info'><b>Both words are same</b></div>");
                     if(msg.result<0)
-                        $('#result') .html("<b>Words does not match</b>");
+                        $('#result') .html("<div class='alert alert-info'><b>Words does not match</b></div>");
                     if(msg.result==1)
-                        $('#result') .html("<b>Both words are from same language and sounds alike</b>");
+                        $('#result') .html("<div class='alert alert-info'><b>Both words are from same language and sounds alike</b></div>");
                     if(msg.result==2)
-                        $('#result') .html("<b>Words are from different languages but sounds alike</b>");
+                        $('#result') .html("<div class='alert alert-info'><b>Words are from different languages but sounds alike</b></div>");
                 },
-                error: function(msg) { alert(msg); }
+                error: function(msg) {
+                     $('#errormessage').html('<div class="alert alert-error"><b>'+msg+"</div>");
+                }
             });   
         return false;
     };
@@ -79,16 +83,19 @@
               <li><a href="apis.html#soundex">Read about the JSON-RPC based APIs of SILPA for this service </a></li>
             </ul>
         
-            <form id="soundex_form" action="" method="post" onsubmit="return strCompare(this);">
+            <form id="soundex_form" action="" method="post">
               <span class="help-block">To get the soundex code for a word enter a word in the text box and press Soundex button.  </span>
               <input type="text" name="word1"/>
-              <span class="help-block"></span>
-              <input  type="submit" id="Soundex" value="Soundex" onclick="return soundex(1);" class="btn"/>
-              <div id="soundex1"></div>
               <br/>
+              <input  type="submit" id="Soundex" value="Soundex" onclick="return soundex(1);" class="btn"/>
+              <br/>
+              <br/>
+              <div id="soundex1"></div>
               <input type="text" name="word2"/>
-              <span class="help-block"></span>        
+              <br/>
               <input  type="submit" id="Soundex" value="Soundex" onclick="return soundex(2);" class="btn"/>
+              <br/>
+              <br/>
               <div id="soundex2"></div>
               <p class="help-block">To compare two words , enter the words  in the below text boxes and press Compare button.  </p>        
               <input  type="submit" id="compare" value="Compare" class="btn" onclick="return strCompare(this)"/>
