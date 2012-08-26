@@ -30,7 +30,7 @@
         type: "POST",
         contentType: "application/json; charset=utf-8",
         url: "{{ url_for(main_page + '/JSONRPC' if not main_page == '/' else main_page + 'JSONRPC') }}",
-        data: $.toJSON(jsonRequest), 
+        data: JSON.stringify(jsonRequest), 
         dataType: "json",
         success: function(msg) {
             $('#progress').html("");

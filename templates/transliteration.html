@@ -20,7 +20,7 @@ $(document).ready(function() {
             type: "POST",
             contentType: "application/json; charset=utf-8",
             url: "JSONRPC",
-            data: $.toJSON(jsonRequest), 
+            data: JSON.stringify(jsonRequest), 
             dataType: "json",
             beforeSend:function(){
                 $('#result').empty();
