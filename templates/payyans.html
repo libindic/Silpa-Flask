@@ -23,7 +23,9 @@ $(document).ready(function() {
             "id" : ""
             };
         }
-
+        id_result = $('#result');
+        id_error = $('#errormessage');
+        id_progress = $('#progress');
         $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
@@ -31,19 +33,19 @@ $(document).ready(function() {
         data: JSON.stringify(jsonRequest), 
         dataType: "json",
         beforeSend:function(){
-                $('#result').empty();
-                $('#errormessage').empty();
-                $('#progress').html("Converting. Please Wait...");
+                id_result.empty();
+                id_error.empty();
+                id_progress.html("Converting. Please Wait...");
         },
         success: function(msg) {
-            $('#progress').empty();
+            id_progress.empty();
             //alert(msg.result);
             var result = msg.result.replace("\n", "&#13;")
-            $('#result') .html("<p>"+result+"</p>");
+            id_result.html("<p>"+result+"</p>");
         },
         error: function(msg) {
-                $('#progress').empty();
-                $('#errormessage').html("Something went wrong. Please try again!");
+                id_progress.empty();
+                id_error.html("Something went wrong. Please try again!");
         }
     });
     });

@@ -15,37 +15,41 @@ function getSuggestions(word)
         data: $.toJSON(jsonRequest), 
         dataType: "json",
         beforeSend:function(){
-            $('#result').empty();
-            $('#errormessage').empty();
-            $('#progress').html("Fetching suggestions. Please wait...");
+            id_result.empty();
+            id_error.empty();
+            id_progress.html("Fetching suggestions. Please wait...");
         },
         success: function(msg) {
             var resultobj=eval(msg.result);
-            $('#progress').empty();
-            $('#result').html("<b>Wrong Spelling. Suggestions :</b><ul id='list'></ul>");
+            id_progress.empty();
+            id_result.html("<b>Wrong Spelling. Suggestions :</b><ul id='list'></ul>");
+            var id_list = $('#list')
             if(resultobj.length != 0)
             {
                 $.each(resultobj,function(index, item)
                 {
-                   $('#list').append($( "<li>" + item +"</li>" ));
+                   id_list.append($( "<li>" + item +"</li>" ));
                 });
             }
             else {
-                $('#list').append("<li> No suggestions available </li>");
+                id_list.append("<li> No suggestions available </li>");
             }
         },
         error: function(msg) {
-            $('#progress').empty();
-            $('#errormessage').append("Something went wrong. Please try again!");
+            id_progress.empty();
+            id_errormessage.append("Something went wrong. Please try again!");
         }
     });
 }
 
 $(document).ready(function() {
+    id_result = $('#result');
+    id_error = $('#errormessage');
+    id_progress = $('#progress');
     $("form").submit(function(event)
     {
         event.preventDefault();
-        var word= $("input[name=word]:", 'form').val();
+        var word= $("input[name=word]", 'form').val();
         var jsonRequest = {
             "method" :  "spellchecker.check",
              "params" : [word], 
@@ -58,24 +62,24 @@ $(document).ready(function() {
             data: JSON.stringify(jsonRequest),
             dataType: "json",
             beforeSend:function(){
-                $('#result').empty();
-                $('#errormessage').empty();
-                $('#progress').html("Checking. Please Wait..");
+                id_result.empty();
+                id_error.empty();
+                id_progress.html("Checking. Please Wait..");
             },
             success: function(msg) {
               var resultobj =  msg.result;
-              $('#progress').empty();
+              id_progress.empty();
               if(resultobj) {
-                     $('#result').html("<b>Correct Spelling.</b>"); 
+                     id_result.html("<b>Correct Spelling.</b>"); 
               }
               else {
-                      $('#result').html("<b>Wrong Spelling</b>");
+                      id_result.html("<b>Wrong Spelling</b>");
                       getSuggestions(word);
               }
             },
             error: function(msg) {
-                $('#progress').empty();
-                $('#errormessage').append("Something went wrong. Please try again!");
+                id_progress.empty();
+                id_errormessage.append("Something went wrong. Please try again!");
             }
         });
     });

@@ -7,9 +7,12 @@ $("form").submit(function(event)
     event.preventDefault();
     var jsonRequest = {
         "method" :  "chardetails.getdetails",
-         "params" : $("input[name=character]:", 'form').val(), 
+         "params" : $("input[name=character]", 'form').val(), 
          "id" : ""
     };
+    id_result = $('#result');
+    id_error = $('#errormessage');
+    id_progress = $('#progress');
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
@@ -17,30 +20,31 @@ $("form").submit(function(event)
         data: JSON.stringify(jsonRequest), 
         dataType: "json",
         beforeSend:function(){
-            $('#result').empty();
-            $('#errormessage').empty();
-            $('#progress').html("Checking. Please Wait..");
+            id_result.empty();
+            id_error.empty();
+            id_progress.html("Checking. Please Wait..");
         },
         success: function(msg) {
             var resultobj =  msg.result ;
-            $('#progress').empty();
+            id_progress.empty();
             // Render it
             characters = resultobj['Characters'];
 
             for (var index in characters) {
               var character = characters[index];
               chardetails = resultobj[character]
-              $('#result').append("<table id='resulttable' class='table1'><tr><th>Character</th><th>"+ character +" </th></tr></table>");
+              id_result.append("<table id='resulttable' class='table1'><tr><th>Character</th><th>"+ character +" </th></tr></table>");
+              var table_end = $('#resulttable tr:last')
               for (var property in chardetails) 
               {
-                $('#resulttable tr:last').after("<tr><td>" + property +"</td><td>" + chardetails[property] +"</td></tr>" );
+                table_end.after("<tr><td>" + property +"</td><td>" + chardetails[property] +"</td></tr>" );
               };
-              $('#result').append("<br/>");
+              id_result.append("<br/>");
             };
         },
         error: function(msg) {
-            $('#progress').empty();
-            $('#errormessage').html("Something went wrong. Please try again!");
+            id_progress.empty();
+            id_error.html("Something went wrong. Please try again!");
         }
     });
 });
