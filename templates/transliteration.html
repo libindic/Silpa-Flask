@@ -16,6 +16,9 @@ $(document).ready(function() {
             "params" : [text, targetlang], 
             "id" : ""
             };
+        id_result = $('#result');
+        id_error = $('#errormessage');
+        id_progress = $('#progress');
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
@@ -23,25 +26,25 @@ $(document).ready(function() {
             data: JSON.stringify(jsonRequest), 
             dataType: "json",
             beforeSend:function(){
-                $('#result').empty();
-                $('#errormessage').empty();
-                $('#progress').html("Transliterating. Please Wait...");
+                id_result.empty();
+                id_error.empty();
+                id_progress.html("Transliterating. Please Wait...");
             },
             success: function(msg) {
-                $('#progress').empty();
+                id_progress.empty();
                 if(msg.result==null){
                     // Render it
-                    $('#result') .html('<div class="alert alert-info">'+ msg.message + "</div>");
+                    id_result.html('<div class="alert alert-info">'+ msg.message + "</div>");
                 }
                 else{
                     var result = msg.result.replace("\n", "&#13;")
                     // Render it
-                    $('#result') .html("<div class='alert alert-info'>"+ result + "</div>");
+                    id_result.html("<div class='alert alert-info'>"+ result + "</div>");
                 }
             },
             error: function(msg) {
-                $('#progress').empty();
-                $('#errormessage').html("<div class='alert alert-error'>Something went wrong. Please try again!</div>");
+                id_progress.empty();
+                id_error.html("<div class='alert alert-error'>Something went wrong. Please try again!</div>");
             }
         });
     });
