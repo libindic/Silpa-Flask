@@ -33,7 +33,7 @@ $("form").submit(function(event)
             for (var index in characters) {
               var character = characters[index];
               chardetails = resultobj[character]
-              id_result.append("<table id='resulttable' class='table1'><tr><th>Character</th><th>"+ character +" </th></tr></table>");
+              id_result.append("<table id='resulttable' class='table table-striped'><tr><th>Character</th><th>"+ character +" </th></tr></table>");
               var table_end = $('#resulttable tr:last')
               for (var property in chardetails) 
               {
@@ -44,7 +44,7 @@ $("form").submit(function(event)
         },
         error: function(msg) {
             id_progress.empty();
-            id_error.html("Something went wrong. Please try again!");
+            id_error.html("<div class=\"alert alert-error\">Something went wrong. Please try again!</div>");
         }
     });
 });

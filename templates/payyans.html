@@ -41,11 +41,11 @@ $(document).ready(function() {
             id_progress.empty();
             //alert(msg.result);
             var result = msg.result.replace("\n", "&#13;")
-            id_result.html("<p>"+result+"</p>");
+            id_result.html("<div class=\"alert alert-info\">"+result+"</div>");
         },
         error: function(msg) {
                 id_progress.empty();
-                id_error.html("Something went wrong. Please try again!");
+                id_error.html("<div class=\"alert alert-error\">Something went wrong. Please try again!</div>");
         }
     });
     });
