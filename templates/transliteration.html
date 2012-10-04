@@ -6,6 +6,10 @@ $(document).ready(function() {
     //$("textarea").swanalekha({outlineStyle :'dashed 1px green'});
     //$("textarea").mozhi();
 
+    id_result = $('#result');
+    id_error = $('#errormessage');
+    id_progress = $('#progress');
+
     $("form").submit(function(event)
     {
         event.preventDefault();
@@ -16,9 +20,6 @@ $(document).ready(function() {
             "params" : [text, targetlang], 
             "id" : ""
             };
-        id_result = $('#result');
-        id_error = $('#errormessage');
-        id_progress = $('#progress');
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
