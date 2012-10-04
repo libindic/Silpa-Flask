@@ -12,36 +12,47 @@
         -webkit-column-rule: 1px solid #ddccb5;
     }
     </style>
-    <script type="text/javascript">
-    function dohyphenate(form)
+
+<script>
+$(document).ready(function() {
+    $("form").submit(function(event)
     {
-    $('#progress') .html("Hyphenating Please Wait...");
-    $('#hyphresult').html("");
-    var text= form.text.value;
-    var hyphChar= form.hyphChar.value;
-    var jsonRequest = {
+        event.preventDefault();
+        id_result = $('#result p');
+        id_error = $('#errormessage');
+        id_progress = $('#progress');
+        var text= $("textarea[name=text]", 'form').val();
+        var hyphChar= $("select[name=direction]", 'form').val();
+        var jsonRequest = {
         "method" :  "hyphenation.hyphenate",
          "params" : [text, hyphChar], 
          "id" : ""
-    };
-    $.ajax({
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        url: "JSONRPC",
-        data: JSON.stringify(jsonRequest), 
-        dataType: "json",
-        success: function(msg) {
-            var result = msg.result.replace("\n", "&#13;");
-            $('#progress').html("");
-            $('#hyphresult').html("<p align='justify'>"+ result+ "</p>");
-        },
-        error: function(msg) {
-            $('#errormessage').html(msg);
-        }
+        };
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "JSONRPC",
+            data: JSON.stringify(jsonRequest), 
+            dataType: "json",
+            beforeSend:function(){
+                id_result.hide();
+                id_error.hide();
+                id_progress.html("Hyphenating Please Wait...").show();
+            },
+            success: function(msg) {
+                var result = msg.result.replace("\n", "&#13;");
+                id_progress.hide();
+                id_result.html(result).show();
+            },
+            error: function(msg) {
+                id_progress.hide();
+                console.log(msg);
+                id_error.html(msg).show();
+            }
+        });
     });
-    return false;
-    }
-    </script>
+});
+</script>
 {% endblock %}
 
 {% block content %}
@@ -52,14 +63,14 @@
   <h4>Supported Languages</h4>
   <p> English, Hindi, Malayalam, Tamil, Telugu, Kannada, Oriya, Bengali, Gujarati, Panjabi, Marathi, Sanskrit, Assamese, Kashmeeri, Afrikaans, German, French, Croatian, Hungarian, Italian, Zulu
   </p><br/>
-  <form action="" method="post"  onsubmit="return dohyphenate(this); " >
+  <form action="" method="post">
     <p class="help-block">
       Enter the text for  hyphenation in the below text area.
       Language of each  word will be detected. 
       You can give the text in any language and even with mixed language
     </p>
-    
-    <textarea  name='text' id='id1' class="input-xlarge" rows="10" style="width: 98.5%;"></textarea>
+
+    <textarea name='text' id='id1' class="input-xlarge" rows="10" style="width: 98.5%;"></textarea>
     <div class="control-group">
       <label class="control-label" for="hypChar">Select hyphenation character:</label>
       <div class="controls">
@@ -71,14 +82,16 @@
         </select>
       </div>
     </div>
-    <button class="btn"  type="submit" id="Hyphenate">Hyphenate</button>
+    <button class="btn" type="submit" id="Hyphenate">Hyphenate</button>
   </form>
 </div>
-  <div class="multiplecolumns" id="hyphresult">
-  </div>
-  <hr/>
   <div id="progress"></div>
-  <div id="successmessage" class="alert alert-success"></div>
-  <div id="errormessage" class="alert alert-error"></div>
-  <div id="result" class="alert alert-info"></div>
+  <div id="successmessage" class="alert alert-success hide"></div>
+  <div id="errormessage" class="alert alert-error hide"></div>
+  <hr/>
+  <div class="multiplecolumns" id="result">
+  <p align='justify'>
+  </p>
+  </div>
+
   {% endblock %}
