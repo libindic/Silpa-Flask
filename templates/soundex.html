@@ -22,12 +22,12 @@ $(document).ready(function() {
           data: JSON.stringify(jsonRequest), 
           dataType: "json",
           beforeSend:function(){
-                id_result.empty();
-                id_error.empty();
-                id_progress.html("Processing. Please Wait..");
+                id_result.hide();
+                id_error.hide();
+                id_progress.html("Processing. Please Wait..").show();
           },
           success: function(msg) {
-              id_progress.empty();
+              id_progress.hide();
               if(msg.result==0)
                   id_result.html("Both words are same");
               if(msg.result<0)
@@ -36,9 +36,10 @@ $(document).ready(function() {
                   id_result.html("Both words are from same language and sounds alike");
               if(msg.result==2)
                   id_result.html("Words are from different languages but sounds alike");
+              id_result.show();
           },
           error: function(msg) {
-               id_error.html(msg);
+            id_error.html(msg).show();
           }
         });
     });
@@ -63,19 +64,19 @@ $(document).ready(function() {
             data: JSON.stringify(jsonRequest), 
             dataType: "json",
             beforeSend:function(){
-                id_error.empty();
-                id_progress.html("Processing. Please Wait..");
+                id_error.hide();
+                id_progress.html("Processing. Please Wait..").show();
             },
             success: function(msg) {
-                id_progress.empty();
+                id_progress.hide();
                 // Render it
                 if(id_clicked=="button1")
-                    $('#soundex1').html(msg.result);
+                    $('#soundex1').html(msg.result).show();
                 else
-                    $('#soundex2') .html(msg.result);
+                    $('#soundex2') .html(msg.result).show();
                     },
             error: function(msg) {
-                    id_error.html(msg);
+                id_error.html(msg).show();
             }
         });
     });
@@ -98,20 +99,20 @@ $(document).ready(function() {
               <input type="button" value="Soundex" class="btn" id="button1" />
               <br/>
               <br/>
-              <div id="soundex1"></div>
+              <div id="soundex1" class="alert alert-info hide"></div>
               <input type="text" name="word2"/>
               <br/>
               <input type="button" value="Soundex" class="btn" id="button2" />
               <br/>
               <br/>
-              <div id="soundex2"></div>
+              <div id="soundex2" class="alert alert-info hide"></div>
               <p class="help-block">To compare two words, enter the words in the below text boxes and press Compare button.</p>
               <input type="submit" id="compare" value="Compare" class="btn"/>
             </form>
             <div id="progress"></div>
-            <div id="successmessage"></div>
-            <div id="errormessage"></div>
-            <div id="result"></div>
+            <div id="successmessage" class="alert alert-success hide"></div>
+            <div id="errormessage" class="alert alert-error hide"></div>
+            <div id="result" class="alert alert-info hide"></div>
             </div>
             <hr/>
             <div class="well">
