@@ -27,25 +27,25 @@ $(document).ready(function() {
             data: JSON.stringify(jsonRequest), 
             dataType: "json",
             beforeSend:function(){
-                id_result.empty();
-                id_error.empty();
-                id_progress.html("Transliterating. Please Wait...");
+                id_result.hide();
+                id_error.hide();
+                id_progress.html("Transliterating. Please Wait...").show();
             },
             success: function(msg) {
-                id_progress.empty();
+                id_progress.hide();
                 if(msg.result==null){
                     // Render it
-                    id_result.html(msg.message);
+                    id_result.html(msg.message).show();
                 }
                 else{
                     var result = msg.result.replace("\n", "&#13;")
                     // Render it
-                    id_result.html(result);
+                    id_result.html(result).show();
                 }
             },
             error: function(msg) {
-                id_progress.empty();
-                id_error.html("Something went wrong. Please try again!");
+                id_progress.hide();
+                id_error.html("Something went wrong. Please try again!").show();
             }
         });
     });
@@ -92,8 +92,8 @@ $(document).ready(function() {
     </br>
   </form>
   <div id="progress"></div>
-  <div id="successmessage" class="alert alert-info"></div>
-  <div id="errormessage" class="alert alert-error"></div>
+  <div id="successmessage" class="alert alert-info hide"></div>
+  <div id="errormessage" class="alert alert-error hide"></div>
 <div>
 <hr/>
 {% endblock %}
