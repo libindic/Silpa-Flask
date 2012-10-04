@@ -34,17 +34,17 @@ $(document).ready(function() {
                 id_progress.empty();
                 if(msg.result==null){
                     // Render it
-                    id_result.html('<div class="alert alert-info">'+ msg.message + "</div>");
+                    id_result.html(msg.message);
                 }
                 else{
                     var result = msg.result.replace("\n", "&#13;")
                     // Render it
-                    id_result.html("<div class='alert alert-info'>"+ result + "</div>");
+                    id_result.html(result);
                 }
             },
             error: function(msg) {
                 id_progress.empty();
-                id_error.html("<div class='alert alert-error'>Something went wrong. Please try again!</div>");
+                id_error.html("Something went wrong. Please try again!");
             }
         });
     });
@@ -91,8 +91,8 @@ $(document).ready(function() {
     </br>
   </form>
   <div id="progress"></div>
-  <div id="successmessage"></div>
-  <div id="errormessage"></div>
+  <div id="successmessage" class="alert alert-info"></div>
+  <div id="errormessage" class="alert alert-error"></div>
 <div>
 <hr/>
 {% endblock %}
