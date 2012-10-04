@@ -36,7 +36,7 @@
             $('#hyphresult').html("<p align='justify'>"+ result+ "</p>");
         },
         error: function(msg) {
-            $('#errormessage').html('<div class="alert alert-error"><b>'+msg+"</div>");
+            $('#errormessage').html(msg);
         }
     });
     return false;
@@ -78,7 +78,7 @@
   </div>
   <hr/>
   <div id="progress"></div>
-  <div id="successmessage"></div>
-  <div id="errormessage"></div>
-  <div id="result"></div>
+  <div id="successmessage" class="alert alert-success"></div>
+  <div id="errormessage" class="alert alert-error"></div>
+  <div id="result" class="alert alert-info"></div>
   {% endblock %}
