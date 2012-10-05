@@ -6,20 +6,21 @@ $(document).ready(function() {
     //$("textarea").swanalekha({outlineStyle :'dashed 1px green'});
     //$("textarea").mozhi();
 
-    id_result = $('#result');
+    id_result = $('#successmessage');
     id_error = $('#errormessage');
     id_progress = $('#progress');
 
     $("form").submit(function(event)
     {
         event.preventDefault();
-        var text = $("textarea[name=input_text]:", 'form').val();
-        var targetlang = $("select[name=lang]:", 'form').val();
+        var text = $("textarea[name=input_text]", 'form').val();
+        var targetlang = $("select[name=lang]", 'form').val();
         var jsonRequest = {
             "method" :  "transliteration.transliterate",
             "params" : [text, targetlang], 
             "id" : ""
             };
+        console.log(jsonRequest);
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
@@ -33,6 +34,7 @@ $(document).ready(function() {
             },
             success: function(msg) {
                 id_progress.hide();
+                console.log(msg);
                 if(msg.result==null){
                     // Render it
                     id_result.html(msg.message).show();
@@ -86,13 +88,12 @@ $(document).ready(function() {
                 <option value="IPA">International Phonetical Alphabet(IPA)</option>
               </select>
             </div>
-            <div id="result"></div>            
     </div>
     <input type="submit" id="Transliterate" value="Transliterate"  name="action" class="btn"/>
     </br>
   </form>
   <div id="progress"></div>
-  <div id="successmessage" class="alert alert-info hide"></div>
+  <div id="successmessage" class="alert alert-success hide"></div>
   <div id="errormessage" class="alert alert-error hide"></div>
 <div>
 <hr/>
