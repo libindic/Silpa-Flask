@@ -20,7 +20,6 @@ $(document).ready(function() {
             "params" : [text, targetlang], 
             "id" : ""
             };
-        console.log(jsonRequest);
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
@@ -34,7 +33,6 @@ $(document).ready(function() {
             },
             success: function(msg) {
                 id_progress.hide();
-                console.log(msg);
                 if(msg.result==null){
                     // Render it
                     id_result.html(msg.message).show();
