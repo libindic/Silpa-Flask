@@ -38,6 +38,72 @@ Additionally we would need a *normalizer* module for *Transliteration* modules c
 Get it from below URL and install it in your virtual environment but ***Do not add a line to silpa.conf
 for this module. Its not a web module pure python module*** 
 
+VirtialEnv Instructions
+=======================
+
+If you are on Mac OS X or Linux, chances are that one of the following two commands will work for you:
+```shell
+$ sudo easy_install virtualenv
+```
+
+or even better:
+```shell
+$ sudo pip install virtualenv
+```
+
+One of these will probably install virtualenv on your system. Maybe it’s even in your package manager. If you use Ubuntu, try:
+```shell
+$ sudo apt-get install python-virtualenv
+```
+
+Once you have virtualenv installed, just fire up a shell and create your own environment. 
+```shell
+$ git clone git://github.com/copyninja/Silpa-Flask.git
+$ cd Silpa-Flask
+$ virtualenv silpa
+New python executable in silpa/bin/python
+Installing distribute............done.
+```
+
+Now, whenever you want to work on a project, you only have to activate the corresponding environment. On OS X and Linux, do the following:
+
+```shell
+$ . silpa/bin/activate
+```
+
+If you are a Windows user, the following command is for you:
+```shell
+$ silpa\scripts\activate
+```
+Either way, you should now be using your virtualenv (notice how the prompt of your shell has changed to show the active environment).
+
+Now you can just enter the following command to get Flask activated in your virtualenv:
+
+```shell
+$ pip install Flask
+```
+
+A few seconds later and you are good to go.
+
+You can start the silpa application by 
+```shell
+python silpa.py
+* Running on http://127.0.0.1:5000/
+```
+
+Well not exactly. You will see error messages saying Failed to import module xyz. That means you need to install the modules.
+Here is an example module installation for Soundex. Repeat this for other modules.
+
+```shell
+mkdir modules
+cd modules
+git clone git://github.com/copyninja/Soundex.git
+cd Soundex
+python setup.py install
+```
+
+And restart the server by just killing and running python silpa.py again.
+
 Wanna Help?
 ==========
 
