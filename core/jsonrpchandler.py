@@ -1,18 +1,22 @@
-
 from json import loads, dumps
-from modulehelper import modules, modulenames, MODULES, enabled_modules, load_modules
+from modulehelper import modules, modulenames, MODULES, enabled_modules, \
+        load_modules
+
 
 class JSONRPCHandlerException(Exception):
     pass
 
+
 class JSONRequestNotTranslatable(JSONRPCHandlerException):
     pass
+
 
 class BadServiceRequest(JSONRPCHandlerException):
     pass
 
+
 class MethodNotFoundException(JSONRPCHandlerException):
-    def __init__(self,name):
+    def __init__(self, name):
         self.methodname = name
 
 
@@ -24,7 +28,7 @@ class JSONRPCHandler(object):
         '''
         load_modules()
 
-    def translate_request(self,data):
+    def translate_request(self, data):
         try:
             req = loads(data)
         except:
@@ -37,14 +41,15 @@ class JSONRPCHandler(object):
             result = None
 
         try:
-            data = dumps({"result": result, "id":id_, "error":error})
-        except :
-            error = {"name":"JSONEncodeException", "message": "Result object is not serializable"}
-            data = dumps({"result":None, "id": id_, "error": error})
+            data = dumps({"result": result, "id": id_, "error": error})
+        except:
+            error = {"name": "JSONEncodeException", \
+                    "message": "Result object is not serializable"}
+            data = dumps({"result": None, "id": id_, "error": error})
 
         return data
 
-    def call(self,method,args):
+    def call(self, method, args):
         _args = None
         for arg in args:
             if arg != '':
@@ -57,7 +62,7 @@ class JSONRPCHandler(object):
             return method()
         else:
             return method(*_args)
-            
+
     def handle_request(self, json):
         err = None
         meth = None
@@ -69,7 +74,7 @@ class JSONRPCHandler(object):
             req = self.translate_request(json)
         except JSONRequestNotTranslatable, e:
             err = e
-            req = {'id' : id_}
+            req = {'id': id_}
 
         if err == None:
             try:
@@ -91,9 +96,7 @@ class JSONRPCHandler(object):
 
             method = None
             if err == None:
-                result = self.call(getattr(module_instance,meth.split('.')[-1]),args)
+                result = self.call(getattr(module_instance, \
+                        meth.split('.')[-1]), args)
 
-            return self.translate_result(result,err,id_)
-                    
-
-            
+            return self.translate_result(result, err, id_)
