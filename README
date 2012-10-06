@@ -73,7 +73,7 @@ $ . silpa/bin/activate
 
 If you are a Windows user, the following command is for you:
 ```shell
-$ silpa\scripts\activate
+$ silpa\scripts\activate.bat
 ```
 Either way, you should now be using your virtualenv (notice how the prompt of your shell has changed to show the active environment).
 
