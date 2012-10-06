@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--
+Copyright 2009-2010
+Santhosh Thottingal <santhosh.thottingal@gmail.com>
+This code is part of Silpa project.
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation; either version 3 of the License, or
+(at your option) any later version.
+-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>{{ title }} - Indic Language Computing Platform</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/main.css')}}" media="screen" />
+<script type="text/javascript" src="{{ url_for('static',filename='js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/jquery-ui.min.js') }}"></script>
+{% block modulescript %}{% endblock %}
+</head>
+<body id="type-b">
+<div id="wrap">
+    <div id="header">
+        <div id="toplinks">
+        <a href="{{ url_for(main_page)}}">Home</a></li> |
+        <a href="{{ url_for('static',filename='doc/index.html')}}">Documentation</a> |
+        <a href="http://silpa.smc.org.in/wiki">Wiki</a> |
+        <a href="{{ url_for('static',filename='doc/apis.html')}}">API</a> |
+        <a href="{{ url_for('static',filename='doc/credits.html')}}">Credits</a> |
+        <a href="{{ url_for('static',filename='doc/license.html')}}">License</a> 
+        </div>
+        <div id="site-name">
+        Silpa        
+        </div>
+        <div id="site-desc">Swathanthra Indian Language Computing Project</div>
+    </div>
+    
+    <div id="content-wrap">
+        <div id="utility">
+            <h2>Applications</h2>
+            <ul id="nav-secondary">
+            {% for module in modules %}
+            <li><a href="{{ url_for(main_page + '/' + module if not main_page == '/' else main_page + module) }}">{{ module }}</a></li>
+            {% endfor %}              
+            </ul>
+        </div>
+        <div id="content">
+          {% block content %}
+            <div id="breadcrumb">
+            </div>
+            <div id="moduleloadprogress">
+            </div>
+            <hr/>
+            <div id="form"></div>
+            <hr/>
+          {% endblock %}  
+        </div>
+    </div>
+	<div id="footer">            
+					<p>All rights reserved. &copy; 2008-2010, Silpa Team</p>
+					<p>Silpa service brought to you by <a href="http://smc.org.in">Swathanthra 
+					Malayalam Computing</a>.
+					It runs the Silpa python application hosting software, available under the <a href="http://www.fsf.org/licensing/licenses/agpl-3.0.html">GNU Affero General Public License.</a>
+					</p>
+					<p><a href="doc/contact.html">Contact Us</a>
+					| <a href="doc/privacy.html" >Privacy</a>|
+					<a href="https://savannah.nongnu.org/task/?group=silpa">Tasks</a> |
+					<a href="http://lists.nongnu.org/mailman/listinfo/silpa-discuss">Mailing List</a> |
+					<a href="doc/links.html">Links</a> |
+					<a href="doc/source.html">Source Code</a></p>
+	</div>
+    
+</div>
+</body>
+</html>
