@@ -1,18 +1,5 @@
 {% extends "silpa.html" %}
 {% block modulescript %}
-    <style type="text/css">
-    .multiplecolumns {
-        -moz-column-width: 200px;;
-        -webkit-column-width: 130px;
-        -moz-column-gap: 20px;
-        -webkit-column-gap: 20px;
-        -moz-column-rule: 1px solid #111111;
-        -moz-column-rule-color: #ddccb5;
-        -moz-column-rule-style: ridge
-        -webkit-column-rule: 1px solid #ddccb5;
-    }
-    </style>
-
 <script>
 $(document).ready(function() {
     $("form").submit(function(event)
@@ -24,15 +11,15 @@ $(document).ready(function() {
         var text= $("textarea[name=text]", 'form').val();
         var hyphChar= $("select[name=direction]", 'form').val();
         var jsonRequest = {
-        "method" :  "hyphenation.hyphenate",
-         "params" : [text, hyphChar], 
+        "method" : "hyphenation.hyphenate",
+         "params" : [text, hyphChar],
          "id" : ""
         };
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
             url: "JSONRPC",
-            data: JSON.stringify(jsonRequest), 
+            data: JSON.stringify(jsonRequest),
             dataType: "json",
             beforeSend:function(){
                 id_result.hide();
@@ -46,7 +33,6 @@ $(document).ready(function() {
             },
             error: function(msg) {
                 id_progress.hide();
-                console.log(msg);
                 id_error.html(msg).show();
             }
         });
@@ -85,13 +71,13 @@ $(document).ready(function() {
     <button class="btn" type="submit" id="Hyphenate">Hyphenate</button>
   </form>
 </div>
-  <div id="progress"></div>
-  <div id="successmessage" class="alert alert-success hide"></div>
-  <div id="errormessage" class="alert alert-error hide"></div>
-  <hr/>
-  <div class="multiplecolumns" id="result">
-  <p align='justify'>
-  </p>
-  </div>
+<div id="progress" class="alert alert-info hide"></div>
+<div id="successmessage" class="alert alert-success hide"></div>
+<div id="errormessage" class="alert alert-error hide"></div>
+<hr/>
+<div class="multiplecolumns" id="result">
+<p align='justify'>
+</p>
+</div>
 
   {% endblock %}

@@ -11,36 +11,37 @@ $(document).ready(function() {
         var word1 = $("input[name=word1]", 'form').val();
         var word2 = $("input[name=word2]", 'form').val();
         var jsonRequest = {
-        "method" :  "soundex.compare",
-         "params" : [word1,word2], 
-         "id" : ""
-         };
+            "method" :  "soundex.compare",
+            "params" : [word1,word2],
+            "id" : ""
+        };
         $.ajax({
-          type: "POST",
-          contentType: "application/json; charset=utf-8",
-          url: "{{ url_for(main_page + '/JSONRPC' if not main_page == '/' else main_page + 'JSONRPC') }}",
-          data: JSON.stringify(jsonRequest), 
-          dataType: "json",
-          beforeSend:function(){
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "{{ url_for(main_page + '/JSONRPC' if not main_page == '/' else main_page + 'JSONRPC') }}",
+            data: JSON.stringify(jsonRequest), 
+            dataType: "json",
+            beforeSend:function(){
                 id_result.hide();
                 id_error.hide();
                 id_progress.html("Processing. Please Wait..").show();
-          },
-          success: function(msg) {
-              id_progress.hide();
-              if(msg.result==0)
+            },
+            success: function(msg) {
+                id_progress.hide();
+                if(msg.result==0)
                   id_result.html("Both words are same");
-              if(msg.result<0)
+                if(msg.result<0)
                   id_result.html("Words does not match");
-              if(msg.result==1)
+                if(msg.result==1)
                   id_result.html("Both words are from same language and sounds alike");
-              if(msg.result==2)
+                if(msg.result==2)
                   id_result.html("Words are from different languages but sounds alike");
-              id_result.show();
-          },
-          error: function(msg) {
-            id_error.html(msg).show();
-          }
+                id_result.show();
+            },
+            error: function(msg) {
+                id_progress.hide();
+                id_error.html("Something went wrong. Please try again!").show();
+            }
         });
     });
 
@@ -52,7 +53,7 @@ $(document).ready(function() {
             var word= $("input[name=word2]", 'form').val();
         var jsonRequest = {
                 "method" :  "soundex.soundex",
-                 "params" : [word], 
+                 "params" : [word],
                  "id" : ""
                  };
         id_error = $('#errormessage');
@@ -61,7 +62,7 @@ $(document).ready(function() {
             type: "POST",
             contentType: "application/json; charset=utf-8",
             url: "{{ url_for(main_page + '/JSONRPC' if not main_page == '/' else main_page + 'JSONRPC') }}",
-            data: JSON.stringify(jsonRequest), 
+            data: JSON.stringify(jsonRequest),
             dataType: "json",
             beforeSend:function(){
                 id_error.hide();
@@ -76,7 +77,8 @@ $(document).ready(function() {
                     $('#soundex2') .html(msg.result).show();
                     },
             error: function(msg) {
-                id_error.html(msg).show();
+                id_progress.hide();
+                id_error.html("Something went wrong. Please try again!").show();
             }
         });
     });

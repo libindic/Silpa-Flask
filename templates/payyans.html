@@ -5,21 +5,20 @@ $(document).ready(function() {
     $("form").submit(function(event)
     {
         event.preventDefault();
-        var text= $("textarea[name=input_text]:", 'form').val();
-        var font= $("select[name=font]:", 'form').val();
-        var direction= $("select[name=direction]:", 'form').val();
+        var text= $("textarea[name=input_text]", 'form').val();
+        var font= $("select[name=font]", 'form').val();
+        var direction= $("select[name=direction]", 'form').val();
 
-        
         if(direction == "a2u"){
             var jsonRequest = {
             "method" : "payyans.ASCII2Unicode",
-            "params" : [text, font], 
+            "params" : [text, font],
             "id" : ""
             };
         } else {
             var jsonRequest = {
             "method" : "payyans.Unicode2ASCII",
-            "params" : [text, font], 
+            "params" : [text, font],
             "id" : ""
             };
         }
@@ -27,27 +26,26 @@ $(document).ready(function() {
         id_error = $('#errormessage');
         id_progress = $('#progress');
         $.ajax({
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        url: "JSONRPC",
-        data: JSON.stringify(jsonRequest), 
-        dataType: "json",
-        beforeSend:function(){
-                id_result.empty();
-                id_error.empty();
-                id_progress.html("Converting. Please Wait...");
-        },
-        success: function(msg) {
-            id_progress.empty();
-            //alert(msg.result);
-            var result = msg.result.replace("\n", "&#13;")
-            id_result.html("<div class=\"alert alert-info\">"+result+"</div>");
-        },
-        error: function(msg) {
-                id_progress.empty();
-                id_error.html("<div class=\"alert alert-error\">Something went wrong. Please try again!</div>");
-        }
-    });
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "JSONRPC",
+            data: JSON.stringify(jsonRequest),
+            dataType: "json",
+            beforeSend:function(){
+                id_result.hide();
+                id_error.hide();
+                id_progress.html("Converting. Please Wait...").show();
+            },
+            success: function(msg) {
+                id_progress.hide();
+                var result = msg.result.replace("\n", "&#13;")
+                id_result.html(result).show();
+            },
+            error: function(msg) {
+                id_progress.hide();
+                id_error.html("Something went wrong. Please try again!").show();
+            }
+        });
     });
 });
 </script>
@@ -86,14 +84,14 @@ $(document).ready(function() {
     </div>
     <div class="control-group">
       <div class="controls">
-        <button  class="btn" type="submit" id="Convert" >Convert</button>
+        <button class="btn" type="submit" id="Convert">Convert</button>
       </div>
-    </div>        
+    </div>
   </form>
-</div>  
   <hr/>
-  <div id="progress"></div>
-  <div id="successmessage"></div>
-  <div id="errormessage"></div>
+  <div id="progress" class="alert alert-info hide"></div>
+  <div id="successmessage" class="alert alert-success hide"></div>
+  <div id="errormessage" class="alert alert-error hide"></div>
   <div id="result"></div>
+</div>
 {% endblock %}
