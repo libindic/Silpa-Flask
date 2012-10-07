@@ -23,10 +23,10 @@ $(document).ready(function() {
         id_error = $('#errormessage');
         id_progress = $('#progress');
 
-        text= $("textarea[name=text]", 'form').val();
-        var key= $("text[name=key]", 'form').val();
+        text= $("textarea[name=input_text]", 'form').val();
+        var key= $("input[name=key]", 'form').val();
         var jsonRequest = {
-            "method" :  "inexactsearch.search",
+            "method" : "inexactsearch.search",
             "params" : [text, key],
             "id" : ""
         };
@@ -58,18 +58,17 @@ $(document).ready(function() {
                     }
                     var weight = resultobj[words[i]];
                     if (weight >= 0.6) {
-                        highlighted_text += "<span class='hightlight' title='" + weight + "'>" + words[i] + "</span>";
+                        highlighted_text += "<span class='highlight' title='" + weight + "'>" + words[i] + "</span>";
                     }
                     else{
                         highlighted_text += "<span title='"+ weight + "'>" + words[i] + "</span> ";
                     }
                 }
                 id_error.hide();
-                id_result.html(highlighted_text);
+                id_result.html(highlighted_text).show();
             },
             error: function(msg) {
                 id_progress.hide();
-                console.log(msg);
                 id_error.html("Something went wrong. Please try again!").show();
             }
         });
@@ -86,7 +85,7 @@ $(document).ready(function() {
         the threshold weight(which 0.6), we get the search results. </p>
   <form id="searchform" action="" method="post" class="form-search">
     <p class="help-block">Enter the text in the below textarea</p>
-    <textarea  name='input_text' id='input_text' rows="10" style="width: 98.5%;"></textarea>
+    <textarea name='input_text' id='input_text' rows="10" style="width: 98.5%;"></textarea>
     <span class="help-block"></span>
     <div class="input-append">
       <input type="text" id="key" name="key" class="span10 search-query" placeholder="Enter Text to Search for"/>

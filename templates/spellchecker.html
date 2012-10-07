@@ -37,7 +37,7 @@ function getSuggestions(word)
         },
         error: function(msg) {
             id_progress.hide();
-            id_errormessage.append("Something went wrong. Please try again!").show();
+            id_errormessage.html("Something went wrong. Please try again!").show();
         }
     });
 }
