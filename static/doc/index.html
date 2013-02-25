@@ -19,28 +19,41 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Silpa- The Indian Language Computing project</title>
-<link rel="stylesheet" type="text/css" href="../css/main.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css" media="screen" />
 </head>
 <body id="type-b">
 <div id="wrap">
-    <div id="header">
-        <div id="toplinks">
-        <a href="../index.html">Home</a></li> |
-        <a href="index.html">Documentation</a> |
-        <a href="apis.html">API</a> |
-        <a href="license.html">License</a> 
-        <a href="credits.html">Credits</a> |
-        </div>
-        <div id="site-name">
-        Silpa
-        
-        </div>
+  <div class="navbar navbar-inverse navbar-fixed-top" >
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
+            <span class="icon-bar"> </span>
+            <span class="icon-bar"> </span>
+            <span class="icon-bar"> </span>
+          </a>
+          <a href="#" class="brand">SILPA</a>
+
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li >
+                <a href="/">Home</a>
+              </li>
+              <li class="active"><a href="/static/doc/index.html">Documentation</a></li>
+              <li><a href="http://silpa.smc.org.in/wiki">Wiki</a></li>
+              <li><a href="/static/doc/apis.html">API</a></li>
+              <li><a href="/static/doc/credits.html">Credits</a></li>
+              <li><a href="/static/doc/license.html">License</a></li>
+            </ul>
+          </div> <!-- nav-collapse -->
+        </div> <!-- container-fluid -->
+      </div> <!-- navbar-inner -->
+    </div>
         <div id="site-desc">Swathanthra Indian Language Computing Project</div>
     </div>
-       <div id="content-wrap">
-        <div id="utility">
-            <h2>Documentation</h2>
-            <ul id="nav-secondary">
+       <div id="content-wrap" class="container-fluid" style="padding-top:40px;">
+        <div id="utility" class="well span2" >
+            <div class="nav-header">Documentation</div>
+            <ul id="nav-secondary" class="nav nav-list">
                 <li><a href="index.html">Introduction</a></li>
                 <li><a href="install.html">Installation</a></li>
                 <li><a href="apis.html">API</a></li>
@@ -54,9 +67,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </ul>
         </div>
  
-    <div id="content">
+    <div id="content" class="span10">
 <H2>Silpa Documentaton</H2>
-<div id="contents">
+<!--<div id="contents">
 <h3>Contents</h3>
 <ol>
 <li><a href="#Introduction">Introduction</a></li>
@@ -65,9 +78,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <li><a href="http://lists.nongnu.org/mailman/listinfo/silpa-discuss">Mailing List</a></li>
 <li><a href="source.html">Source</a></li>
 </ol>
-</div>
+</div>-->
 <h3>Introduction</h3>
-<p>
+<p class="lead">
 The project is named as Silpa, may be an acronym of Swathanthra(Mukth, Free as in Freedom) Indian Language Processing Applications. It is a web framework and a set of applications for processing Indian Languages in many ways. Or in other words, it is a platform for porting existing and upcoming language processing applications to the web.
 </p>
 <p>
@@ -81,19 +94,20 @@ The project is designed for adding applications/utilities as plugins. The framew
 </p>
 
             </div>
+            
 </div>
-    <div id="footer">            
-                <p>All rights reserved. &copy; 2008-2010, Silpa Team</p>
-                <p>Silpa service brought to you by <a href="http://smc.org.in">Swathanthra 
+    <div id="footer" class="span12 offset2">            
+                <small>All rights reserved. &copy; 2008-2010, Silpa Team</small>
+                <small>Silpa service brought to you by <a href="http://smc.org.in">Swathanthra 
                 Malayalam Computing</a>.
                 It runs the Silpa python application hosting software, available under the <a href="http://www.fsf.org/licensing/licenses/agpl-3.0.html">GNU Affero General Public License.</a>
-                </p>
-                <p><a href="contact.html">Contact Us</a>
+                </small><br/>
+                <small><a href="contact.html">Contact Us</a>
                 | <a href="privacy.html" >Privacy</a>|
                 <a href="https://savannah.nongnu.org/task/?group=silpa">Tasks</a> |
                 <a href="http://lists.nongnu.org/mailman/listinfo/silpa-discuss">Mailing List</a> |
                 <a href="links.html">Links</a> |
-                <a href="source.html">Source Code</a></p>
+                <a href="source.html">Source Code</a></small>
             </div>
 
 </body>
