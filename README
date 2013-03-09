@@ -11,17 +11,26 @@ develop a python module without bothering about internals of SILPA itself.
 
 How To Run?
 ==========
+
 Note that this is currently a work in progress. So things may not work as you
 expected it to work. If you want to test this you need to have following installed
 on your system
 
-* Flask
-* Jinja2
-* Werkzeug
+* pip
 * Virtualenv
 
-If you don't want to spoil your system install following modules separated from original
-source code in virtual environment created using VirtualEnv module
+Test deployment:
+
+    $ git clone https://github.com/Project-SILPA/Silpa-Flask.git
+    $ cd Silpa-Flask
+    $ pip install -r requirements.txt
+    $ python silpa.py
+
+If you want to Install all modules:
+
+    $ pip install -r modules.txt
+
+Or you can Install modules manually
 
 * [Soudex ](https://github.com/Project-SILPA/Soundex)
 * [ApproxSearch](https://github.com/Project-SILPA/ApproxSearch)
