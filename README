@@ -28,7 +28,7 @@ source code in virtual environment created using VirtualEnv module
 * [Transliteration](https://github.com/Project-SILPA/Transliteration)
 * [Spellchecker](https://github.com/Project-SILPA/spellchecker)
 * [Hyphenation](https://github.com/Project-SILPA/Hyphenation)
-* [Chardetails]()https://github.com/Project-SILPA/chardetails
+* [Chardetails](https://github.com/Project-SILPA/chardetails)
 * [Payyans](https://github.com/Project-SILPA/payyans)
 
 Currently only these modules are used but you can include more you can find some more modules
