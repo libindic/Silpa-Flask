@@ -23,13 +23,13 @@ on your system
 If you don't want to spoil your system install following modules separated from original
 source code in virtual environment created using VirtualEnv module
 
-* [Soudex ](http://github.com/copyninja/Soundex)
-* [ApproxSearch](http://github.com/copyninja/ApproxSearch)
-* [Transliteration](http://github.com/copyninja/Transliteration)
-* [Spellchecker](https://github.com/copyninja/spellchecker)
-* [Hyphenation](https://github.com/copyninja/Hyphenation)
-* [Chardetails](https://github.com/jishnu7/chardetails)
-* [Payyans](https://github.com/jishnu7/payyans)
+* [Soudex ](https://github.com/Project-SILPA/Soundex)
+* [ApproxSearch](https://github.com/Project-SILPA/ApproxSearch)
+* [Transliteration](https://github.com/Project-SILPA/Transliteration)
+* [Spellchecker](https://github.com/Project-SILPA/spellchecker)
+* [Hyphenation](https://github.com/Project-SILPA/Hyphenation)
+* [Chardetails]()https://github.com/Project-SILPA/chardetails
+* [Payyans](https://github.com/Project-SILPA/payyans)
 
 Currently only these modules are used but you can include more you can find some more modules
 in my Github account, install them and add a line in *silpa.conf* for enabling them.
