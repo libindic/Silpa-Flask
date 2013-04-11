@@ -10,6 +10,7 @@
     <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='bootstrap/css/bootstrap-responsive.min.css') }}" rel="stylesheet">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <link rel="stylesheet" href="{{url_for('static', filename='ime/css/jquery.ime.css')}}"  />
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -67,5 +68,14 @@
     </div>
     <!-- Lets make page load fast -->
     <script src="{{ url_for('static', filename="bootstrap/js/bootstrap.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="ime/src/jquery.ime.js") }}"></script>
+    <script src="{{ url_for('static', filename="ime/src/jquery.ime.selector.js") }}"></script>
+    <script src="{{ url_for('static', filename="ime/src/jquery.ime.preferences.js") }}"></script>
+    <script src="{{ url_for('static', filename="ime/src/jquery.ime.inputmethods.js") }}"></script>
+    <script>
+	$( document ).ready( function () {
+		$( 'input[type=text],textarea' ).ime({'imePath':'static/ime/'});
+	} );
+</script>
   </body>
 </html>
