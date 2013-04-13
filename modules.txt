@@ -1,6 +1,0 @@
-soundex
-Transliteration
-Spellchecker
-Hyphenation
-Chardetails
-Payyans
