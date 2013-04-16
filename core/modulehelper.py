@@ -44,7 +44,6 @@ def load_modules():
             except KeyError:
                 try:
                     mod = __import__(key, globals(), locals(), [])
-                    sys.modules[key] = mod
                 except ImportError:
                     # Since we can't use logger from flask as its not yet
                     # activated we will write it to sys.stderr this should
