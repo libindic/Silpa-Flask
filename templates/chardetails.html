@@ -7,8 +7,8 @@ $("form").submit(function(event)
     event.preventDefault();
     var jsonRequest = {
         "method" :  "chardetails.getdetails",
-         "params" : $("input[name=character]", 'form').val(),
-         "id" : ""
+        "params" : [$("input[name=character]", 'form').val()],
+        "id" : ""
     };
     id_result = $('#result');
     id_error = $('#errormessage');
@@ -33,13 +33,18 @@ $("form").submit(function(event)
             for (var index in characters) {
               var character = characters[index];
               chardetails = resultobj[character]
-              id_result.append("<table id='resulttable' class='table table-striped'><tr><th>Character</th><th>"+ character +" </th></tr></table>").show();
-              var table_end = $('#resulttable tr:last')
+              var output = $("<div>")
+                .append($('<h3>').text(character))
+                .append($("<table>").addClass("table table-bordered"));
+
               for (var property in chardetails)
               {
-                table_end.after("<tr><td>" + property +"</td><td>" + chardetails[property] +"</td></tr>" );
+                var row = $('<tr>')
+                  .append($('<td>').text(property))
+                  .append($('<td>').text(chardetails[property]));
+                $('table', output).append(row);
               };
-              id_result.append("<br/>");
+              id_result.append(output);
             };
         },
         error: function(msg) {
