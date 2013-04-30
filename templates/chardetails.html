@@ -20,7 +20,7 @@ $("form").submit(function(event)
         data: JSON.stringify(jsonRequest),
         dataType: "json",
         beforeSend:function(){
-            id_result.hide();
+            id_result.empty();
             id_error.hide();
             id_progress.html("Checking. Please Wait..").show();
         },
@@ -35,7 +35,7 @@ $("form").submit(function(event)
               chardetails = resultobj[character]
               id_result.append("<table id='resulttable' class='table table-striped'><tr><th>Character</th><th>"+ character +" </th></tr></table>").show();
               var table_end = $('#resulttable tr:last')
-              for (var property in chardetails) 
+              for (var property in chardetails)
               {
                 table_end.after("<tr><td>" + property +"</td><td>" + chardetails[property] +"</td></tr>" );
               };
