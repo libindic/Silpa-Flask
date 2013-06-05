@@ -1,8 +1,8 @@
 from flask import Flask
 from logging import handlers, Formatter
 from webbridge import WebBridge
-from core.modulehelper import enabled_modules, BASEURL
-
+from core.modulehelper import enabled_modules, BASEURL, modules
+from jinja2 import PackageLoader, ChoiceLoader
 import loadconfig
 import logging
 import os
@@ -18,7 +18,7 @@ def register_url():
      to WebBridge
     '''
     # / or /baseurl for index page
-    baseurl = '/'  if BASEURL == '/' else BASEURL
+    baseurl = '/' if BASEURL == '/' else BASEURL
     app.logger.debug("Registering the URL:{0}".format(baseurl))
     app.add_url_rule(baseurl, view_func=WebBridge.as_view(baseurl))
 
@@ -31,10 +31,18 @@ def register_url():
         app.add_url_rule(module_url, view_func=WebBridge.as_view(module_url))
 
     # JSONRPC url
-    jsonrpc_url = baseurl + "/JSONRPC" if not baseurl == "/" \
-            else baseurl + "JSONRPC"
+    jsonrpc_url = (baseurl +
+                    "/JSONRPC" if not baseurl == "/" else baseurl + "JSONRPC")
     app.logger.debug("Registering the URL:{0}".format(baseurl))
     app.add_url_rule(jsonrpc_url, view_func=WebBridge.as_view(jsonrpc_url))
+
+
+def add_templates():
+    templates = [app.jinja_loader]
+    for key in modules.keys():
+        if modules.get(key) == 'yes':
+            templates.append(PackageLoader(key))
+    app.jinja_loader = ChoiceLoader(templates)
 
 
 def configure_logging():
@@ -55,8 +63,8 @@ def configure_logging():
     log_name = loadconfig.get('log_name')
     filename = os.path.join(log_folder, log_name)
 
-    handler = handlers.TimedRotatingFileHandler(filename, when='D', \
-            interval=7, backupCount=4)
+    handler = handlers.TimedRotatingFileHandler(filename, when='D',
+                                                interval=7, backupCount=4)
 
     level = logging.ERROR
 
@@ -88,6 +96,9 @@ configure_logging()
 
 # Register URL's
 register_url()
+
+# adds templates from imported modules
+add_templates()
 
 if __name__ == '__main__':
     app.run()

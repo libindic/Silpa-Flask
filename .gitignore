@@ -20,3 +20,8 @@ pip-log.txt
 
 #Virualenv folder
 venv
+
+#editor files
+~*
+*~
+*.swp
