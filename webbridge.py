@@ -33,6 +33,16 @@ class WebBridge(MethodView):
             # request is for document root
             return render_template('index.html', title="SILPA", \
                     main_page=BASEURL, modules=enabled_modules)
+        elif request.path == BASEURL+ "License":
+            return render_template('license.html', title="License",
+                    main_page=BASEURL, modules=enabled_modules)
+        elif request.path == BASEURL+ "Credits":
+            return render_template('credits.html', title="Credits", \
+                    main_page=BASEURL, modules=enabled_modules)
+        elif request.path == BASEURL+ "Contact":
+            return render_template('contact.html', title="Credits", \
+                    main_page=BASEURL, modules=enabled_modules)
+
         elif len(request.args) == 0:
             # This is not query so lets serve the page
             pathcomponent = request.path.split('/')[-1]

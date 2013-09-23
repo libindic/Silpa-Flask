@@ -21,7 +21,15 @@ def register_url():
     baseurl = '/' if BASEURL == '/' else BASEURL
     app.logger.debug("Registering the URL:{0}".format(baseurl))
     app.add_url_rule(baseurl, view_func=WebBridge.as_view(baseurl))
-
+    # License page
+    app.logger.debug("Registering the URL:{0}".format(baseurl+"License"))
+    app.add_url_rule(baseurl+"License", view_func=WebBridge.as_view("license"))
+    # Credits Page
+    app.logger.debug("Registering the URL:{0}".format(baseurl+"Credits"))
+    app.add_url_rule(baseurl+"Credits", view_func=WebBridge.as_view("credits"))
+    # Contacts Page
+    app.logger.debug("Registering the URL:{0}".format(baseurl+"Contact"))
+    app.add_url_rule(baseurl+"Contact", view_func=WebBridge.as_view("contact"))
     # Register all enabled modules
     # baseurl/modulenames['module']
     for module in enabled_modules:
@@ -85,7 +93,7 @@ def configure_logging():
     app.logger.addHandler(handler)
 
 
-DEBUG = False
+DEBUG = True
 
 # Basics
 app = Flask(__name__)

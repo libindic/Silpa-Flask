@@ -35,9 +35,10 @@
               <li class="active">
                 <a href="{{ url_for(main_page)}}">Home</a>
               </li>
-              <li><a href="http://silpa.rtfd.org">Documentation</a></li>
-              <li><a href="{{ url_for('static',filename='doc/credits.html')}}">Credits</a></li>
-              <li><a href="{{ url_for('static',filename='doc/license.html')}}">License</a></li>
+              <li><a target="_blank" href="http://silpa.rtfd.org">Documentation</a></li>
+              <li><a href="{{ url_for('credits')}}">Credits</a></li>
+              <li><a href="{{ url_for('license')}}">License</a></li>
+              <li><a href="{{ url_for('contact')}}">Contact</a></li>
             </ul>
           </div> <!-- nav-collapse -->
         </div> <!-- container-fluid -->
@@ -71,9 +72,9 @@
     <script src="{{ url_for('static', filename="ime/src/jquery.ime.preferences.js") }}"></script>
     <script src="{{ url_for('static', filename="ime/src/jquery.ime.inputmethods.js") }}"></script>
     <script>
-	$( document ).ready( function () {
-		$( 'input[type=text],textarea' ).ime({'imePath':'static/ime/'});
-	} );
+        $( document ).ready( function () {
+                $( 'input[type=text],textarea' ).ime({'imePath':'static/ime/'});
+        } );
 </script>
   </body>
 </html>
