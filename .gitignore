@@ -5,6 +5,7 @@
 *.egg-info
 dist
 build
+docs/_build
 eggs
 parts
 bin
@@ -25,3 +26,5 @@ venv
 ~*
 *~
 *.swp
+.\#*
+\#*\#
