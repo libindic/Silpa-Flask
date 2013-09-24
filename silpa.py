@@ -34,13 +34,13 @@ def register_url():
     # baseurl/modulenames['module']
     for module in enabled_modules:
         module_url = baseurl + "/" + module if not baseurl == "/" \
-                else baseurl + module
+            else baseurl + module
         app.logger.debug("Registering the URL:{0}".format(module_url))
         app.add_url_rule(module_url, view_func=WebBridge.as_view(module_url))
 
     # JSONRPC url
-    jsonrpc_url = (baseurl +
-                    "/JSONRPC" if not baseurl == "/" else baseurl + "JSONRPC")
+    jsonrpc_url = (baseurl + "/JSONRPC" if not baseurl == "/"
+                   else baseurl + "JSONRPC")
     app.logger.debug("Registering the URL:{0}".format(baseurl))
     app.add_url_rule(jsonrpc_url, view_func=WebBridge.as_view(jsonrpc_url))
 
@@ -93,7 +93,7 @@ def configure_logging():
     app.logger.addHandler(handler)
 
 
-DEBUG = True
+DEBUG = False
 
 # Basics
 app = Flask(__name__)
