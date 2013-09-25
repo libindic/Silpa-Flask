@@ -3,6 +3,8 @@ from logging import handlers, Formatter
 from webbridge import WebBridge
 from core.modulehelper import enabled_modules, BASEURL, modules
 from jinja2 import PackageLoader, ChoiceLoader
+from flask.ext.webfonts import Webfonts
+from flask import render_template
 import loadconfig
 import logging
 import os
@@ -107,6 +109,15 @@ register_url()
 
 # adds templates from imported modules
 add_templates()
+
+#register webfonts extension
+wf = Webfonts(app)
+
+# Creating webfonts gallery
+@app.route('/Webfonts')
+def webfonts_gallery():
+    return render_template('webfonts.html', title="Webfonts", \
+                           main_page=BASEURL, modules=enabled_modules)
 
 if __name__ == '__main__':
     app.run()
