@@ -1,6 +1,5 @@
 from json import loads, dumps
-from modulehelper import modules, modulenames, MODULES, enabled_modules,\
-    load_modules
+from modulehelper import MODULES, load_modules
 
 
 class JSONRPCHandlerException(Exception):
