@@ -1,4 +1,4 @@
-AnjaliOldLipi: 
+AnjaliOldLipi:
     Name: അഞ്ജലി ഓള്‍ഡ് ലിപി
     License: GPL
     Author: Kevin
@@ -9,8 +9,8 @@ AnjaliOldLipi:
     Scripts: English, Malayalam
     Language: Malayalam
     Glyphs: 3330:3455
-    
-Meera: 
+
+Meera:
     Name: മീര
     License: GPL
     Author: Hussain K H
@@ -21,8 +21,8 @@ Meera:
     Scripts: English, Malayalam
     Language: Malayalam
     Glyphs: 3330:3455
-    
-Rachana: 
+
+Rachana:
     Name: രചന
     License: GPL
     Author: Hussain K H
@@ -33,8 +33,8 @@ Rachana:
     Scripts: English, Malayalam
     Language: Malayalam
     Glyphs: 3330:3455
-        
-Kalyani: 
+
+Kalyani:
     Name: കല്യാണി
     License: GPL
     Author: Hussain K H
@@ -45,8 +45,8 @@ Kalyani:
     Scripts: English, Malayalam
     Language: Malayalam
     Glyphs: 3330:3455
-        
-Suruma: 
+
+Suruma:
     Name: സുറുമ
     License: GPL
     Author: Suresh P
@@ -57,8 +57,8 @@ Suruma:
     Scripts: English, Malayalam
     Language: Malayalam
     Glyphs: 3330:3455
-        
-LohitMalayalam: 
+
+LohitMalayalam:
     Name: ലോഹിത് മലയാളം
     License: GPL v2
     Author: Red Hat Inc.
@@ -69,11 +69,11 @@ LohitMalayalam:
     Scripts: English, Malayalam
     Language: Malayalam
     Glyphs: 3330:3455
-        
-SamyakMalayalam: 
+
+SamyakMalayalam:
     Name: സമ്യക്‍ മലയാളം
     License: GPL
-    Author: 
+    Author:
     ttf: SamyakMalayalam.ttf
     eot: SamyakMalayalam.eot
     woff: SamyakMalayalam.woff
@@ -81,11 +81,11 @@ SamyakMalayalam:
     Scripts: English, Malayalam
     Language: Malayalam
     Glyphs: 3330:3455
-        
-RaghuMalayalam: 
+
+RaghuMalayalam:
     Name: രഘു മലയാളം
     License: GPL
-    Author: 
+    Author:
     ttf: RaghuMalayalam.ttf
     eot: RagghuMalayalam.eot
     woff: RaghuMalayalam.woff
@@ -93,8 +93,8 @@ RaghuMalayalam:
     Scripts: English, Malayalam
     Language: Malayalam
     Glyphs: 3330:3455
-        
-Rufscript: 
+
+Rufscript:
     Name: Rufscript
     License: GPL
     Author: Hiran Venugopal
@@ -105,8 +105,8 @@ Rufscript:
     Scripts: English
     Language: English
     Glyphs: 65:122
-                
-Perizia: 
+
+Perizia:
     Name: Perizia
     License: GPL
     Author: Hiran Venugopal
@@ -117,8 +117,8 @@ Perizia:
     Scripts: English
     Language: English
     Glyphs: 65:122
-        
-Dyuthi: 
+
+Dyuthi:
     Name: ദ്യുതി
     License: GPL
     Author: Hiran Venugopal
@@ -129,8 +129,8 @@ Dyuthi:
     Scripts: English,Malayalam
     Language: Malayalam
     Glyphs: 3330:3455
-    
-Kedage: 
+
+Kedage:
     Name: ಕೇದಗೆ
     License: GPL
     Author: Indian Institute of Science, Bangalore
@@ -141,8 +141,8 @@ Kedage:
     Scripts: English,Kannada
     Language: Kannada
     Glyphs: 3202:3311
-    
-Malige: 
+
+Malige:
     Name: ಮಲ್ಲಿಗೆ
     License: GPL
     Author: Indian Institute of Science, Bangalore
@@ -153,8 +153,8 @@ Malige:
     Scripts: English,Kannada
     Language: Kannada
     Glyphs: 3202:3311
-    
-LohitKannada: 
+
+LohitKannada:
     Name: ಲೋಹಿತ್ ಕನ್ನಡ
     License: GPL v2
     Author: Red Hat Inc.
@@ -165,8 +165,8 @@ LohitKannada:
     Scripts: English,Kannada,Devanagari
     Language: Kannada
     Glyphs: 3202:3314
-    
-LohitTamil: 
+
+LohitTamil:
     Name: லௌஹித் தமிழ்
     License: GPL v2
     Author: Red Hat Inc.
@@ -177,8 +177,8 @@ LohitTamil:
     Scripts: English,Tamil
     Language: Tamil
     Glyphs: 2946:3066
-    
-SamyakTamil: 
+
+SamyakTamil:
     Name: Samyak Tamil
     License: GPL v3
     Author: Rahul Bhalerao, Sandeep Shedmake, Bageshri Salvi, Pravin Satpute
@@ -189,8 +189,8 @@ SamyakTamil:
     Scripts: English,Tamil
     Language: Tamil
     Glyphs: 2946:3066
-    
-Thenee: 
+
+Thenee:
     Name: Thenee
     License: GPL v2
     Author: Umar Thamby
@@ -201,8 +201,8 @@ Thenee:
     Scripts: English,Tamil
     Language: Tamil
     Glyphs: 2946:3066
-    
-Thendral: 
+
+Thendral:
     Name: Thendral
     License: GPL v2
     Author: Umar Thamby
@@ -213,8 +213,8 @@ Thendral:
     Scripts: English,Tamil
     Language: Tamil
     Glyphs: 2946:3066
-    
-Vaigai: 
+
+Vaigai:
     Name: Vaigai
     License: GPL v2
     Author: Umar Thamby
@@ -225,8 +225,8 @@ Vaigai:
     Scripts: English,Tamil
     Language: Tamil
     Glyphs: 2946:3066
-    
-LohitOriya: 
+
+LohitOriya:
     Name: Lohit Oriya
     License: GPL v2
     Author: Red Hat Inc.
@@ -237,8 +237,8 @@ LohitOriya:
     Scripts: English,Odia
     Language: Oriya
     Glyphs: 2817:2929
-    
-Utkal: 
+
+Utkal:
     Name: Utkal
     License: GPL
     Author: Andy White, Rajesh Pradhan
@@ -249,8 +249,8 @@ Utkal:
     Scripts: English,Odia
     Language: Oriya
     Glyphs: 2817:2929
-    
-SamyakOriya: 
+
+SamyakOriya:
     Name: Samyak Oriya
     License: GPL v3
     Author: Rahul Bhalerao, Sandeep Shedmake, Bageshri Salvi, Pravin Satpute
@@ -261,8 +261,8 @@ SamyakOriya:
     Scripts: English,Odia
     Language: Oriya
     Glyphs: 2817:2929
-    
-LohitHindi: 
+
+LohitHindi:
     Name: लौहित हिंदी
     License: GPL v2
     Author: Red Hat Inc.
@@ -273,8 +273,8 @@ LohitHindi:
     Scripts: English,Devanagari
     Language: Hindi
     Glyphs: 2304:2431
-    
-Samyak-Devanagari: 
+
+Samyak-Devanagari:
     Name: सम्यक  हिंदी
     License: GPL v2
     Author: Rahul Bhalerao,Sandeep Shedmake,Bageshri Salvi,Pravin Satpute
@@ -285,8 +285,8 @@ Samyak-Devanagari:
     Scripts: English,Devanagari
     Language: Hindi
     Glyphs: 2304:2431
-    
-Samyak-Gujarati: 
+
+Samyak-Gujarati:
     Name: Samyak Gujarati
     License: GPL v2
     Author: Rahul Bhalerao,Sandeep Shedmake,Bageshri Salvi,Pravin Satpute
@@ -297,8 +297,8 @@ Samyak-Gujarati:
     Scripts: English,Gujarati
     Language: Gujarati
     Glyphs: 2689:2801
-    
-LohitGujarati: 
+
+LohitGujarati:
     Name: Lohit Gujarati
     License: GPL v2
     Author: Red Hat Inc.
@@ -309,8 +309,8 @@ LohitGujarati:
     Scripts: English,Gujarati
     Language: Gujarati
     Glyphs: 2689:2801
-    
-LohitBengali: 
+
+LohitBengali:
     Name: Lohit Bengali
     License: GPL v2
     Author: Red Hat Inc.
@@ -321,8 +321,8 @@ LohitBengali:
     Scripts: English, Bengali
     Language: Bengali
     Glyphs: 2433:2555
-    
-LohitTelugu: 
+
+LohitTelugu:
     Name: Lohit Telugu
     License: GPL v2
     Author: Red Hat Inc.
@@ -333,8 +333,8 @@ LohitTelugu:
     Scripts: English, Telugu
     Language: Telugu
     Glyphs: 3073:3199
-    
-LohitBengali: 
+
+LohitBengali:
     Name: Lohit Bengali
     License: GPL v2
     Author: Red Hat Inc.
@@ -345,8 +345,8 @@ LohitBengali:
     Scripts: English, Bengali
     Language: Bengali
     Glyphs: 2433:2555
-    
-Ubuntu-B: 
+
+Ubuntu-B:
     Name: Ubuntu Bold Font
     License: UFL v1.0 (Ubuntu Font License)
     Author: Canonical Ltd.
@@ -357,9 +357,9 @@ Ubuntu-B:
     Scripts: English,Greek,Latin,Cyrillic,Latin
     Language: English
     Glyphs: 65:122
-    
-    
-Ubuntu-BI: 
+
+
+Ubuntu-BI:
     Name: Ubuntu Bold Italic Font
     License: UFL v1.0 (Ubuntu Font License)
     Author: Canonical Ltd.
@@ -370,9 +370,9 @@ Ubuntu-BI:
     Scripts: English,Greek,Latin,Cyrillic,Latin
     Language: English
     Glyphs: 65:122
-    
-    
-Ubuntu-I: 
+
+
+Ubuntu-I:
     Name: Ubuntu Italic Font
     License: UFL v1.0 (Ubuntu Font License)
     Author: Canonical Ltd.
@@ -383,9 +383,9 @@ Ubuntu-I:
     Scripts: English,Greek,Latin,Cyrillic,Latin
     Language: English
     Glyphs: 65:122
-    
-    
-Ubuntu-R: 
+
+
+Ubuntu-R:
     Name: Ubuntu Regular Font
     License: UFL v1.0 (Ubuntu Font License)
     Author: Canonical Ltd.
@@ -396,9 +396,9 @@ Ubuntu-R:
     Scripts: English,Greek,Latin,Cyrillic,Latin
     Language: English
     Glyphs: 65:122
-    
-    
-Pagul: 
+
+
+Pagul:
     Name: Pagul
     License: GPLV3
     Author: Prabu M Rengachari
@@ -409,9 +409,9 @@ Pagul:
     Scripts: English,Sourashtra
     Language: Sourashtra
     Glyphs: 43136:43225
-    
-    
-Eeyek: 
+
+
+Eeyek:
     Name: Eeyek
     License: GPLV2
     Author: Pravabati Chingangbam and Tabish
@@ -422,8 +422,8 @@ Eeyek:
     Scripts: Meetei Mayek
     Language: Manipuri
     Glyphs: 43968:44031
-    
-Gubbi: 
+
+Gubbi:
     Name: ಗುಬ್ಬಿ
     License: OFL v1.1
     Author: IISC Bangalore,Aravinda VK
@@ -434,8 +434,8 @@ Gubbi:
     Scripts: Kannada
     Language: Kannada
     Glyphs: 3202:3311
-    
-Navilu: 
+
+Navilu:
     Name: ನವಿಲು
     License: OFL v1.1
     Author: IISC Bangalore,Aravinda VK
@@ -445,7 +445,4 @@ Navilu:
     Variants: Normal
     Scripts: Kannada
     Language: Kannada
-    Glyphs: 3202:3311        
-    
-
-
+    Glyphs: 3202:3311
