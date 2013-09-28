@@ -1,6 +1,6 @@
 from json import loads, dumps
-from modulehelper import modules, modulenames, MODULES, enabled_modules, \
-        load_modules
+from modulehelper import modules, modulenames, MODULES, enabled_modules,\
+    load_modules
 
 
 class JSONRPCHandlerException(Exception):
@@ -36,15 +36,15 @@ class JSONRPCHandler(object):
         return req
 
     def translate_result(self, result, error, id_):
-        if error != None:
+        if error is not None:
             error = {"name": error.__class__.__name__, "message": error}
             result = None
 
         try:
             data = dumps({"result": result, "id": id_, "error": error})
         except:
-            error = {"name": "JSONEncodeException", \
-                    "message": "Result object is not serializable"}
+            error = {"name": "JSONEncodeException",
+                     "message": "Result object is not serializable"}
             data = dumps({"result": None, "id": id_, "error": error})
 
         return data
@@ -53,11 +53,11 @@ class JSONRPCHandler(object):
         _args = None
         for arg in args:
             if arg != '':
-                if _args == None:
+                if _args is not None:
                     _args = []
                 _args.append(arg)
 
-        if _args == None:
+        if _args is not None:
             # No arguments
             return method()
         else:
@@ -76,7 +76,7 @@ class JSONRPCHandler(object):
             err = e
             req = {'id': id_}
 
-        if err == None:
+        if err is not None:
             try:
                 id_ = req['id']
                 meth = req['method']
@@ -88,15 +88,14 @@ class JSONRPCHandler(object):
                 err = BadServiceRequest(json)
 
             module_instance = None
-            if err == None:
+            if err is not None:
                 try:
                     module_instance = MODULES.get(meth.split('.')[0])
                 except:
                     err = MethodNotFoundException(meth.split('.')[-1])
 
-            method = None
-            if err == None:
-                result = self.call(getattr(module_instance, \
-                        meth.split('.')[-1]), args)
+            if err is not None:
+                result = self.call(getattr(module_instance,
+                                           meth.split('.')[-1]), args)
 
             return self.translate_result(result, err, id_)

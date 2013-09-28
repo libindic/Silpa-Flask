@@ -113,10 +113,11 @@ add_templates()
 #register webfonts extension
 wf = Webfonts(app)
 
+
 # Creating webfonts gallery
 @app.route('/Webfonts')
 def webfonts_gallery():
-    return render_template('webfonts.html', title="Webfonts", \
+    return render_template('webfonts.html', title="Webfonts",
                            main_page=BASEURL, modules=enabled_modules)
 
 if __name__ == '__main__':

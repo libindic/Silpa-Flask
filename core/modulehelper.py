@@ -4,8 +4,8 @@
   initialized multiple times
 '''
 
-_all_ = ['MODULES', 'modules', 'modulenames', 'enabled_modules', \
-        'load_modules', 'BASEURL']
+_all_ = ['MODULES', 'modules', 'modulenames', 'enabled_modules',
+         'load_modules', 'BASEURL']
 
 import loadconfig
 import sys
@@ -17,8 +17,8 @@ BASEURL = loadconfig.get('baseurl')
 modules = loadconfig.get('modules')
 modulenames = loadconfig.get('modules_display')
 
-enabled_modules = [modulenames[x] for x in modules.keys() \
-        if modules[x] == "yes"]
+enabled_modules = [modulenames[x] for x in modules.keys()
+                   if modules[x] == "yes"]
 
 
 def load_modules():
@@ -48,8 +48,8 @@ def load_modules():
                     # Since we can't use logger from flask as its not yet
                     # activated we will write it to sys.stderr this should
                     # go to webserver error.log
-                    print >> sys.stderr, "Failed to import module {0}"\
-                            .format(key)
+                    print >> sys.stderr,\
+                        "Failed to import module {0}".format(key)
                     pass
             if mod:
                 MODULES[key] = mod.getInstance()

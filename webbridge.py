@@ -27,29 +27,30 @@ class WebBridge(MethodView):
          If the query string is not None then its a RESTful request respond
          with a proper response format
         '''
-        self.app.logger.debug('REQUEST PATH {0} and Base URL {1}' \
+        self.app.logger.debug('REQUEST PATH {0} and Base URL {1}'
                 .format(request.path, BASEURL))
         if request.path == BASEURL:
             # request is for document root
-            return render_template('index.html', title="SILPA", \
-                    main_page=BASEURL, modules=enabled_modules)
-        elif request.path == BASEURL+ "License":
+            return render_template('index.html', title="SILPA",
+                                   main_page=BASEURL, modules=enabled_modules)
+        elif request.path == BASEURL + "License":
             return render_template('license.html', title="License",
-                    main_page=BASEURL, modules=enabled_modules)
-        elif request.path == BASEURL+ "Credits":
-            return render_template('credits.html', title="Credits", \
-                    main_page=BASEURL, modules=enabled_modules)
-        elif request.path == BASEURL+ "Contact":
-            return render_template('contact.html', title="Credits", \
-                    main_page=BASEURL, modules=enabled_modules)
+                                   main_page=BASEURL, modules=enabled_modules)
+        elif request.path == BASEURL + "Credits":
+            return render_template('credits.html', title="Credits",
+                                   main_page=BASEURL, modules=enabled_modules)
+        elif request.path == BASEURL + "Contact":
+            return render_template('contact.html', title="Credits",
+                                   main_page=BASEURL, modules=enabled_modules)
 
         elif len(request.args) == 0:
             # This is not query so lets serve the page
             pathcomponent = request.path.split('/')[-1]
-            for module, name in  modulenames.items():
+            for module, name in modulenames.items():
                 if pathcomponent == name:
-                    return render_template(module + '.html', title=name, \
-                            main_page=BASEURL, modules=enabled_modules)
+                    return render_template(module + '.html', title=name,
+                                           main_page=BASEURL,
+                                           modules=enabled_modules)
 
     def post(self):
         '''
@@ -60,6 +61,6 @@ class WebBridge(MethodView):
          will be more modern way of doing stuff than RPC
         '''
         if request.path.split('/')[-1] == "JSONRPC":
-            if request.data != None:
+            if request.data is not None:
                 result = handler.handle_request(request.data)
                 return result
