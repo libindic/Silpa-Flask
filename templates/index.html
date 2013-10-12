@@ -1,13 +1,11 @@
 {% extends "silpa.html" %}
+
 {% block content %}
-<div class="hero-unit">
-  <h2>Welcome to Silpa!</h2>
-  <p>Silpa, Swathanthra Indian Language Processing Applications is a  web platform to host the free(dom) software language processing applications easily.It is a web framework and a set of applications for processing Indian Languages in many ways. Or in other words, it is a platform for porting existing and upcoming language processing applications to the web. Silpa can also be used as a python library or as a webservice from other applications. Silpa is in development and if you are interested in contributing contact  <a href="{{url_for('contact')}}">the developers</a>
-  </p>
+<div class="jumbotron">
+<h1>Welcome to Silpa!</h1>
+  <p>Silpa, Swathanthra Indian Language Processing Applications is a  web platform to host the free(dom) software language processing applications easily.It is a web framework and a set of applications for processing Indian Languages in many ways. Or in other words, it is a platform for porting existing and upcoming language processing applications to the web. Silpa can also be used as a python library or as a webservice from other applications. Silpa is in development and if you are interested in contributing contact  <a href="{{url_for('contact')}}">the developers</a></p>
   <p>
-    <a class="btn btn-primary btn-large" href="http://thottingal.in/blog/2009/06/16/announcing-project-silpa/">Read the project announcement</a>
+    <a class="btn btn-primary btn-lg" href="http://thottingal.in/blog/2009/06/16/announcing-project-silpa/">Read the project announcement</a>
   </p>
 </div>
-
-
 {% endblock %}
