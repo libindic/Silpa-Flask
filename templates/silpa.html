@@ -20,7 +20,7 @@
             <li><a href="#">{{ title }}</a></li>
           {% endif %}
         </ul>
-        <ul class="nav navbar-nav pull-right">
+        <ul class="nav navbar-nav pull-right hidden-xs">
           <li><a href="http://silpa.rtfd.org">Documentation</a></li>
         </ul>
       </div> <!-- container -->
@@ -28,7 +28,7 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-sm-3">
+        <div class="col-sm-3">
           <div class="sidebar-nav">
             <!-- side bar goes here -->
             <ul class="nav nav-tabs nav-stacked" role="navigation">
@@ -40,7 +40,7 @@
           </div>
         </div>
 
-        <div class="col-xs-12 col-sm-9">
+        <div class="col-sm-9">
           <!-- Main body goes here -->
           {% block content %}
           {% endblock %}
