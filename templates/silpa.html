@@ -16,7 +16,9 @@
       <div class="container">
         <ul class="nav navbar-nav">
           <li><a class="navbar-brand" href="{{ url_for(main_page)}}">SILPA</a></li>
-          <li><a href="#">{{ title }}</a></li>
+          {% if title != "SILPA" %}
+            <li><a href="#">{{ title }}</a></li>
+          {% endif %}
         </ul>
         <ul class="nav navbar-nav pull-right">
           <li><a href="http://silpa.rtfd.org">Documentation</a></li>
