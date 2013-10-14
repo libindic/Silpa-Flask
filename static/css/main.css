@@ -3,6 +3,10 @@ body {
     padding-bottom: 40px;
 }
 
+.silpa-hide {
+    display: none;
+}
+
 .silpa-navbar {
     background-color: #34495e;
 }
