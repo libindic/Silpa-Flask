@@ -2,6 +2,7 @@ SILPA
 ==========
 SILPA - Indian Language computing platform which provides a web interface
 for different Indian language computing python modules. This is hosted at
+
 http://silpa.org.in
 
 This is a new SILPA platform a.k.a restructuring is in progress. I'm trying to
@@ -28,17 +29,25 @@ Test deployment:
 
 If you want to Install all modules:
 
-    $ pip install -r modules.txt
+    $ pip install -r requirements-modules.txt
 
 Or you can Install modules manually
 
-* [Soudex ](https://github.com/Project-SILPA/Soundex)
+* [Soundex ](https://github.com/Project-SILPA/Soundex)
 * [ApproxSearch](https://github.com/Project-SILPA/ApproxSearch)
 * [Transliteration](https://github.com/Project-SILPA/Transliteration)
 * [Spellchecker](https://github.com/Project-SILPA/spellchecker)
 * [Hyphenation](https://github.com/Project-SILPA/Hyphenation)
 * [Chardetails](https://github.com/Project-SILPA/chardetails)
 * [Payyans](https://github.com/Project-SILPA/payyans)
+* [Text Similarity](https://github.com/Project-SILPA/text-similarity)
+* [N Gram](https://github.com/Project-SILPA/n-gram)
+* [Silpa Sort](https://github.com/Project-SILPA/silpa-sort)
+* [Indic Stemmer](https://github.com/Project-SILPA/indicstemmer)
+* [Katpayadi Numbers](https://github.com/Project-SILPA/Katapayadi-Numbers)
+* [shingling](https://github.com/Project-SILPA/shingling)
+* [Indic-fortune](https://github.com/Project-SILPA/silpa-fortune) now renamed silpa-fortune
+* [scriptrender](https://github.com/Project-SILPA/scriptrender)
 
 Currently only these modules are used but you can include more you can find some more modules
 in my Github account, install them and add a line in *silpa.conf* for enabling them.
@@ -67,7 +76,7 @@ $ sudo apt-get install python-virtualenv
 
 Once you have virtualenv installed, just fire up a shell and create your own environment. 
 ```shell
-$ git clone git://github.com/copyninja/Silpa-Flask.git
+$ git clone git@github.com:Project-SILPA/Silpa-Flask.git
 $ cd Silpa-Flask
 $ virtualenv silpa
 New python executable in silpa/bin/python
@@ -86,40 +95,57 @@ $ silpa\scripts\activate.bat
 ```
 Either way, you should now be using your virtualenv (notice how the prompt of your shell has changed to show the active environment).
 
-Now you can just enter the following command to get Flask activated in your virtualenv:
+Now you can just enter the following command to get Flask installed in your virtualenv:
 
 ```shell
 $ pip install Flask
 ```
 
-A few seconds later and you are good to go.
+The following modules are available for SILPA: 
 
-You can start the silpa application by 
-```shell
-python silpa.py
-* Running on http://127.0.0.1:5000/
-```
+* [Soundex ](https://github.com/Project-SILPA/Soundex)
+* [ApproxSearch](https://github.com/Project-SILPA/ApproxSearch)
+* [Transliteration](https://github.com/Project-SILPA/Transliteration)
+* [Spellchecker](https://github.com/Project-SILPA/spellchecker)
+* [Hyphenation](https://github.com/Project-SILPA/Hyphenation)
+* [Chardetails](https://github.com/Project-SILPA/chardetails)
+* [Payyans](https://github.com/Project-SILPA/payyans)
+* [Text Similarity](https://github.com/Project-SILPA/text-similarity)
+* [N Gram](https://github.com/Project-SILPA/n-gram)
+* [Silpa Sort](https://github.com/Project-SILPA/silpa-sort)
+* [Indic Stemmer](https://github.com/Project-SILPA/indicstemmer)
+* [Katpayadi Numbers](https://github.com/Project-SILPA/Katapayadi-Numbers)
+* [shingling](https://github.com/Project-SILPA/shingling)
+* [Indic-fortune](https://github.com/Project-SILPA/silpa-fortune) now renamed silpa-fortune
+* [scriptrender](https://github.com/Project-SILPA/scriptrender)
 
-Well not exactly. You will see error messages saying Failed to import module xyz. That means you need to install the modules.
-Here is an example module installation for Soundex. Repeat this for other modules.
+Modules to be used with SILPA can be configured in the silpa.conf file. Modules marked 'yes' should be installed before running SILPA
+
+Here is a module installation example for Soundex. Repeat this for other modules.
 
 ```shell
 mkdir modules
 cd modules
-git clone git://github.com/copyninja/Soundex.git
+git clone git@github.com:Project-SILPA/Soundex.git
 cd Soundex
 python setup.py install
 ```
 
-And restart the server by just killing and running python silpa.py again.
+Now you can start SILPA by running
+```shell
+$ python silpa.py
+```
+You can access SILPA at http://localhost:5000
 
-Wanna Help?
+If SILPA was running during a module installation, you will need to restart the server by killing and running `python silpa.py` again.
+
+How to Contribute?
 ==========
 
 Your help is most welcome. You can do following to help me
 
-1. Help me separate out modules from original Silpa
-2. Use it and report me bugs
+1. Help me separate out modules from original SILPA
+2. Use it and report bugs
 3. Help me update docs
 4. Get a new design for SILPA
 
@@ -127,13 +153,11 @@ Your help is most welcome. You can do following to help me
 TODO
 ==========
 
-1. Implement JSONRPC so these modules can actually function [Done]
-2. Serve Documentation and other pages through Flask and implement Jinja2 
-3. Get remaining modules of SILPA get their templates
-4. Provide RESTful API for all modules
+1. Serve Documentation and other pages through Flask and implement Jinja2 
+2. Get remaining modules of SILPA get their templates
+3. Provide RESTful API for all modules
 
 Known Bugs
 ===========
 
-1. Transliteration module is not in working state [FIXED]
-2. Hyphenate module breaks it needs guesslanguage module
+1. Hyphenate module breaks it needs guesslanguage module
