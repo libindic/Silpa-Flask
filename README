@@ -54,7 +54,7 @@ in my Github account, install them and add a line in *silpa.conf* for enabling t
 
 Additionally we would need a *normalizer* module for *Transliteration* modules correct working.
 Get it from below URL and install it in your virtual environment but ***Do not add a line to silpa.conf
-for this module. Its not a web module pure python module*** 
+for this module. Its not a web module pure python module***
 
 VirtialEnv Instructions
 =======================
@@ -74,7 +74,7 @@ One of these will probably install virtualenv on your system. Maybe it’s even 
 $ sudo apt-get install python-virtualenv
 ```
 
-Once you have virtualenv installed, just fire up a shell and create your own environment. 
+Once you have virtualenv installed, just fire up a shell and create your own environment.
 ```shell
 $ git clone git@github.com:Project-SILPA/Silpa-Flask.git
 $ cd Silpa-Flask
@@ -101,7 +101,7 @@ Now you can just enter the following command to get Flask installed in your virt
 $ pip install Flask
 ```
 
-The following modules are available for SILPA: 
+The following modules are available for SILPA:
 
 * [Soundex ](https://github.com/Project-SILPA/Soundex)
 * [ApproxSearch](https://github.com/Project-SILPA/ApproxSearch)
@@ -153,7 +153,7 @@ Your help is most welcome. You can do following to help me
 TODO
 ==========
 
-1. Serve Documentation and other pages through Flask and implement Jinja2 
+1. Serve Documentation and other pages through Flask and implement Jinja2
 2. Get remaining modules of SILPA get their templates
 3. Provide RESTful API for all modules
 
