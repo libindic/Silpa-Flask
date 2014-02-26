@@ -34,19 +34,19 @@ If you want to Install all modules:
 Or you can Install modules manually
 
 * [Soundex ](https://github.com/Project-SILPA/Soundex)
-* [ApproxSearch](https://github.com/Project-SILPA/ApproxSearch)
+* [ApproxSearch](://github.com/Project-SILPA/inexactsearch)
 * [Transliteration](https://github.com/Project-SILPA/Transliteration)
 * [Spellchecker](https://github.com/Project-SILPA/spellchecker)
 * [Hyphenation](https://github.com/Project-SILPA/Hyphenation)
 * [Chardetails](https://github.com/Project-SILPA/chardetails)
 * [Payyans](https://github.com/Project-SILPA/payyans)
 * [Text Similarity](https://github.com/Project-SILPA/text-similarity)
-* [N Gram](https://github.com/Project-SILPA/n-gram)
+* [N Gram](://github.com/Project-SILPA/indicngram)
 * [Silpa Sort](https://github.com/Project-SILPA/ucasort)
 * [Indic Stemmer](https://github.com/Project-SILPA/indicstemmer)
 * [Katpayadi Numbers](https://github.com/Project-SILPA/katapayadi)
 * [shingling](https://github.com/Project-SILPA/shingling)
-* [Indic-fortune](https://github.com/Project-SILPA/silpa-fortune) now renamed silpa-fortune
+* [Indic-fortune](https://github.com/Project-SILPA/indicfortune) now renamed silpa-fortune
 * [scriptrender](https://github.com/Project-SILPA/scriptrender)
 
 Currently only these modules are used but you can include more you can find some more modules
@@ -69,7 +69,7 @@ or even better:
 $ sudo pip install virtualenv
 ```
 
-One of these will probably install virtualenv on your system. Maybe it‚Äôs even in your package manager. If you use Ubuntu, try:
+One of these will probably install virtualenv on your system. Maybe it„‡—‘ even in your package manager. If you use Ubuntu, try:
 ```shell
 $ sudo apt-get install python-virtualenv
 ```
@@ -104,19 +104,19 @@ $ pip install Flask
 The following modules are available for SILPA:
 
 * [Soundex ](https://github.com/Project-SILPA/Soundex)
-* [ApproxSearch](https://github.com/Project-SILPA/ApproxSearch)
+* [ApproxSearch](https://github.com/Project-SILPA/inexactsearch)
 * [Transliteration](https://github.com/Project-SILPA/Transliteration)
 * [Spellchecker](https://github.com/Project-SILPA/spellchecker)
 * [Hyphenation](https://github.com/Project-SILPA/Hyphenation)
 * [Chardetails](https://github.com/Project-SILPA/chardetails)
 * [Payyans](https://github.com/Project-SILPA/payyans)
 * [Text Similarity](https://github.com/Project-SILPA/text-similarity)
-* [N Gram](https://github.com/Project-SILPA/n-gram)
-* [Silpa Sort](https://github.com/Project-SILPA/silpa-sort)
+* [N Gram](https://github.com/Project-SILPA/indicgram)
+* [Silpa Sort](https://github.com/Project-SILPA/ucasort)
 * [Indic Stemmer](https://github.com/Project-SILPA/indicstemmer)
-* [Katpayadi Numbers](https://github.com/Project-SILPA/Katapayadi-Numbers)
+* [Katpayadi Numbers](https://github.com/Project-SILPA/Katapayadi)
 * [shingling](https://github.com/Project-SILPA/shingling)
-* [Indic-fortune](https://github.com/Project-SILPA/silpa-fortune) now renamed silpa-fortune
+* [Indic-fortune](https://github.com/Project-SILPA/indicfortune) now renamed silpa-fortune
 * [scriptrender](https://github.com/Project-SILPA/scriptrender)
 
 Modules to be used with SILPA can be configured in the silpa.conf file. Modules marked 'yes' should be installed before running SILPA
