@@ -16,30 +16,30 @@ System Dependencies
 Pango and cairo can not be installed with pip and need to be installed from your platform’s packages. lxml and CFFI can, but you’d still need their own dependencies. This section lists system packages for lxml or CFFI when available, the dependencies otherwise. lxml needs libxml2 and libxslt, CFFI needs libffi. On Debian, the package names with development files are libxml2-dev, libxslt1-dev and libffi-dev.
 
 
-##Debian 7.0 Wheezy or newer, Ubuntu 11.10 Oneiric or newer:
+###Debian 7.0 Wheezy or newer, Ubuntu 11.10 Oneiric or newer:
 ```shell
 sudo apt-get install python-dev python-pip python-lxml libcairo2 libpango1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
 ```
-###Debian 6.0 Squeeze, Ubuntu 10.04 Lucid: GDK-PixBuf is part of GTK+, which also depends on cairo and Pango.
+####Debian 6.0 Squeeze, Ubuntu 10.04 Lucid: GDK-PixBuf is part of GTK+, which also depends on cairo and Pango.
 ```shell
 sudo apt-get install python-dev python-pip python-lxml libgtk2.0-0 libffi-dev
 ```
-##Fedora
+###Fedora
 ```shell
 sudo yum install python-devel python-pip python-lxml cairo pango gdk-pixbuf2 libffi-devel
 ```
-##Archlinux
+###Archlinux
 ```shell
 sudo pacman -S python-pip python-lxml cairo pango gdk-pixbuf2
 ```
 
-##Mac OS X
+###Mac OS X
 
-With Macports
+####With Macports
 ```shell
 sudo port install py27-pip py27-lxml cairo pango gdk-pixbuf2 libffi
 ```
-With Homebrew:
+####With Homebrew:
 ```shell
 brew install python cairo pango gdk-pixbuf libxml2 libxslt libffi
 ```
