@@ -13,7 +13,7 @@
 -e git+https://github.com/Project-SILPA/indicngram.git#egg=indicngram
 -e git+https://github.com/Project-SILPA/indicfortune.git#egg=indicfortune
 -e git+https://github.com/Project-SILPA/Hyphenation.git#egg=hyphenation
--e git+https://github.com/Project-SILPA/guesslang.git#egg=guesslanguage
+-e git+https://github.com/Project-SILPA/guesslanguage.git#egg=guesslanguage
 -e git+https://github.com/Project-SILPA/chardetails.git#egg=chardetails
--e git+https://github.com/Project-SILPA/Katapayadi.git#egg=katapayadi
+-e git+https://github.com/Project-SILPA/katapayadi.git#egg=katapayadi
 -e git+https://github.com/Project-SILPA/indicstemmer.git#egg=indicstemmer
