@@ -157,20 +157,20 @@ How to Contribute?
 
 Your help is most welcome. You can do following to help me
 
-1. Help me separate out modules from original SILPA
+1. ~~Help me separate out modules from original SILPA~~
 2. Use it and report bugs
 3. Help me update docs
-4. Get a new design for SILPA
+4. ~~Get a new design for SILPA~~
 
 
 TODO
 ==========
 
-1. Serve Documentation and other pages through Flask and implement Jinja2
-2. Get remaining modules of SILPA get their templates
+1. ~~Serve Documentation and other pages through Flask and implement Jinja2~~
+2. ~~Get remaining modules of SILPA get their templates~~
 3. Provide RESTful API for all modules
 
 Known Bugs
 ===========
 
-1. Hyphenate module breaks it needs guesslanguage module
+1. ~~Hyphenate module breaks it needs guesslanguage module~~
