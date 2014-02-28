@@ -94,7 +94,7 @@ A sample usage using python can be seen below
 
 A sample usage using PHP can be seen below
 
-.. code-block:: php
+.. code-block:: php5
 
    define ('HOSTNAME', 'http://silpa.org.in/JSONRPC');
    $url = HOSTNAME;
