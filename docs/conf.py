@@ -67,7 +67,8 @@ release = '0.1'
 # directories to ignore when looking for source files.
 exclude_patterns = ['_build']
 
-# The reST default role (used for this markup: `text`) to use for all documents.
+# The reST default role (used for this markup: `text`) to use for all
+# documents.
 #default_role = None
 
 # If true, '()' will be appended to :func: etc. cross-reference text.
@@ -91,7 +92,7 @@ pygments_style = 'sphinx'
 #keep_warnings = False
 
 
-# -- Options for HTML output ---------------------------------------------------
+# -- Options for HTML output --
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
@@ -171,7 +172,7 @@ html_static_path = ['_static']
 htmlhelp_basename = 'Silpadoc'
 
 
-# -- Options for LaTeX output --------------------------------------------------
+# -- Options for LaTeX output --
 
 latex_elements = {
 # The paper size ('letterpaper' or 'a4paper').
@@ -185,10 +186,12 @@ latex_elements = {
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
-# (source start file, target name, title, author, documentclass [howto/manual]).
+# (source start file, target name, title, author, documentclass
+# [howto/manual]).
 latex_documents = [
-('index', 'Silpa.tex', u'Silpa Documentation',
-u'Santhosh Thottingal', 'manual'),
+    ('index', 'Silpa.# TODO: ex',
+     u'Silpa Documentation',
+     u'SILPA Project', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -212,28 +215,30 @@ u'Santhosh Thottingal', 'manual'),
 #latex_domain_indices = True
 
 
-# -- Options for manual page output --------------------------------------------
+# -- Options for manual page output --
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-('index', 'silpa', u'Silpa Documentation',
-    [u'Santhosh Thottingal'], 1)
+    ('index', 'silpa',
+     u'Silpa Documentation',
+     [u'SILPA Project'], 1)
 ]
 
 # If true, show URL addresses after external links.
 #man_show_urls = False
 
 
-# -- Options for Texinfo output ------------------------------------------------
+# -- Options for Texinfo output --
 
 # Grouping the document tree into Texinfo files. List of tuples
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-('index', 'Silpa', u'Silpa Documentation',
-u'Santhosh Thottingal', 'Silpa', 'One line description of project.',
-'Miscellaneous'),
+    ('index', 'Silpa', u'Silpa Documentation',
+     u'SILPA Project', 'Silpa',
+     'One line description of project.',
+     'Miscellaneous'),
 ]
 
 # Documents to append as an appendix to all manuals.
