@@ -15,7 +15,7 @@ Guidelines for Coding and Pull Requests
 
 1. Please follow PEP-8 standard for all python code, make sure your
    code is PEP-8 compilant before sending the PR.
-2. Please fork our repository from github `organization project
+2. Please fork our repository from github `organization page
    <https://github.com/Project-SILPA>`_.
 3. Develop new feature bug fixes etc. on **separate branch, do not
    change things in master branch**.
