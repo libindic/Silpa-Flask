@@ -4,7 +4,7 @@ SILPA Webservice APIs
 .. note::
 
    The old ``listMethods`` API call for JSONRPC is not yet implemented
-   in new version see `issue #3
+   in new version see `issue #15
    <https://github.com/Project-SILPA/Silpa-Flask/issues/15>`_.
 
 
