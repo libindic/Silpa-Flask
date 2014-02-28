@@ -1,9 +1,9 @@
-How To Run?
-==========
+Install Instructions
+========================
 
-Note that this is currently a work in progress. So things may not work as you
-expected it to work. If you want to test this you need to have following installed
-on your system
+Note that this is currently a work in progress. So things may not work
+as you expected it to work. If you want to test this you need to have
+following installed on your system
 
 * pip
 * Virtualenv
@@ -21,34 +21,31 @@ If you want to Install all modules:
 
 .. code-block:: shell-session
 
-    $ pip install -r modules.txt
+		$ pip install -r requirement-modules.txt
 
-Or you can Install modules manually
+.. note:: Previously we were suggesting use of ``modules.txt`` but now
+	  we are unable  properly update the pypi modules in time so
+	  we suggest use of ``head`` of git repo. But note that this
+	  might lead to some breakage.
 
-* `Soudex  <https://github.com/Project-SILPA/Soundex>`_
-* `ApproxSearch <https://github.com/Project-SILPA/ApproxSearch>`_
-* `Transliteration <https://github.com/Project-SILPA/Transliteration>`_
-* `Spellchecker <https://github.com/Project-SILPA/spellchecker>`_
-* `Hyphenation <https://github.com/Project-SILPA/Hyphenation>`_
-* `Chardetails <https://github.com/Project-SILPA/chardetails>`_
-* `Payyans <https://github.com/Project-SILPA/payyans>`_
+To enable module a line should be added to *silpa.conf*. By default
+all modules will be enabled if you don't want this behavior mark
+``no`` infront of module name under ``modules``
+section. ``modules_display`` section is used to display a text in the
+side bar of SILPA main page. Tweak it if required.
 
-Currently only these modules are used but you can include more you can
-find some more modules in `Project-SIlpa
-<https://github.com/Project-SILPA>`_ Github account, install them and
-add a line in *silpa.conf* for enabling them.
-
-Additionally we would need a *normalizer* module for *Transliteration* modules correct working.
-Get it from below URL and install it in your virtual environment but
 
 .. warning::
 
- Do not add a line to silpa.conf  for this module. Its not a web module pure python module
+ *normalizer* and *silpa_common* modules are helper modules which is
+ required by the current modules.  Do not add a line to silpa.conf for
+ this module. Its not a web module pure python module
 
 VirtialEnv Instructions
 -----------------------
 
-If you are on Mac OS X or Linux, chances are that one of the following two commands will work for you:
+If you are on Mac OS X or Linux, chances are that one of the following
+two commands will work for you:
 
 .. code-block:: shell-session
 
@@ -60,13 +57,15 @@ or even better:
 
  $ sudo pip install virtualenv
 
-One of these will probably install virtualenv on your system. Maybe it’s even in your package manager. If you use Ubuntu, try:
+One of these will probably install virtualenv on your system. Maybe
+it’s even in your package manager. If you use Ubuntu, try:
 
 .. code-block:: shell-session
 
  $ sudo apt-get install python-virtualenv
 
-Once you have virtualenv installed, just fire up a shell-session and create your own environment.
+Once you have virtualenv installed, just fire up a shell-session and
+create your own environment.
 
 .. code-block:: shell-session
 
@@ -78,7 +77,8 @@ Once you have virtualenv installed, just fire up a shell-session and create your
  Installing distribute............done.
 
 
-Now, whenever you want to work on a project, you only have to activate the corresponding environment. On OS X and Linux, do the following:
+Now, whenever you want to work on a project, you only have to activate
+the corresponding environment. On OS X and Linux, do the following:
 
 .. code-block:: shell-session
 
@@ -90,9 +90,12 @@ If you are a Windows user, the following command is for you:
 
  $ silpa\scripts\activate.bat
 
-Either way, you should now be using your virtualenv (notice how the prompt of your shell-session has changed to show the active environment).
+Either way, you should now be using your virtualenv (notice how the
+prompt of your shell-session has changed to show the active
+environment).
 
-Now you can just enter the following command to get Flask activated in your virtualenv:
+Now you can just enter the following command to get Flask activated in
+your virtualenv:
 
 .. code-block:: shell-session
 
@@ -106,8 +109,10 @@ You can start the silpa application by
  python silpa.py
  Running on http://127.0.0.1:5000/
 
-Well not exactly. You will see error messages saying Failed to import module xyz. That means you need to install the modules.
-Here is an example module installation for Soundex. Repeat this for other modules.
+Well not exactly. You will see error messages saying Failed to import
+module xyz. That means you need to install the modules.  Here is an
+example module installation for Soundex. Repeat this for other
+modules.
 
 .. code-block:: shell-session
 
