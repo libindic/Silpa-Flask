@@ -36,4 +36,4 @@ Guidelines for Coding and Pull Requests
 9. If your commit passes all above then likelihood of your changes
    getting merged is more :-).
 10. All commit will be checked and merged by the `core team
-    <https://github.com/orgs/Project-SILPA/teams/core`_.
+    <https://github.com/orgs/Project-SILPA/teams/core`>_.
