@@ -26,6 +26,7 @@ Contents:
    installation
    modules
    apis
+   hacking
    faq
    credits
 
