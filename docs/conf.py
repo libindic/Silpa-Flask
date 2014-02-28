@@ -247,6 +247,11 @@ u'Santhosh Thottingal', 'Silpa', 'One line description of project.',
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
-sys.path.append(os.path.abspath('_themes'))
-html_theme_path = ['_themes']
-html_theme = 'kr'
+# on_rtd is whether we are on readthedocs.org
+import os
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+
+if not on_rtd:  # only import and set the theme if we're building docs locally
+    sys.path.append(os.path.abspath('_themes'))
+    html_theme_path = ['_themes']
+    html_theme = 'kr'
