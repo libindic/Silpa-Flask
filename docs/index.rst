@@ -24,7 +24,7 @@ Contents:
    :maxdepth: 2
 
    installation
-   silpa-flask
+   modules
    listofmodules
    apis
    faq
