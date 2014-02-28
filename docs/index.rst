@@ -25,7 +25,6 @@ Contents:
 
    installation
    modules
-   listofmodules
    apis
    faq
    credits
