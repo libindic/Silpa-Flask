@@ -106,7 +106,7 @@ Here is an example module installation for Soundex. Repeat this for other module
 ```shell
 mkdir modules
 cd modules
-git clone git://github.com/copyninja/Soundex.git
+git clone git@github.com:Project-SILPA/Soundex.git
 cd Soundex
 python setup.py install
 ```
