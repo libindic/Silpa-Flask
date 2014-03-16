@@ -40,7 +40,7 @@ class WebBridge(MethodView):
             return render_template('credits.html', title="Credits",
                                    main_page=BASEURL, modules=enabled_modules)
         elif request.path == BASEURL + "Contact":
-            return render_template('contact.html', title="Credits",
+            return render_template('contact.html', title="Contact",
                                    main_page=BASEURL, modules=enabled_modules)
 
         elif len(request.args) == 0:
