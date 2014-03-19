@@ -80,7 +80,7 @@ If you want to Install all modules:
 
 .. code-block:: shell-session
 
-		$ pip install -r requirement-modules.txt
+		$ pip install -r requirements-modules.txt
 
 .. note:: Previously we were suggesting use of ``modules.txt`` but now
 	  we are unable  properly update the pypi modules in time so
