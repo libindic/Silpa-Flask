@@ -1,102 +1,65 @@
-from json import loads, dumps
-from modulehelper import modules, modulenames, MODULES, enabled_modules, \
-        load_modules
+from collections import namedtuple
+from flask import Blueprint, request
+from . import route
+import json
+
+JsonRpcError = namedtuple('JsonRpcError', ['code', 'message', 'data'])
+JsonRpcRequest = namedtuple('JsonRpcRequest',
+                            ['jsonrpc', 'method', 'params', 'id'])
+JsonRpcErrorResponse = namedtuple('JsonRpcErrorResponse',
+                                  ['jsonrpc', 'error', 'id'])
+JsonRpcResultResponse = namedtuple('JsonRpcResultResponse',
+                                   ['jsonrpc', 'result', 'id'])
+
+_PARSE_ERRORS = -32700
+_INVALID_REQUEST = -32600
+_METHOD_NOT_FOUND = -32601
+_INVALID_PARAMS = -32602
+_INTERNAL_ERROR = -32603
 
 
-class JSONRPCHandlerException(Exception):
-    pass
+bp = Blueprint('JSONRPC', __name__, url_prefix='/JSONRPC')
 
 
-class JSONRequestNotTranslatable(JSONRPCHandlerException):
-    pass
+@route(bp, '/JSONRPC', methods=['POST'])
+def handle_jsonrpc_call():
+    if request.data is not None:
+        rpc_object = JsonRpc(request.data)
 
-
-class BadServiceRequest(JSONRPCHandlerException):
-    pass
-
-
-class MethodNotFoundException(JSONRPCHandlerException):
-    def __init__(self, name):
-        self.methodname = name
-
-
-class JSONRPCHandler(object):
-
-    def __init__(self):
-        '''
-         This should be only once called. Atleast my assumption
-        '''
-        load_modules()
-
-    def translate_request(self, data):
-        try:
-            req = loads(data)
-        except:
-            raise JSONRequestNotTranslatable
-        return req
-
-    def translate_result(self, result, error, id_):
-        if error != None:
-            error = {"name": error.__class__.__name__, "message": error}
-            result = None
-
-        try:
-            data = dumps({"result": result, "id": id_, "error": error})
-        except:
-            error = {"name": "JSONEncodeException", \
-                    "message": "Result object is not serializable"}
-            data = dumps({"result": None, "id": id_, "error": error})
-
-        return data
-
-    def call(self, method, args):
-        _args = None
-        for arg in args:
-            if arg != '':
-                if _args == None:
-                    _args = []
-                _args.append(arg)
-
-        if _args == None:
-            # No arguments
-            return method()
+        if rpc_object.error_response is not None:
+            # There was a error, translate and return the dictionary
+            # object for client
+            return dict(zip(rpc_object.error_response._fields))
         else:
-            return method(*_args)
+            # there was no problem constructing request lets process
+            # the call
+            pass
 
-    def handle_request(self, json):
-        err = None
-        meth = None
-        id_ = ''
-        result = None
-        args = None
 
+class JsonRpc(object):
+    __slots__ = ['request', 'response', 'error_response']
+
+    def __init__(self, data):
+        self.error_response = None
         try:
-            req = self.translate_request(json)
-        except JSONRequestNotTranslatable, e:
-            err = e
-            req = {'id': id_}
+            self.request = JsonRpcRequest(**json.loads(data))
+        except Exception as e:
+            # Unable to parse json
+            error = JsonRpcError(code=_PARSE_ERRORS, message=e.message,
+                                 data="")
+            self.errors_response = JsonRpcErrorResponse(jsonrpc="2.0",
+                                                        error=error, id='')
+        else:
+            # successfully parsed now verify request
+            if self.request.jsonrpc != "2.0" or len(self.request.method) == 0 \
+               or len(self.request.params) == 0 or len(self.id) == 0:
+                # not valid request
+                error = JsonRpcError(code=_INVALID_REQUEST,
+                                     message="Not a valid JSON-RPC request",
+                                     data='')
+                self.error_response = JsonRpcErrorResponse(jsonrpc="2.0",
+                                                           error=error, id='')
 
-        if err == None:
-            try:
-                id_ = req['id']
-                meth = req['method']
-                try:
-                    args = req['params']
-                except:
-                    pass
-            except:
-                err = BadServiceRequest(json)
-
-            module_instance = None
-            if err == None:
-                try:
-                    module_instance = MODULES.get(meth.split('.')[0])
-                except:
-                    err = MethodNotFoundException(meth.split('.')[-1])
-
-            method = None
-            if err == None:
-                result = self.call(getattr(module_instance, \
-                        meth.split('.')[-1]), args)
-
-            return self.translate_result(result, err, id_)
+    def __call__(self):
+        # process request here
+        pass
