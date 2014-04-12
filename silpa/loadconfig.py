@@ -1,36 +1,51 @@
-from ConfigParser import RawConfigParser
+__all__ = ['IncompleteConfigError', 'config']
+
+import ConfigParser
 import os
 
-_all_ = ['get']
+class IncompleteConfigError(Exception):
+    def __init__(self, section, option):
+        self.section = section
+        self.option = option
+
+    def __str__(self):
+        if self.option is not None:
+            return ">> Missing option {option} in section {section}" + \
+                "of config file".format(option=self.option,
+                                        section=self.section)
+        else:
+            return ">> Missiong section {section} in config file".format(
+                section=self.section)
 
 
-class _SilpaConfig:
-    def __init__(self):
-        _config = RawConfigParser()
-        _config.read(os.path.join(os.path.dirname(__file__), 'silpa.conf'))
+class _Config(ConfigParser.ConfigParser):
+    _instance = None
 
-        self.site_name = _config.get('main', 'site')
-        self.baseurl = _config.get('main', 'baseurl')
+    def __new__(cls, *args, **kwargs):
+        if not cls._instance:
+            cls._instance = super(_Config, cls).__new__(cls, *args, **kwargs)
+            return cls._instance
 
-        self.log_level = _config.get('logging', 'log_level')
+    def __init__(self, location="silpa.conf"):
+        ConfigParser.ConfigParser.__init__(self)
+        self.read(location)
+        self.verify
 
-        folder = _config.get('logging', 'log_folder')
-        self.log_folder = folder if folder != "." else os.getcwd()
+    def verify(self):
+        self._verify_item("main", "site")
+        self._verify_item("main", "baseurl")
+        self._verify_item("logging", "log_level")
+        self._verify_item("logging", "log_folder")
+        self._verify_item("logging", "log_name")
 
-        name = _config.get('logging', 'log_name')
-        self.log_name = name if name else 'silpa.log'
+        if not self.has_section("modules"):
+            raise IncompleteConfigError("modules", None)
 
-        self.modules = {}
-        for module, status in _config.items('modules'):
-            self.modules[module] = status if status else "no"
+        if not self.has_section("modules_display"):
+            raise IncompleteConfigError("modules_display")
 
-        self.modules_display = {}
-        for module, name in _config.items('module_display'):
-            self.modules_display[module] = name
+    def _verify_item(self, section, option):
+        if not self.has_option(section, option):
+            raise IncompleteConfigError(section, option)
 
-
-_config = _SilpaConfig()
-
-
-def get(key):
-    return _config.__dict__[key]
+config = _Config(os.path.join(os.path.dirname(__file__), "silpa.conf"))
