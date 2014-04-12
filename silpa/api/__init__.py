@@ -1,6 +1,7 @@
 from flask import jsonify
 from functools import wraps
 from .. import factory
+from .. import moduleloader
 
 import os
 
@@ -21,6 +22,9 @@ def create_app(settings_override=None):
     app = factory.create_app(__name__, os.path.dirname(__file__),
                              settings_override)
     app.errorhandler(404)(on_404)
+
+    # Load enabled modules from the config
+    moduleloader.load_modules()
 
 
 def on_404(e):
