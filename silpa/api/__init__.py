@@ -19,7 +19,7 @@ def route(bp, *args, **kwargs):
 
 
 def create_app(settings_override=None):
-    app = factory.create_app(__name__, os.path.dirname(__file__),
+    app = factory.create_app(__name__, __path__,
                              settings_override)
     app.errorhandler(404)(on_404)
 
