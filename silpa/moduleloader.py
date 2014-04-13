@@ -1,7 +1,8 @@
+from __future__ import print_function
 from loadconfig import config
-from flask import current_app
 
 import importlib
+import sys
 
 _modules = [module for module, need in config.items("modules")
             if need == "yes"]
@@ -12,5 +13,5 @@ def load_modules():
         try:
             importlib.import_module(module)
         except ImportError:
-            current_app.logger.error(
-                "Failed to import {module}".format(module=module))
+            print("Failed to import {module}".format(module=module),
+                  file=sys.stderr)
