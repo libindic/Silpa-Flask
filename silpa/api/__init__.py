@@ -25,6 +25,7 @@ def create_app(settings_override=None):
 
     # Load enabled modules from the config
     moduleloader.load_modules()
+    return app
 
 
 def on_404(e):

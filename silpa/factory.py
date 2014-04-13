@@ -57,3 +57,5 @@ def create_app(package_name, package_path, settings_override=None):
 
     register_blueprints(app, package_name, package_path)
     configure_logging(app)
+
+    return app
