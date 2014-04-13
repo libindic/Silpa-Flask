@@ -43,7 +43,7 @@ def configure_logging(app):
 
     handler.setLevel(level)
     handler.setFormatter(Formatter('%(asctime)s %(levelname)s' +
-                                   ' %(messagename)7s - [in %(funcName)s' +
+                                   ' %(message)7s - [in %(funcName)s' +
                                    ' at %(pathname)s %(lineno)d]'))
     app.logger.setLevel(level)
     app.logger.addHandler(handler)

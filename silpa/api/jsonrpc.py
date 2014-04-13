@@ -58,7 +58,7 @@ class JsonRpc(object):
             # Unable to parse json
             error = JsonRpcError(code=_PARSE_ERRORS, message=e.message,
                                  data="")
-            self.errors_response = JsonRpcErrorResponse(jsonrpc="2.0",
+            self.error_response = JsonRpcErrorResponse(jsonrpc="2.0",
                                                         error=error, id='')
         else:
             # successfully parsed now verify request
