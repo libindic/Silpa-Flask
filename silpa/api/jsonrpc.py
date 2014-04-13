@@ -19,7 +19,7 @@ _INVALID_PARAMS = -32602
 _INTERNAL_ERROR = -32603
 
 
-bp = Blueprint('JSONRPC', __name__, url_prefix='/JSONRPC')
+bp = Blueprint('JSONRPC', __name__, url_prefix='/api')
 
 
 @route(bp, '/JSONRPC', methods=['POST'])
