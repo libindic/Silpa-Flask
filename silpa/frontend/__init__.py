@@ -5,7 +5,7 @@ from ..loadconfig import config
 
 
 def create_app(settings_override=None):
-    app = factory.create_app(__name__,__path__,
+    app = factory.create_app(__name__, __path__,
                              settings_override)
     load_module_templates(app)
     return app

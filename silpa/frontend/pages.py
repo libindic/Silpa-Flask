@@ -1,4 +1,4 @@
-from flask import current_app, request, Blueprint, render_template, abort
+from flask import request, Blueprint, render_template, abort
 from ..loadconfig import config
 from . import route
 

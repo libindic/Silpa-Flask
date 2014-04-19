@@ -3,8 +3,6 @@ from functools import wraps
 from .. import factory
 from .. import moduleloader
 
-import os
-
 
 def route(bp, *args, **kwargs):
     def decorator(f):
