@@ -81,27 +81,24 @@ class JsonRpc(object):
                 error = JsonRpcError(code=INVALID_REQUEST,
                                      message="Not a valid JSON-RPC request",
                                      data='')
+                error_dict = dict(zip(error._fields, error))
                 self.error_response = JsonRpcErrorResponse(jsonrpc="2.0",
-                                                           error=error, id='')
+                                                           error=error_dict,
+                                                           id='')
 
     def __call__(self):
         # process request here
-        print("call function")
         module, method = self.request.method.split('.')
         if module not in sys.modules:
             # Module is not yet loaded? handle this
-            print("module not loaded")
             pass
         else:
             # module is present in sys
-            print("module loaded")
             mod = sys.modules[module]
             if hasattr(mod, 'getInstance'):
-                print("method has getInstance")
                 instance = getattr(mod, 'getInstance')()
                 if not hasattr(instance, method):
                     result = getattr(instance, method)(*self.request.params)
-                    print(result)
                     self.response = JsonRpcResultResponse(jsonrpc="2.0",
                                                           result=result,
                                                           id=self.request.id)

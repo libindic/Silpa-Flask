@@ -23,13 +23,13 @@ class JsonRpcApiTestCase(SILPAApiTestCase):
     def assertJsonRpcInvalidRequest(self, response):
         response_dict = json.loads(self.assertBadJson(response).data)
         self.assertIn('error', response_dict)
-        error_obj = jsonrpc.JsonRpcErrorResponse(**response_dict['error'])
+        error_obj = jsonrpc.JsonRpcError(**response_dict['error'])
         self.assertEquals(error_obj.code, jsonrpc.INVALID_REQUEST)
 
     def assertJsonRpcParseErrors(self, response):
         response_dict = json.loads(self.assertBadJson(response).data)
         self.assertIn('error', response_dict)
-        error_obj = jsonrpc.JsonRpcErrorResponse(**response_dict['error'])
+        error_obj = jsonrpc.JsonRpcError(**response_dict['error'])
         self.assertEquals(error_obj.code, jsonrpc.PARSE_ERRORS)
 
     def assertJsonRpcResult(self, response):
@@ -42,3 +42,12 @@ class JsonRpcApiTestCase(SILPAApiTestCase):
                     params=['Hello World!', 'kn_IN'],
                     id=random.randint(1, 1000))
         self.assertJsonRpcMethodNotFound(self.jpost('/api/JSONRPC', data=data))
+
+    def test_request_parseerror(self):
+        # notice missing jsonrpc key? this is invalid request but our
+        # code will trigger parse error as we can't convert this to
+        # JsonRpcRequest object
+        data = dict(method='transliteration.transliterate',
+                    params=['Hello World!', 'kn_IN'],
+                    id=random.randint(1, 1000))
+        self.assertJsonRpcParseErrors(self.jpost('/api/JSONRPC', data=data))
