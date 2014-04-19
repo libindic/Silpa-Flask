@@ -1,3 +1,4 @@
+from __future__ import print_function
 from collections import namedtuple
 from flask import Blueprint, request
 from . import route
@@ -12,11 +13,11 @@ JsonRpcErrorResponse = namedtuple('JsonRpcErrorResponse',
 JsonRpcResultResponse = namedtuple('JsonRpcResultResponse',
                                    ['jsonrpc', 'result', 'id'])
 
-_PARSE_ERRORS = -32700
-_INVALID_REQUEST = -32600
-_METHOD_NOT_FOUND = -32601
-_INVALID_PARAMS = -32602
-_INTERNAL_ERROR = -32603
+PARSE_ERRORS = -32700
+INVALID_REQUEST = -32600
+METHOD_NOT_FOUND = -32601
+INVALID_PARAMS = -32602
+INTERNAL_ERROR = -32603
 
 
 bp = Blueprint('JSONRPC', __name__, url_prefix='/api')
@@ -39,16 +40,24 @@ def handle_jsonrpc_call():
                 rpc_object()
             except Exception as e:
                 # Possible errors in execution of method
-                error = JsonRpcError(code=_INTERNAL_ERROR, message=e.message,
+                error = JsonRpcError(code=INTERNAL_ERROR, message=e.message,
                                      data=dict(zip(rpc_object.request._fields,
                                                    rpc_object.request)))
                 return dict(jsonrpc="2.0",
-                            error=dict(zip(error._fields, error),
-                                       id=rpc_object.request.id))
+                            error=dict(zip(error._fields, error)),
+                            id=rpc_object.request.id)
+            else:
+                if rpc_object.error_response is None:
+                    # success!
+                    return dict(zip(rpc_object.response._fields,
+                                    rpc_object.response))
+                else:
+                    return dict(zip(rpc_object.error_response._fields,
+                                    rpc_object.error_response))
 
 
 class JsonRpc(object):
-    __slots__ = ['request', 'response', 'error_response']
+    __slots__ = ['request', 'response', 'error_response', 'instance_type']
 
     def __init__(self, data):
         self.error_response = None
@@ -56,16 +65,20 @@ class JsonRpc(object):
             self.request = JsonRpcRequest(**json.loads(data))
         except Exception as e:
             # Unable to parse json
-            error = JsonRpcError(code=_PARSE_ERRORS, message=e.message,
+            error = JsonRpcError(code=PARSE_ERRORS, message=e.message,
                                  data="")
             self.error_response = JsonRpcErrorResponse(jsonrpc="2.0",
-                                                        error=error, id='')
+                                                       error=dict(zip(
+                                                           error._fields,
+                                                           error)),
+                                                       id='')
         else:
             # successfully parsed now verify request
             if self.request.jsonrpc != "2.0" or len(self.request.method) == 0 \
-               or len(self.request.params) == 0 or len(self.id) == 0:
+               or len(self.request.params) == 0 or \
+               len(str(self.request.id)) == 0:
                 # not valid request
-                error = JsonRpcError(code=_INVALID_REQUEST,
+                error = JsonRpcError(code=INVALID_REQUEST,
                                      message="Not a valid JSON-RPC request",
                                      data='')
                 self.error_response = JsonRpcErrorResponse(jsonrpc="2.0",
@@ -73,27 +86,36 @@ class JsonRpc(object):
 
     def __call__(self):
         # process request here
+        print("call function")
         module, method = self.request.method.split('.')
-
         if module not in sys.modules:
             # Module is not yet loaded? handle this
+            print("module not loaded")
             pass
         else:
             # module is present in sys
+            print("module loaded")
             mod = sys.modules[module]
-            if not hasattr(mod, method) and \
-               type(getattr(mod, method).__name__ == 'function'):
-                # method not found
-                error = JsonRpcError(code=_METHOD_NOT_FOUND,
-                                     message="requested method not found",
-                                     data="Requested method {}".format(
-                                         self.request.method))
-                self.error_response = JsonRpcErrorResponse(jsonrpc="2.0",
-                                                           error=error,
-                                                           id=self.request.id)
+            if hasattr(mod, 'getInstance'):
+                print("method has getInstance")
+                instance = getattr(mod, 'getInstance')()
+                if not hasattr(instance, method):
+                    result = getattr(instance, method)(*self.request.params)
+                    print(result)
+                    self.response = JsonRpcResultResponse(jsonrpc="2.0",
+                                                          result=result,
+                                                          id=self.request.id)
+                else:
+                    # method not found
+                    error = JsonRpcError(code=METHOD_NOT_FOUND,
+                                         message="requested method not found",
+                                         data="Requested method {}".format(
+                                             self.request.method))
+                    error_dict = dict(zip(error._fields, error))
+                    self.error_response = JsonRpcErrorResponse(
+                        jsonrpc="2.0",
+                        error=error_dict,
+                        id=self.request.id)
             else:
-                # Method present so lets call it to get result
-                result = getattr(module, method)(*self.request.params)
-                self.response = JsonRpcResultResponse(jsonrpc="2.0",
-                                                      result=result,
-                                                      id=self.request.id)
+                # module doesn't provide an interface to us?
+                pass
