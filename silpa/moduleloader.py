@@ -12,6 +12,7 @@ def load_modules():
     for module in _modules:
         try:
             importlib.import_module(module)
-        except ImportError:
-            print("Failed to import {module}".format(module=module),
+        except ImportError as e:
+            print("Failed to import {module}: {message}".
+                  format(module=module, message=e.message),
                   file=sys.stderr)
