@@ -5,7 +5,7 @@
 -e git+https://github.com/Project-SILPA/Soundex.git#egg=soundex
 -e git+https://github.com/Project-SILPA/silpa-common.git#egg=silpa_common
 -e git+https://github.com/Project-SILPA/shingling.git#egg=shingling
--e git+https://github.com/Project-SILPA/scriptrender.git#egg=scriptrender
+#-e git+https://github.com/Project-SILPA/scriptrender.git#egg=scriptrender
 -e git+https://github.com/Project-SILPA/payyans.git#egg=payyans
 -e git+https://github.com/Project-SILPA/normalizer.git#egg=normalizer
 -e git+https://github.com/Project-SILPA/inexactsearch.git#egg=inexactsearch
