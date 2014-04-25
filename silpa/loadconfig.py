@@ -1,6 +1,6 @@
 __all__ = ['IncompleteConfigError', 'config']
 
-import ConfigParser
+import configparser
 import os
 
 class IncompleteConfigError(Exception):
@@ -18,16 +18,10 @@ class IncompleteConfigError(Exception):
                 section=self.section)
 
 
-class _Config(ConfigParser.ConfigParser):
-    _instance = None
-
-    def __new__(cls, *args, **kwargs):
-        if not cls._instance:
-            cls._instance = super(_Config, cls).__new__(cls, *args, **kwargs)
-            return cls._instance
+class _Config(configparser.ConfigParser):
 
     def __init__(self, location="silpa.conf"):
-        ConfigParser.ConfigParser.__init__(self)
+        configparser.ConfigParser.__init__(self)
         self.read(location)
         self.verify
 
