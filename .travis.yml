@@ -5,7 +5,7 @@ python:
 install:
   - pip install -r requirements.txt
   - pip install -r requirements-modules.txt
-  - if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then pip install -r requirements-2.7.txt; fi
+  - if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then pip install -r requirements-py2.txt; fi
   - pip install coveralls
   - pip install flake8
 script: make travis
