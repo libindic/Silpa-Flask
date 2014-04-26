@@ -3,6 +3,7 @@ __all__ = ['IncompleteConfigError', 'config']
 import configparser
 import os
 
+
 class IncompleteConfigError(Exception):
     def __init__(self, section, option):
         self.section = section
