@@ -1,5 +1,5 @@
 from __future__ import print_function
-from loadconfig import config
+from .loadconfig import config
 
 import importlib
 import sys

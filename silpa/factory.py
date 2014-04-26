@@ -4,7 +4,7 @@ import logging
 import os
 
 from flask import Flask, Blueprint
-from loadconfig import config
+from .loadconfig import config
 from logging import Formatter
 from logging.handlers import TimedRotatingFileHandler
 
