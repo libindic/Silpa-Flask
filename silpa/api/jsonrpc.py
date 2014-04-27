@@ -97,7 +97,7 @@ class JsonRpc(object):
             mod = sys.modules[module]
             if hasattr(mod, 'getInstance'):
                 instance = getattr(mod, 'getInstance')()
-                if not hasattr(instance, method):
+                if hasattr(instance, method):
                     result = getattr(instance, method)(*self.request.params)
                     self.response = JsonRpcResultResponse(jsonrpc="2.0",
                                                           result=result,
