@@ -51,3 +51,10 @@ class JsonRpcApiTestCase(SILPAApiTestCase):
                     params=['Hello World!', 'kn_IN'],
                     id=random.randint(1, 1000))
         self.assertJsonRpcParseErrors(self.jpost('/api/JSONRPC', data=data))
+
+    def test_result_jsonrpc(self):
+        data = dict(jsonrpc='2.0',
+                    method='transliteration.transliterate',
+                    params=['Hello World!', 'kn_IN'],
+                    id=random.randint(1, 1000))
+        self.assertJsonRpcResult(self.jpost('/api/JSONRPC', data=data))
