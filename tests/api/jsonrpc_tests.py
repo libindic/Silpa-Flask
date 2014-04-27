@@ -33,12 +33,12 @@ class JsonRpcApiTestCase(SILPAApiTestCase):
         self.assertEquals(error_obj.code, jsonrpc.PARSE_ERRORS)
 
     def assertJsonRpcResult(self, response):
-        response_dict = json.loads(self.assertJsonOk(response).data)
+        response_dict = json.loads(self.assertOkJson(response).data)
         self.assertIn('result', response_dict)
 
     def test_methodnot_found(self):
         data = dict(jsonrpc='2.0',
-                    method='transliteration.transliterate',
+                    method='transliteration.transliter',
                     params=['Hello World!', 'kn_IN'],
                     id=random.randint(1, 1000))
         self.assertJsonRpcMethodNotFound(self.jpost('/api/JSONRPC', data=data))
