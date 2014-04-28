@@ -15,7 +15,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top silpa-navbar" role="navigation">
       <div class="container">
         <ul class="nav navbar-nav">
-          <li><a class="navbar-brand" href="{{ url_for(main_page)}}">SILPA</a></li>
+          <li><a class="navbar-brand" href="{{ url_for('.serve_pages', page='index')}}">SILPA</a></li>
           {% if title != "SILPA" %}
             <li><a href="#">{{ title }}</a></li>
           {% endif %}
@@ -34,7 +34,7 @@
             <ul class="nav nav-tabs nav-stacked" role="navigation">
               <li class="navbar-brand">Applications</li>
               {% for module in modules %}
-              <li><a href="{{ url_for(main_page + '/' + module if not main_page == '/' else main_page + module) }}">{{ module }}</a></li>
+              <li><a href="{{ url_for('.serve_pages', page=module) }}">{{ module }}</a></li>
               {% endfor %}
             </ul>
           </div>
@@ -57,11 +57,11 @@
           <li class="muted">·</li>
           <li><a href="http://lists.nongnu.org/mailman/listinfo/silpa-discuss">Mailing List</a></li>
           <li class="muted">·</li>
-          <li><a href="{{ url_for('credits')}}">Credits</a></li>
+          <li><a href="{{ url_for('.serve_pages', page='Credits')}}">Credits</a></li>
           <li class="muted">·</li>
-          <li><a href="{{ url_for('license')}}">License</a></li>
+          <li><a href="{{ url_for('.serve_pages', page='License')}}">License</a></li>
           <li class="muted">·</li>
-          <li><a href="{{ url_for('contact')}}">Contact</a></li>
+          <li><a href="{{ url_for('.serve_pages', page='Contact')}}">Contact</a></li>
         </ul>
       </div>
     </footer>
