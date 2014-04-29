@@ -15,10 +15,10 @@ class SILPATestCaseMixin(object):
         return method(*args, **kwargs)
 
     def get(self, *args, **kwargs):
-        return self._request(*args, **kwargs)
+        return self._request(self.client.get, *args, **kwargs)
 
     def post(self, *args, **kwargs):
-        return self._request(*args, **kwargs)
+        return self._request(self.client.post, *args, **kwargs)
 
     def jpost(self, *args, **kwargs):
         return self._request(self.client.post, *args,
