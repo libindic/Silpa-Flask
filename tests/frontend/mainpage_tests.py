@@ -47,3 +47,7 @@ class MainPageTestCase(SILPAFrontEndTestCase):
             # r1 = self.get('/' + m)
             # self.assertIn('<title> {} - Indic Language Computing Platform ' +
             #               '</title>', self.assertOk(r1).data)
+
+    def test_pagenotfound(self):
+        r = self.get('/blablabla')
+        self.assertStatusCode(r, 404)

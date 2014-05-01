@@ -61,3 +61,7 @@ class JsonRpcApiTestCase(SILPAApiTestCase):
                     params=['Hello World!', 'kn_IN'],
                     id=random.randint(1, 1000))
         self.assertJsonRpcResult(self.jpost('/api/JSONRPC', data=data))
+
+    def test_notfound(self):
+        r = self.post('/api/JS')
+        self.assertStatusCode(r, 404)
