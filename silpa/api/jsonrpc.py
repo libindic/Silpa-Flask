@@ -63,6 +63,14 @@ class JsonRpc(object):
         self.error_response = None
         try:
             self.request = JsonRpcRequest(**json.loads(data))
+        except TypeError as e:
+            error = JsonRpcError(code=INVALID_REQUEST,
+                                 message="Not a valid JSON-RPC request",
+                                 data='')
+            error_dict = dict(zip(error._fields, error))
+            self.error_response = JsonRpcErrorResponse(jsonrpc="2.0",
+                                                       error=error_dict,
+                                                       id='')
         except Exception as e:
             # Unable to parse json
             error = JsonRpcError(code=PARSE_ERRORS, message=e.message,
@@ -72,19 +80,6 @@ class JsonRpc(object):
                                                            error._fields,
                                                            error)),
                                                        id='')
-        else:
-            # successfully parsed now verify request
-            if self.request.jsonrpc != "2.0" or len(self.request.method) == 0 \
-               or len(self.request.params) == 0 or \
-               len(str(self.request.id)) == 0:
-                # not valid request
-                error = JsonRpcError(code=INVALID_REQUEST,
-                                     message="Not a valid JSON-RPC request",
-                                     data='')
-                error_dict = dict(zip(error._fields, error))
-                self.error_response = JsonRpcErrorResponse(jsonrpc="2.0",
-                                                           error=error_dict,
-                                                           id='')
 
     def __call__(self):
         # process request here
