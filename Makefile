@@ -4,7 +4,7 @@ travis:
 
 clean:
 	find . -name "*.pyc" -exec rm -vf {} \;
-	find -name __pycache__ -deete
+	find -name __pycache__ -delete
 
 tox:
 	tox
