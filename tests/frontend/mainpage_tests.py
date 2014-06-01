@@ -27,26 +27,24 @@ class MainPageTestCase(SILPAFrontEndTestCase):
         self.assertIn('<h1>Credits</h1>', self.assertOk(r).data)
 
     def test_moduleloaded(self):
-        from silpa.loadconfig import config
-        modules = [module for module, need in config.items('modules')
-                   if need == "yes"]
-        module_display = sorted((display_name
-                                 for module, display_name in
-                                 config.items('module_display')
-                                 if module in modules))
+        from silpa.helper import ModuleConfigHelper
+        module_display = ModuleConfigHelper.get_module_displaynames()
+
         r = self.get('/')
         self.assertOk(r)
 
-        for m in module_display:
+        for m, d in module_display.items():
             # FIXME: Returned by configparser is unicode string for
             # some reason breaks with assertIn not sure why :(
-            self.assertIn(m.encode('utf-8'), r.data)
+            self.assertIn(d.encode('utf-8'), r.data)
 
             # TODO: URL in modules needs to be fixed befor enabling
-            # below tests
-            # r1 = self.get('/' + m)
-            # self.assertIn('<title> {} - Indic Language Computing Platform ' +
-            #               '</title>', self.assertOk(r1).data)
+            # below tests, for now skip transliteration which is
+            # enabled in test conf but url is not fixed
+            # if m != 'transliteration' and m != 'soundex':
+            #  r1 = self.get('/' + m)
+            #  self.assertIn('<title> {} - Indic Language Computing Platform' +
+            #                ' </title>'.format(m), self.assertOk(r1).data)
 
     def test_pagenotfound(self):
         r = self.get('/blablabla')
