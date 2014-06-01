@@ -85,5 +85,5 @@ class JsonRpcApiTestCase(SILPAApiTestCase):
         data = dict(jsonrpc='2.0',
                     method='flask.Flask',
                     params=[__name__],
-                    id=random.randint(1,1000))
+                    id=random.randint(1, 1000))
         self.assertJsonRpcInternalError(self.jpost('/api/JSONRPC', data=data))

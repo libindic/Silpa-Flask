@@ -14,9 +14,9 @@ class ModuleConfigHelper(object):
         cls.module_names = [module for module, need in config.items('modules')
                             if need == 'yes']
 
-        cls.module_display = {module:display_name for module, display_name in
-                                 config.items('module_display')
-                                 if module in cls.module_names}
+        cls.module_display = {module: display_name for module, display_name in
+                              config.items('module_display')
+                              if module in cls.module_names}
         cls.base_url = config.get('main', 'baseurl')
         return super(ModuleConfigHelper, cls).__new__(cls)
 

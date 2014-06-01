@@ -1,7 +1,6 @@
 __all__ = ['IncompleteConfigError', 'Config']
 
 import configparser
-import os
 
 
 class IncompleteConfigError(Exception):
