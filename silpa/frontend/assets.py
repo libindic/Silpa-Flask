@@ -14,7 +14,7 @@ css_all = Bundle("css/bootstrap.min.css", "css/jquery.ime.css",
 
 
 js_all = Bundle("js/bootstrap.min.js", "js/jquery.ime.js", "js/jquery.js",
-                   filters="jsmin", output="js/silpa.min.js")
+                filters="jsmin", output="js/silpa.min.js")
 
 
 def init_app(app):
