@@ -1,11 +1,13 @@
 from .. import factory
 from jinja2 import PackageLoader, ChoiceLoader
 from ..helper import ModuleConfigHelper
+from . import assets
 
 
 def create_app(conffile, settings_override=None):
     app = factory.create_app(__name__, __path__,
                              settings_override, conffile)
+    assets.init_app(app)
     load_module_templates(app)
     return app
 
