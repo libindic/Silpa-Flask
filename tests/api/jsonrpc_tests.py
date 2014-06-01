@@ -32,6 +32,12 @@ class JsonRpcApiTestCase(SILPAApiTestCase):
         error_obj = jsonrpc.JsonRpcError(**response_dict['error'])
         self.assertEquals(error_obj.code, jsonrpc.PARSE_ERRORS)
 
+    def assertJsonRpcInternalError(self, response):
+        response_dict = json.loads(self.assertBadJson(response).data)
+        self.assertIn('error', response_dict)
+        error_obj = jsonrpc.JsonRpcError(**response_dict['error'])
+        self.assertEquals(error_obj.code, jsonrpc.INTERNAL_ERROR)
+
     def assertJsonRpcResult(self, response):
         response_dict = json.loads(self.assertOkJson(response).data)
         self.assertIn('result', response_dict)
@@ -65,3 +71,19 @@ class JsonRpcApiTestCase(SILPAApiTestCase):
     def test_notfound(self):
         r = self.post('/api/JS')
         self.assertStatusCode(r, 404)
+
+    def test_module_notloaded(self):
+        # Test assumes scriptrender module will never be enabled in
+        # test setup configuration
+        data = dict(jsonrpc='2.0',
+                    method='scriptrender.render_text',
+                    params=['some text', 'png', 'Black'],
+                    id=random.randint(1, 1000))
+        self.assertJsonRpcInternalError(self.jpost('/api/JSONRPC', data=data))
+
+    def test_no_interface(self):
+        data = dict(jsonrpc='2.0',
+                    method='flask.Flask',
+                    params=[__name__],
+                    id=random.randint(1,1000))
+        self.assertJsonRpcInternalError(self.jpost('/api/JSONRPC', data=data))

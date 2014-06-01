@@ -85,8 +85,17 @@ class JsonRpc(object):
         # process request here
         module, method = self.request.method.split('.')
         if module not in sys.modules:
-            # Module is not yet loaded? handle this
-            pass
+            # Module is not yet loaded or the request module is not
+            # enabled pass an error here.
+            error = JsonRpcError(code=INTERNAL_ERROR,
+                                 message="Requested module is not loaded or not\
+                                 enabled by Admin",
+                                 data="{} is not loaded".format(module))
+            self.error_response = JsonRpcErrorResponse(jsonrpc="2.0",
+                                                       error=dict(zip(
+                                                           error._fields,
+                                                           error)),
+                                                       id=self.request.id)
         else:
             # module is present in sys
             mod = sys.modules[module]
@@ -110,4 +119,13 @@ class JsonRpc(object):
                         id=self.request.id)
             else:
                 # module doesn't provide an interface to us?
-                pass
+                error = JsonRpcError(code=INTERNAL_ERROR,
+                                     message="Requested module doesn't provide \
+                                     getInstance interface",
+                                     data="{} is the module requested".format(
+                                         module))
+                self.error_response = JsonRpcErrorResponse(jsonrpc='2.0',
+                                                           error=dict(zip(
+                                                               error._fields,
+                                                               error)),
+                                                           id=self.request.id)
