@@ -28,3 +28,5 @@ venv
 *.swp
 .\#*
 \#*\#
+*.webassets-cache/
+*silpa.min.*
