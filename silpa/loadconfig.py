@@ -1,4 +1,4 @@
-__all__ = ['IncompleteConfigError', 'config']
+__all__ = ['IncompleteConfigError', 'Config']
 
 import configparser
 import os
@@ -19,7 +19,7 @@ class IncompleteConfigError(Exception):
                 section=self.section)
 
 
-class _Config(configparser.ConfigParser):
+class Config(configparser.ConfigParser):
 
     def __init__(self, location="silpa.conf"):
         configparser.ConfigParser.__init__(self)
@@ -42,5 +42,3 @@ class _Config(configparser.ConfigParser):
     def _verify_item(self, section, option):
         if not self.has_option(section, option):
             raise IncompleteConfigError(section, option)
-
-config = _Config(os.path.join(os.path.dirname(__file__), "silpa.conf"))
