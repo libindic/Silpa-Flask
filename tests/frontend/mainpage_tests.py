@@ -41,10 +41,11 @@ class MainPageTestCase(SILPAFrontEndTestCase):
             # TODO: URL in modules needs to be fixed befor enabling
             # below tests, for now skip transliteration which is
             # enabled in test conf but url is not fixed
-            # if m != 'transliteration' and m != 'soundex':
-            #  r1 = self.get('/' + m)
-            #  self.assertIn('<title> {} - Indic Language Computing Platform' +
-            #                ' </title>'.format(m), self.assertOk(r1).data)
+            if m != 'transliteration':
+                r1 = self.get('/' + m)
+                self.assertIn('<title> ' + m.encode('utf-8') +
+                              ' - Indic Language Computing Platform' +
+                              ' </title>', self.assertOk(r1).data)
 
     def test_pagenotfound(self):
         r = self.get('/blablabla')
