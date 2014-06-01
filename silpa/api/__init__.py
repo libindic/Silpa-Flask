@@ -1,7 +1,6 @@
 from flask import jsonify
 from functools import wraps
 from .. import factory
-from .. import moduleloader
 
 
 def route(bp, *args, **kwargs):
@@ -16,13 +15,11 @@ def route(bp, *args, **kwargs):
     return decorator
 
 
-def create_app(settings_override=None):
+def create_app(conffile, settings_override=None):
     app = factory.create_app(__name__, __path__,
-                             settings_override)
+                             settings_override, conffile)
     app.errorhandler(404)(on_404)
 
-    # Load enabled modules from the config
-    moduleloader.load_modules()
     return app
 
 

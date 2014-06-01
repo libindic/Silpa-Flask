@@ -33,8 +33,8 @@
             <!-- side bar goes here -->
             <ul class="nav nav-tabs nav-stacked" role="navigation">
               <li class="navbar-brand">Applications</li>
-              {% for module in modules %}
-              <li><a href="{{ url_for('.serve_pages', page=module) }}">{{ module }}</a></li>
+              {% for module,display in modules %}
+              <li><a href="{{ url_for('.serve_pages', page=module) }}">{{ display }}</a></li>
               {% endfor %}
             </ul>
           </div>

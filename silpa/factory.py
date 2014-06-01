@@ -3,11 +3,12 @@ import importlib
 import logging
 import os
 
+
 from flask import Flask, Blueprint
-from .loadconfig import config
+from .loadconfig import Config
 from logging import Formatter
 from logging.handlers import TimedRotatingFileHandler
-
+from .helper import ModuleConfigHelper
 
 def register_blueprints(app, package_name, package_path):
     rv = []
@@ -22,7 +23,7 @@ def register_blueprints(app, package_name, package_path):
     return rv
 
 
-def configure_logging(app):
+def configure_logging(app, config):
     log_level = config.get('logging', 'log_level')
     log_folder = config.get('logging', 'log_folder')
     log_name = config.get('logging', 'log_name')
@@ -49,13 +50,23 @@ def configure_logging(app):
     app.logger.addHandler(handler)
 
 
-def create_app(package_name, package_path, settings_override=None):
+def create_app(package_name, package_path, settings_override=None,
+               conffile="silpa.conf"):
     app = Flask(package_name, instance_relative_config=True)
     app.config.from_object("silpa.settings")
     app.config.from_pyfile('settings.cfg', silent=True)
     app.config.from_object(settings_override)
 
+    config = Config(conffile)
+    configure_logging(app, config)
+
+    # Create ModuleConfigHelper class and pass it config this will
+    # instantiate class variables
+    ModuleConfigHelper(config=config)
+    ModuleConfigHelper.load_modules()
+
+    # Register blueprints at end so we have module,display and other
+    # stuff created
     register_blueprints(app, package_name, package_path)
-    configure_logging(app)
 
     return app

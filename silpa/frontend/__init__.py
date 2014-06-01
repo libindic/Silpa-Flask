@@ -1,18 +1,17 @@
 from .. import factory
 from jinja2 import PackageLoader, ChoiceLoader
-from ..loadconfig import config
+from ..helper import ModuleConfigHelper
 
 
-def create_app(settings_override=None):
+def create_app(conffile, settings_override=None):
     app = factory.create_app(__name__, __path__,
-                             settings_override)
+                             settings_override, conffile)
     load_module_templates(app)
     return app
 
 
 def load_module_templates(app):
-    modules = [module for module, need in config.items('modules')
-               if need == 'yes']
+    modules = ModuleConfigHelper.get_modules()
     templates = [app.jinja_loader]
     for module in modules:
         templates.append(PackageLoader(module))
