@@ -23,7 +23,7 @@ class Config(configparser.ConfigParser):
     def __init__(self, location="silpa.conf"):
         configparser.ConfigParser.__init__(self)
         self.read(location)
-        self.verify
+        self.verify()
 
     def verify(self):
         self._verify_item("main", "site")
