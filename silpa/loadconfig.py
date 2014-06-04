@@ -35,8 +35,8 @@ class Config(configparser.ConfigParser):
         if not self.has_section("modules"):
             raise IncompleteConfigError("modules", None)
 
-        if not self.has_section("modules_display"):
-            raise IncompleteConfigError("modules_display")
+        if not self.has_section("module_display"):
+            raise IncompleteConfigError("module_display", None)
 
     def _verify_item(self, section, option):
         if not self.has_option(section, option):
