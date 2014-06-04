@@ -1,6 +1,6 @@
 testscenarios>=0.4
 testrepository>=0.0.18
-subunit
+python-subunit
 coverage
 flake8
 coveralls
