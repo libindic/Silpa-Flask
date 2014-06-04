@@ -1,11 +1,7 @@
 [run]
-omit =
-    */python?.?/*
-    */lib-python/?.?/*.py
-    */lib_pypy/_*.py
-    */site-packages/nose/*
-    */pypy/*
+omit = silpa/tests/*
+branch = True
+source = silpa
 
-exclude_lines =
-    # Have to re-enable the standard pragma
-    pragma: no cover
+[report]
+ignore_errors = True
