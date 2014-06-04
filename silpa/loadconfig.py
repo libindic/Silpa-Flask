@@ -10,9 +10,9 @@ class IncompleteConfigError(Exception):
 
     def __str__(self):
         if self.option is not None:
-            return ">> Missing option {option} in section {section}" + \
-                "of config file".format(option=self.option,
-                                        section=self.section)
+            return ">> Missing {option} in {section} \
+            of config file".format(option=self.option,
+                                   section=self.section)
         else:
             return ">> Missiong section {section} in config file".format(
                 section=self.section)
