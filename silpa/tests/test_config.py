@@ -47,3 +47,10 @@ class TestConfigParser(testscenarios.TestWithScenarios):
         e = ic.exception
         self.assertEqual(self.option, e.option)
         self.assertEqual(self.section, e.section)
+
+        if self.option:
+            error = e.__str__()
+            self.assertIn(self.option, error)
+            self.assertIn(self.section, error)
+        else:
+            self.assertIn(self.section, e.__str__())
