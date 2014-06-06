@@ -31,3 +31,4 @@ venv
 *.webassets-cache/
 *silpa.min.*
 /.testrepository/
+/cover/
