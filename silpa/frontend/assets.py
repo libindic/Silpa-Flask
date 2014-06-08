@@ -13,7 +13,7 @@ css_all = Bundle("css/bootstrap.min.css", "css/jquery.ime.css",
                  "css/main.css", filters="cssmin", output="css/silpa.min.css")
 
 
-js_all = Bundle("js/bootstrap.min.js", "js/jquery.ime.js", "js/jquery.js",
+js_all = Bundle( "js/jquery.js","js/bootstrap.min.js", "js/jquery.ime.js",
                 filters="jsmin", output="js/silpa.min.js")
 
 
