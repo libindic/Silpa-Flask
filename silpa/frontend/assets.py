@@ -9,11 +9,17 @@
 from flask.ext.assets import Environment, Bundle
 
 
-css_all = Bundle("css/bootstrap.min.css", "css/jquery.ime.css",
+css_all = Bundle("css/bootstrap.min.css",
+                 "js/jquery.ime/css/jquery.ime.css",
                  "css/main.css", filters="cssmin", output="css/silpa.min.css")
 
 
-js_all = Bundle( "js/jquery.js","js/bootstrap.min.js", "js/jquery.ime.js",
+js_all = Bundle("js/jquery.js",
+                "js/bootstrap.min.js",
+                "js/jquery.ime/src/jquery.ime.js",
+                "js/jquery.ime/src/jquery.ime.inputmethods.js",
+                "js/jquery.ime/src/jquery.ime.selector.js",
+                "js/jquery.ime/src/jquery.ime.preferences.js",
                 filters="jsmin", output="js/silpa.min.js")
 
 
