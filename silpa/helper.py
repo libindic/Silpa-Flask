@@ -11,8 +11,8 @@ class ModuleConfigHelper(object):
 
     def __new__(cls, *args, **kwargs):
         config = kwargs['config']
-        cls.module_names = [module for module, need in config.items('modules')
-                            if need == 'yes']
+        cls.module_names = {module for module, need in config.items('modules')
+                            if need == 'yes'}
 
         cls.module_display = {module: display_name for module, display_name in
                               config.items('module_display')
