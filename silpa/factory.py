@@ -11,6 +11,7 @@ from logging.handlers import TimedRotatingFileHandler
 from .helper import ModuleConfigHelper
 from flask.ext.webfonts import Webfonts
 
+
 def register_blueprints(app, package_name, package_path):
     rv = []
     for _, name, _ in pkgutil.iter_modules(package_path):
