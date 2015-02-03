@@ -14,12 +14,13 @@
     <div class="navbar navbar-inverse navbar-fixed-top silpa-navbar" role="navigation">
       <div class="container">
         <ul class="nav navbar-nav">
-          <li><a class="navbar-brand" href="{{ url_for('.serve_pages', page='index')}}">SILPA</a></li>
+          <li><a class="navbar-brand" href="{{ url_for('.serve_pages', page='index.html')}}">SILPA</a></li>
           {% if title != "SILPA" %}
             <li><a href="#">{{ title }}</a></li>
           {% endif %}
         </ul>
         <ul class="nav navbar-nav pull-right hidden-xs">
+            <li><a href="webfonts/gallery">Webfonts</a></li>
           <li><a href="http://silpa.rtfd.org">Documentation</a></li>
         </ul>
       </div> <!-- container -->

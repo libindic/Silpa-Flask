@@ -9,7 +9,7 @@ from .loadconfig import Config
 from logging import Formatter
 from logging.handlers import TimedRotatingFileHandler
 from .helper import ModuleConfigHelper
-
+from flask.ext.webfonts import Webfonts
 
 def register_blueprints(app, package_name, package_path):
     rv = []
@@ -69,5 +69,7 @@ def create_app(package_name, package_path, settings_override=None,
     # Register blueprints at end so we have module,display and other
     # stuff created
     register_blueprints(app, package_name, package_path)
-
+    # register Webfonts blueprints
+    if package_name == "silpa.frontend":
+        Webfonts(app)
     return app
