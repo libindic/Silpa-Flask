@@ -1,3 +1,3 @@
 [submodule "silpa/frontend/static/js/lib"]
 	path = silpa/frontend/static/js/jquery.ime
-	url = https://github.com/wikimedia/jquery.ime.git
+	url = git://github.com/wikimedia/jquery.ime.git
