@@ -1,7 +1,7 @@
 SILPA
 ==========
 
-[![Build Status](https://travis-ci.org/Project-SILPA/Silpa-Flask.svg?branch=development)](https://travis-ci.org/Project-SILPA/Silpa-Flask)
+[![Build Status](https://travis-ci.org/libindic/Silpa-Flask.svg?branch=development)](https://travis-ci.org/libindic/Silpa-Flask)
 [![Coverage Status](https://coveralls.io/repos/Project-SILPA/Silpa-Flask/badge.png?branch=development)](https://coveralls.io/r/Project-SILPA/Silpa-Flask?branch=development)
 
 SILPA - Indian Language computing platform which provides a web interface
@@ -26,10 +26,11 @@ development files are `libxml2-dev`, `libxslt1-dev` and `libffi-dev`.
 
 
 ###Debian 7.0 Wheezy or newer, Ubuntu 11.10 Oneiric or newer:
+
 ```shell
 sudo apt-get install python-dev python-pip python-lxml libcairo2 \
      libpango1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
-	 ```
+```
 
 ####Debian 6.0 Squeeze, Ubuntu 10.04 Lucid:
 
@@ -108,30 +109,36 @@ $ silpa\scripts\activate.bat
 Either way, you should now be using your virtualenv (notice how the
 prompt of your shell has changed to show the active environment).
 
-Now you can just enter the following command to get Flask installed in
+Now you can just enter the following command to get all the requirements installed in
 your virtualenv:
 
 ```shell
-$ pip install Flask
+$ pip install -r requirements.txt
+```
+
+If you are using Python 2 you will need to run this too
+
+```shell
+$ pip install -r requirements-py2.txt
 ```
 
 The following modules are available for SILPA:
 
-* [Soundex ](https://github.com/Project-SILPA/Soundex)
-* [ApproxSearch](https://github.com/Project-SILPA/inexactsearch)
-* [Transliteration](https://github.com/Project-SILPA/Transliteration)
-* [Spellchecker](https://github.com/Project-SILPA/spellchecker)
-* [Hyphenation](https://github.com/Project-SILPA/Hyphenation)
-* [Chardetails](https://github.com/Project-SILPA/chardetails)
-* [Payyans](https://github.com/Project-SILPA/payyans)
-* [Text Similarity](https://github.com/Project-SILPA/text-similarity)
-* [N Gram](https://github.com/Project-SILPA/indicgram)
-* [Silpa Sort](https://github.com/Project-SILPA/ucasort)
-* [Indic Stemmer](https://github.com/Project-SILPA/indicstemmer)
-* [Katpayadi Numbers](https://github.com/Project-SILPA/Katapayadi)
-* [shingling](https://github.com/Project-SILPA/shingling)
-* [Indic-fortune](https://github.com/Project-SILPA/indicfortune) now renamed silpa-fortune
-* [scriptrender](https://github.com/Project-SILPA/scriptrender)
+* [Soundex ](https://github.com/libindic/Soundex)
+* [ApproxSearch](https://github.com/libindic/inexactsearch)
+* [Transliteration](https://github.com/libindic/Transliteration)
+* [Spellchecker](https://github.com/libindic/spellchecker)
+* [Hyphenation](https://github.com/libindic/Hyphenation)
+* [Chardetails](https://github.com/libindic/chardetails)
+* [Payyans](https://github.com/libindic/payyans)
+* [Text Similarity](https://github.com/libindic/text-similarity)
+* [N Gram](https://github.com/libindic/indicgram)
+* [Silpa Sort](https://github.com/libindic/ucasort)
+* [Indic Stemmer](https://github.com/libindic/indicstemmer)
+* [Katpayadi Numbers](https://github.com/libindic/Katapayadi)
+* [shingling](https://github.com/libindic/shingling)
+* [Indic-fortune](https://github.com/libindic/indicfortune) now renamed silpa-fortune
+* [scriptrender](https://github.com/libindic/scriptrender)
 
 Modules to be used with SILPA can be configured in the silpa.conf
 file. Modules marked 'yes' should be installed before running SILPA
@@ -146,10 +153,15 @@ git clone git@github.com:Project-SILPA/Soundex.git
 cd Soundex
 python setup.py install
 ```
+To install all modules run the following command
+
+```shell
+$ pip install -r requirements-modules.txt
+```
 
 Now you can start SILPA by running
 ```shell
-$ python silpa.py
+$ python wsgi.py
 ```
 You can access SILPA at http://localhost:5000
 
