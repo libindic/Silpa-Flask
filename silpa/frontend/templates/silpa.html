@@ -5,7 +5,7 @@
     <title> {{ title }} - Indic Language Computing Platform </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Indian Language Computing Platform">
-    <meta name="author" content="SILPA Developers">
+    <meta name="author" content="Libindic Developers">
     {% assets "css_all" %}
     <link href="{{ ASSET_URL }}" rel="stylesheet">
     {% endassets %}
@@ -14,8 +14,8 @@
     <div class="navbar navbar-inverse navbar-fixed-top silpa-navbar" role="navigation">
       <div class="container">
         <ul class="nav navbar-nav">
-          <li><a class="navbar-brand" href="{{ url_for('.serve_pages', page='index')}}">SILPA</a></li>
-          {% if title != "SILPA" %}
+          <li><a class="navbar-brand" href="{{ url_for('.serve_pages', page='index')}}">Libindic</a></li>
+          {% if title != "Libindic" %}
             <li><a href="#">{{ title }}</a></li>
           {% endif %}
         </ul>
@@ -49,7 +49,7 @@
 
     <footer class="footer" role="contentinfo">
       <div class="container">
-        <p>All rights reserved. © 2008-2014, Silpa Team</p>
+        <p>All rights reserved. © 2008-2016, Libindic Team</p>
         <p>Code licensed under <a href="http://www.fsf.org/licensing/licenses/agpl-3.0.html" target="_blank">GNU Affero General Public License.</a></p>
         <ul class="footer-links">
           <li><a href="https://github.com/Project-SILPA/Silpa-Flask">Source Code</a></li>
