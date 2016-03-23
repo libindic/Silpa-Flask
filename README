@@ -25,7 +25,7 @@ development files are `libxml2-dev`, `libxslt1-dev` and `libffi-dev`.
 ```shell
 sudo apt-get install python-dev python-pip python-lxml libcairo2 \
      libpango1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
-	 ```
+```
 
 ####Debian 6.0 Squeeze, Ubuntu 10.04 Lucid:
 
