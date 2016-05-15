@@ -1,6 +1,6 @@
 from flask import jsonify
 from functools import wraps
-from .. import factory
+from silpa import factory
 
 
 def route(bp, *args, **kwargs):

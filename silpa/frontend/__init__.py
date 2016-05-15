@@ -1,7 +1,7 @@
-from .. import factory
+from silpa import factory
 from jinja2 import PackageLoader, ChoiceLoader
-from ..helper import ModuleConfigHelper
-from . import assets
+from silpa.helper import ModuleConfigHelper
+from silpa.frontend import assets
 
 
 def create_app(conffile, settings_override=None):

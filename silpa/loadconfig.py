@@ -1,6 +1,6 @@
-__all__ = ['IncompleteConfigError', 'Config']
-
 import configparser
+
+__all__ = ['IncompleteConfigError', 'Config']
 
 
 class IncompleteConfigError(Exception):

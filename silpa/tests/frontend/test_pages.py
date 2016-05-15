@@ -6,7 +6,7 @@
     main page frontend tests module
 """
 
-from . import SILPAFrontEndTestCase
+from silpa.tests.frontend import SILPAFrontEndTestCase
 
 
 class MainPageTestCase(SILPAFrontEndTestCase):

@@ -1,7 +1,8 @@
 from __future__ import print_function
 from collections import namedtuple
 from flask import Blueprint, request
-from . import route
+from silpa.api import route
+
 import json
 import sys
 

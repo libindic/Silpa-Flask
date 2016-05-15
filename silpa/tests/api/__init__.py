@@ -1,5 +1,5 @@
 from silpa.api import create_app
-from .. import SILPAAppTestCase, settings
+from silpa.tests import SILPAAppTestCase, settings
 import os
 
 
