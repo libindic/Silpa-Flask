@@ -12,4 +12,4 @@ tox:
 	tox
 
 flake:
-	flake8 silpa tests
+	flake8 silpa
