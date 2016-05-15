@@ -2,7 +2,7 @@
 -e git+https://github.com/Project-SILPA/text-similarity.git#egg=textsimilarity
 -e git+https://github.com/Project-SILPA/ucasort.git#egg=ucasort
 -e git+https://github.com/Project-SILPA/spellchecker.git#egg=spellchecker
--e git+https://github.com/Project-SILPA/Soundex.git#egg=soundex
+-e git+https://github.com/Project-SILPA/Soundex.git@development#egg=soundex
 -e git+https://github.com/Project-SILPA/silpa-common.git#egg=silpa_common
 -e git+https://github.com/Project-SILPA/shingling.git#egg=shingling
 #-e git+https://github.com/Project-SILPA/scriptrender.git#egg=scriptrender
