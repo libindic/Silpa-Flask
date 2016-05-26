@@ -67,7 +67,7 @@ class JsonRpc(object):
         except TypeError as e:
             error = JsonRpcError(code=INVALID_REQUEST,
                                  message="Not a valid JSON-RPC request",
-                                 data='')
+                                 data=str(e))
             error_dict = dict(zip(error._fields, error))
             self.error_response = JsonRpcErrorResponse(jsonrpc="2.0",
                                                        error=error_dict,
