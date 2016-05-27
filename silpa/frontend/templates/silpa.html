@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title> {{ title }} - Indic Language Computing Platform </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Indian Language Computing Platform">
+    <meta name="author" content="SILPA Developers">
+    {% assets "css_all" %}
+    <link href="{{ ASSET_URL }}" rel="stylesheet">
+    {% endassets %}
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top silpa-navbar" role="navigation">
+      <div class="container">
+        <ul class="nav navbar-nav">
+          <li><a class="navbar-brand" href="{{ url_for('.serve_pages')}}">SILPA</a></li>
+          {% if title != "SILPA" %}
+            <li><a href="#">{{ title }}</a></li>
+          {% endif %}
+        </ul>
+        <ul class="nav navbar-nav pull-right hidden-xs">
+          <li><a href="http://silpa.rtfd.org">Documentation</a></li>
+        </ul>
+      </div> <!-- container -->
+    </div> <!-- navbar -->
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="sidebar-nav">
+            <!-- side bar goes here -->
+            <ul class="nav nav-tabs nav-stacked" role="navigation">
+              <li class="navbar-brand">Applications</li>
+              {% for module,display in modules %}
+              <li><a href="{{ url_for('.serve_pages', page=module) }}">{{ display }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-sm-9">
+          <!-- Main body goes here -->
+          {% block content %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <p>All rights reserved. © 2008-2014, Silpa Team</p>
+        <p>Code licensed under <a href="http://www.fsf.org/licensing/licenses/agpl-3.0.html" target="_blank">GNU Affero General Public License.</a></p>
+        <ul class="footer-links">
+          <li><a href="https://github.com/Project-SILPA/Silpa-Flask">Source Code</a></li>
+          <li class="muted">·</li>
+          <li><a href="http://lists.nongnu.org/mailman/listinfo/silpa-discuss">Mailing List</a></li>
+          <li class="muted">·</li>
+          <li><a href="{{ url_for('.serve_pages', page='Credits')}}">Credits</a></li>
+          <li class="muted">·</li>
+          <li><a href="{{ url_for('.serve_pages', page='License')}}">License</a></li>
+          <li class="muted">·</li>
+          <li><a href="{{ url_for('.serve_pages', page='Contact')}}">Contact</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- Lets make page load fast -->
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    {% assets "js_all" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+    <!-- script from module -->
+    {% block modulescript %}
+    {% endblock %}
+    <script>
+      $( document ).ready( function () {
+        $('.ime').ime({'imePath':'static/js/jquery.ime/'});
+      } );
+    </script>
+  </body>
+</html>

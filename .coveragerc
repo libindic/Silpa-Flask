@@ -1,0 +1,7 @@
+[run]
+omit = silpa/tests/*
+branch = True
+source = silpa
+
+[report]
+ignore_errors = True

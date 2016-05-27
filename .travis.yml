@@ -1,0 +1,20 @@
+language: python
+python:
+  - "2.7"
+  # - "3.3"
+install:
+  - pip install -r requirements.txt
+  - pip install -r requirements-modules.txt
+  - if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then pip install -r requirements-py2.txt; fi
+  - pip install -r test-requirements.txt
+script: make travis
+after_success: coveralls
+notifications:
+  email:
+    - silpa-discuss@nongnu.org
+  irc:
+    channels:
+      - "irc.freenode.net#silpa"
+    on_success: change
+    on_failure: change
+    use_notice: true

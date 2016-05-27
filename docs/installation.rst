@@ -74,7 +74,8 @@ Get the Code
     $ git clone https://github.com/Project-SILPA/Silpa-Flask.git
     $ cd Silpa-Flask
     $ pip install -r requirements.txt
-    $ python silpa.py
+    $ python setup.py install
+    $ python wsgi.py
 
 If you want to Install all modules:
 
@@ -112,7 +113,7 @@ You can start the silpa application by
 
 .. code-block:: shell-session
 
- python silpa.py
+ python wsgi.py
  Running on http://127.0.0.1:5000/
 
 

@@ -1,1 +1,4 @@
 Flask
+Flask-Assets
+cssmin
+jsmin>=2.0.6

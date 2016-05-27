@@ -1,5 +1,9 @@
 SILPA
 ==========
+
+[![Build Status](https://travis-ci.org/Project-SILPA/Silpa-Flask.svg?branch=development)](https://travis-ci.org/Project-SILPA/Silpa-Flask)
+[![Coverage Status](https://coveralls.io/repos/Project-SILPA/Silpa-Flask/badge.png?branch=development)](https://coveralls.io/r/Project-SILPA/Silpa-Flask?branch=development)
+
 SILPA - Indian Language computing platform which provides a web interface
 for different Indian language computing python modules. This is hosted at
 
