@@ -26,44 +26,50 @@ bp = Blueprint('api_jsonrpc', __name__)
 
 @route(bp, '/JSONRPC', methods=['POST'])
 def handle_jsonrpc_call():
-    if request.data is not None:
+    if request.json is not None:
+        rpc_object = JsonRpc(request.json)
+    else:
         rpc_object = JsonRpc(request.data)
 
-        if rpc_object.error_response is not None:
-            # There was a error, translate and return the dictionary
-            # object for client
-            return dict(zip(rpc_object.error_response._fields,
-                            rpc_object.error_response))
+    if rpc_object.error_response is not None:
+        # There was a error, translate and return the dictionary
+        # object for client
+        return dict(zip(rpc_object.error_response._fields,
+                        rpc_object.error_response))
+    else:
+        # there was no problem constructing request lets process
+        # the call
+        try:
+            rpc_object()
+        except Exception as e:
+            # Possible errors in execution of method
+            error = JsonRpcError(code=INTERNAL_ERROR, message=e.message,
+                                 data=dict(zip(rpc_object.request._fields,
+                                               rpc_object.request)))
+            return dict(jsonrpc="2.0",
+                        error=dict(zip(error._fields, error)),
+                        id=rpc_object.request.id)
         else:
-            # there was no problem constructing request lets process
-            # the call
-            try:
-                rpc_object()
-            except Exception as e:
-                # Possible errors in execution of method
-                error = JsonRpcError(code=INTERNAL_ERROR, message=e.message,
-                                     data=dict(zip(rpc_object.request._fields,
-                                                   rpc_object.request)))
-                return dict(jsonrpc="2.0",
-                            error=dict(zip(error._fields, error)),
-                            id=rpc_object.request.id)
+            if rpc_object.error_response is None:
+                # success!
+                return dict(zip(rpc_object.response._fields,
+                                rpc_object.response))
             else:
-                if rpc_object.error_response is None:
-                    # success!
-                    return dict(zip(rpc_object.response._fields,
-                                    rpc_object.response))
-                else:
-                    return dict(zip(rpc_object.error_response._fields,
-                                    rpc_object.error_response))
+                return dict(zip(rpc_object.error_response._fields,
+                                rpc_object.error_response))
 
 
 class JsonRpc(object):
     __slots__ = ['request', 'response', 'error_response', 'instance_type']
 
     def __init__(self, data):
+        if not isinstance(data, dict):
+            jsondata = json.loads(data)
+        else:
+            jsondata = data
         self.error_response = None
         try:
-            self.request = JsonRpcRequest(**json.loads(data))
+            self.request = JsonRpcRequest(**jsondata)
         except TypeError as e:
             error = JsonRpcError(code=INVALID_REQUEST,
                                  message="Not a valid JSON-RPC request",
