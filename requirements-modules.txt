@@ -1,7 +1,7 @@
 -e git+https://github.com/Project-SILPA/Transliteration.git#egg=transliteration
 -e git+https://github.com/Project-SILPA/text-similarity.git#egg=textsimilarity
 -e git+https://github.com/Project-SILPA/ucasort.git#egg=ucasort
--e git+https://github.com/Project-SILPA/spellchecker.git#egg=spellchecker
+-e git+https://github.com/Project-SILPA/spellchecker.git#egg=libindic_spellchecker
 -e git+https://github.com/Project-SILPA/Soundex.git@development#egg=soundex
 -e git+https://github.com/Project-SILPA/silpa-common.git#egg=silpa_common
 -e git+https://github.com/Project-SILPA/shingling.git#egg=shingling
@@ -10,10 +10,10 @@
 -e git+https://github.com/Project-SILPA/normalizer.git#egg=normalizer
 -e git+https://github.com/Project-SILPA/inexactsearch.git#egg=inexactsearch
 -e git+https://github.com/Project-SILPA/syllabalizer.git#egg=indicsyllabifier
--e git+https://github.com/Project-SILPA/indicngram.git#egg=indicngram
+-e git+https://github.com/Project-SILPA/indicngram.git#egg=libindic_ngram
 -e git+https://github.com/Project-SILPA/indicfortune.git#egg=indicfortune
 -e git+https://github.com/Project-SILPA/Hyphenation.git#egg=hyphenation
 -e git+https://github.com/Project-SILPA/guesslanguage.git#egg=guesslanguage
 -e git+https://github.com/Project-SILPA/chardetails.git#egg=chardetails
 -e git+https://github.com/Project-SILPA/katapayadi.git#egg=katapayadi
--e git+https://github.com/Project-SILPA/indicstemmer.git#egg=indicstemmer
+-e git+https://github.com/Project-SILPA/indicstemmer.git#egg=libindic_stemmer
