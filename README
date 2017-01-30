@@ -117,7 +117,7 @@ $ pip install Flask
 
 The following modules are available for SILPA:
 
-* [Soundex ](https://github.com/Project-SILPA/Soundex)
+* [Soundex ](https://github.com/Project-SILPA/soundex)
 * [ApproxSearch](https://github.com/Project-SILPA/inexactsearch)
 * [Transliteration](https://github.com/Project-SILPA/Transliteration)
 * [Spellchecker](https://github.com/Project-SILPA/spellchecker)
@@ -125,7 +125,7 @@ The following modules are available for SILPA:
 * [Chardetails](https://github.com/Project-SILPA/chardetails)
 * [Payyans](https://github.com/Project-SILPA/payyans)
 * [Text Similarity](https://github.com/Project-SILPA/text-similarity)
-* [N Gram](https://github.com/Project-SILPA/indicgram)
+* [N Gram](https://github.com/Project-SILPA/indicngram)
 * [Silpa Sort](https://github.com/Project-SILPA/ucasort)
 * [Indic Stemmer](https://github.com/Project-SILPA/indicstemmer)
 * [Katpayadi Numbers](https://github.com/Project-SILPA/Katapayadi)
@@ -142,7 +142,7 @@ other modules.
 ```shell
 mkdir modules
 cd modules
-git clone git@github.com:Project-SILPA/Soundex.git
+git clone git@github.com:Project-SILPA/soundex.git
 cd Soundex
 python setup.py install
 ```
