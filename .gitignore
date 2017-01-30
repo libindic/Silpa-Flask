@@ -20,7 +20,11 @@ pip-log.txt
 .tox
 
 #Virualenv folder
+silpa
 venv
+
+#modules
+modules
 
 #editor files
 ~*
