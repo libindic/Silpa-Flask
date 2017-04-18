@@ -22,10 +22,11 @@ development files are `libxml2-dev`, `libxslt1-dev` and `libffi-dev`.
 
 
 ###Debian 7.0 Wheezy or newer, Ubuntu 11.10 Oneiric or newer:
+
 ```shell
 sudo apt-get install python-dev python-pip python-lxml libcairo2 \
      libpango1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
-	 ```
+```
 
 ####Debian 6.0 Squeeze, Ubuntu 10.04 Lucid:
 
@@ -34,6 +35,7 @@ GDK-PixBuf is part of GTK+, which also depends on cairo and Pango.
 ```shell
 sudo apt-get install python-dev python-pip python-lxml libgtk2.0-0 libffi-dev
 ```
+
 ###Fedora
 ```shell
 sudo yum install python-devel python-pip python-lxml cairo pango gdk-pixbuf2\
@@ -121,7 +123,7 @@ The following modules are available for SILPA:
 * [Chardetails](https://github.com/Project-SILPA/chardetails)
 * [Payyans](https://github.com/Project-SILPA/payyans)
 * [Text Similarity](https://github.com/Project-SILPA/text-similarity)
-* [N Gram](https://github.com/Project-SILPA/indicgram)
+* [N Gram](https://github.com/Project-SILPA/indicngram)
 * [Silpa Sort](https://github.com/Project-SILPA/ucasort)
 * [Indic Stemmer](https://github.com/Project-SILPA/indicstemmer)
 * [Katpayadi Numbers](https://github.com/Project-SILPA/Katapayadi)
