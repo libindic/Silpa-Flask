@@ -121,7 +121,7 @@ The following modules are available for SILPA:
 * [Chardetails](https://github.com/Project-SILPA/chardetails)
 * [Payyans](https://github.com/Project-SILPA/payyans)
 * [Text Similarity](https://github.com/Project-SILPA/text-similarity)
-* [N Gram](https://github.com/Project-SILPA/indicgram)
+* [N Gram](https://github.com/Project-SILPA/indicngram)
 * [Silpa Sort](https://github.com/Project-SILPA/ucasort)
 * [Indic Stemmer](https://github.com/Project-SILPA/indicstemmer)
 * [Katpayadi Numbers](https://github.com/Project-SILPA/Katapayadi)
