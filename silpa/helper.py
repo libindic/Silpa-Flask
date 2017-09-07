@@ -35,6 +35,7 @@ class ModuleConfigHelper(object):
     @classmethod
     def load_modules(cls):
         for module in cls.module_names:
+            module = "libindic." + module
             try:
                 importlib.import_module(module)
             except ImportError as e:

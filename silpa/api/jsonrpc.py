@@ -91,6 +91,7 @@ class JsonRpc(object):
     def __call__(self):
         # process request here
         module, method = self.request.method.split('.')
+        module = "libindic." + module
         if module not in sys.modules:
             # Module is not yet loaded or the request module is not
             # enabled pass an error here.
