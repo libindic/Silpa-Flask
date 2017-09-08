@@ -1,5 +1,4 @@
 #-e git+https://github.com/libindic/Transliteration.git#egg=transliteration
-#-e git+https://github.com/libindic/indicstemmer.git#egg=indicstemmer
 #-e git+https://github.com/libindic/scriptrender.git#egg=scriptrender
 #-e git+https://github.com/libindic/silpa-common.git#egg=silpa_common
 #-e git+https://github.com/libindic/spellchecker.git#egg=spellchecker
@@ -10,6 +9,7 @@
 -e git+https://github.com/libindic/guesslanguage.git@development#egg=libindic_guesslanguage
 -e git+https://github.com/libindic/indicfortune.git@development#egg=libindic_fortune
 -e git+https://github.com/libindic/indicngram.git@development#egg=libindic_ngram
+-e git+https://github.com/libindic/indicstemmer.git@development#egg=libindic_stemmer
 -e git+https://github.com/libindic/inexactsearch.git@development#egg=libindic_inexactsearch
 -e git+https://github.com/libindic/katapayadi.git@development#egg=libindic_katapayadi
 -e git+https://github.com/libindic/normalizer.git#egg=libindic_normalizer
